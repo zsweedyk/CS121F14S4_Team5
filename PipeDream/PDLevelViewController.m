@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  PDLevelViewController.m
 //  PipeDream
 //
 //  Created by Vincent Fiorentini on 10/13/14.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "PDLevelViewController.h"
 
-@interface ViewController ()
+@interface PDLevelViewController ()
 
 @end
 
-@implementation ViewController
+@implementation PDLevelViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
