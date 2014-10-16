@@ -16,6 +16,6 @@
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west;
 - (void) setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col;
-- (void) setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)coul;
+- (void) setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)col;
 
 @end

@@ -16,4 +16,53 @@
 
 @implementation PDGridModel
 
+#pragma mark Public methods
+
+- (id) initWithLevelNumber:(NSInteger)number {
+    // TODO: Implement this method.
+    return nil;
+}
+
+- (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+}
+
+- (BOOL) isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
+                      toRow:(NSInteger)rowTo col:(NSInteger)colTo {
+    // TODO: Implement this method.
+    return NO;
+}
+
+- (BOOL) isOpenNorthAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+    return NO;
+}
+
+- (BOOL) isOpenEastAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+    return NO;
+}
+
+- (BOOL) isOpenSouthAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+    return NO;
+}
+
+- (BOOL) isOpenWestAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+    return NO;
+}
+
+- (BOOL) isStartAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+    return NO;
+}
+
+- (BOOL) isGoalAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this method.
+    return NO;
+}
+
+#pragma mark Private methods
+
 @end
