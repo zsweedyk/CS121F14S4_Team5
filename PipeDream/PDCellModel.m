@@ -12,8 +12,14 @@
 
 #pragma mark Public methods
 
-- (void) rotateClockwise {
-    // TODO: Implement this method.
+
+- (void) rotateClockwise
+{
+    BOOL tempIsOpenWest = _isOpenWest;
+    _isOpenWest = _isOpenSouth;
+    _isOpenSouth = _isOpenEast;
+    _isOpenEast = _isOpenNorth;
+    _isOpenNorth = tempIsOpenWest;
 }
 
 #pragma mark Private methods

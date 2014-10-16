@@ -10,6 +10,6 @@
 
 @interface PDGridGenerator : NSObject
 
-- (NSMutableArray *) generateGridForLevelNumber:(NSInteger)levelNumber;
++ (NSMutableArray *) generateGridForLevelNumber:(NSInteger)levelNumber;
 
 @end
