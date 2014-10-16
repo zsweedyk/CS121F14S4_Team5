@@ -10,6 +10,10 @@
 
 @interface PDLevelViewController : UIViewController
 
+- (void) startLevelNumber:(NSInteger)levelNumber;
+- (void) initializeGridView;
+- (void) initializeGridModel;
+- (void) rotateClockwisePipeAtRow:(NSInteger)row col:(NSInteger)col;
 
 @end
 

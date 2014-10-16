@@ -8,6 +8,12 @@
 
 #import "PDGridModel.h"
 
+@interface PDGridModel ()
+
+@property (nonatomic, strong) NSMutableArray *cells;
+
+@end
+
 @implementation PDGridModel
 
 @end

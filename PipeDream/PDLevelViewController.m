@@ -7,8 +7,13 @@
 //
 
 #import "PDLevelViewController.h"
+#import "PDGridView.h"
+#import "PDGridModel.h"
 
 @interface PDLevelViewController ()
+
+@property (nonatomic, strong) PDGridView *gridView;
+@property (nonatomic, strong) PDGridModel *gridModel;
 
 @end
 
@@ -22,6 +27,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
+    // this method will be called when the gridView tells us, since we will be its delegate
 }
 
 @end

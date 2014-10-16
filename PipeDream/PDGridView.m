@@ -8,14 +8,16 @@
 
 #import "PDGridView.h"
 
+@interface PDGridView ()
+
+@property (nonatomic, strong) NSMutableArray *cellViews;
+
+@end
+
 @implementation PDGridView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
+    // this method will be called when a CellView tells us, since we will be its delegate
 }
-*/
 
 @end
