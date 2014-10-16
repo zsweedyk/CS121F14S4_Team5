@@ -10,4 +10,12 @@
 
 @implementation PDCellModel
 
+#pragma mark Public methods
+
+- (void) rotateClockwise {
+    // TODO: Implement this method.
+}
+
+#pragma mark Private methods
+
 @end

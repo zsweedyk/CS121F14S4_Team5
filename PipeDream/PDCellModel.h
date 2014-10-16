@@ -10,4 +10,13 @@
 
 @interface PDCellModel : NSObject
 
+@property (nonatomic) BOOL isOpenNorth;
+@property (nonatomic) BOOL isOpenEast;
+@property (nonatomic) BOOL isOpenSouth;
+@property (nonatomic) BOOL isOpenWest;
+@property (nonatomic) BOOL isStart;
+@property (nonatomic) BOOL isGoal;
+
+- (void) rotateClockwise;
+
 @end

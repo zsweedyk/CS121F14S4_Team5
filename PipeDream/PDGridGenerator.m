@@ -10,4 +10,13 @@
 
 @implementation PDGridGenerator
 
+#pragma mark Public methods
+
+- (NSMutableArray *) generateGridForLevelNumber:(NSInteger)levelNumber {
+    // TODO: Implement this method.
+    return nil;
+}
+
+#pragma mark Private methods
+
 @end
