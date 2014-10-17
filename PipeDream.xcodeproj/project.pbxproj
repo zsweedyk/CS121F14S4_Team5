@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		93A3903D19EF705900D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3903C19EF705900D93EB1 /* grids.txt */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
@@ -33,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		93A3903C19EF705900D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF62561F19EC93F0008175CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF62562019EC93F0008175CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				BF62565019EC95A0008175CC /* PDGridGenerator.h */,
 				BF62565119EC95A0008175CC /* PDGridGenerator.m */,
 				BF62562819EC93F0008175CC /* Main.storyboard */,
-				93A3903C19EF705900D93EB1 /* grids.txt */,
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
 				BF62562D19EC93F0008175CC /* LaunchScreen.xib */,
 				BF62561E19EC93F0008175CC /* Supporting Files */,
@@ -227,7 +224,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93A3903D19EF705900D93EB1 /* grids.txt in Resources */,
 				BF62562A19EC93F0008175CC /* Main.storyboard in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
