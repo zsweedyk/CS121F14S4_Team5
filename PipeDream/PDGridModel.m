@@ -7,6 +7,7 @@
 //
 
 #import "PDGridModel.h"
+#import "PDOpenings.h"
 
 @interface PDGridModel ()
 
@@ -33,24 +34,9 @@
     return NO;
 }
 
-- (BOOL) isOpenNorthAtRow:(NSInteger)row col:(NSInteger)col {
+- (PDOpenings *) openingsAtRow:(NSInteger)row col:(NSInteger)col {
     // TODO: Implement this method.
-    return NO;
-}
-
-- (BOOL) isOpenEastAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    return NO;
-}
-
-- (BOOL) isOpenSouthAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    return NO;
-}
-
-- (BOOL) isOpenWestAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    return NO;
+    return nil;
 }
 
 - (BOOL) isStartAtRow:(NSInteger)row col:(NSInteger)col {
