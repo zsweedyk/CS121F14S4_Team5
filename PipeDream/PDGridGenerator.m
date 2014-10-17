@@ -17,7 +17,6 @@
 /* Input: Level number
  * Output: An array of rows of CellModels corresponding to that level */
 + (NSMutableArray *) generateGridForLevelNumber:(NSInteger)levelNumber {
-    // TODO: Implement this method.
     NSString *readString = [PDGridGenerator readFromFile];
     NSString *line = [PDGridGenerator getLineFromString: readString
                                                forLevel: levelNumber];
@@ -55,22 +54,23 @@
     int height = [[parsedLine objectAtIndex: 1] integerValue];
     
     // Get the position of the starting element
-    int start[2];
+    NSInteger start[2];
     start[0] = [[parsedLine objectAtIndex: 2] integerValue];
     start[1] = [[parsedLine objectAtIndex: 3] integerValue];
     
     // Get the position of the goal
-    int goal[2];
+    NSInteger goal[2];
     goal[0] = [[parsedLine objectAtIndex: 4] integerValue];
     goal[1] = [[parsedLine objectAtIndex: 5] integerValue];
-    
+
     // Parse the strings in the array into CellModels
     NSMutableArray *grid = [[NSMutableArray alloc] initWithCapacity: height];
     for (int r = 0; r < height; r++) {
         NSMutableArray *row = [[NSMutableArray alloc] initWithCapacity: width];
+        int rowStartIndex = r * width;
         for (int c = 0; c < width; c++) {
-            int index = r * width + height;
-            NSString *pipeEncoding = [parsedLine objectAtIndex: 6+index];
+            NSUInteger index = rowStartIndex + c + 6;
+            NSString *pipeEncoding = [parsedLine objectAtIndex: index];
             PDCellModel *cell = [PDGridGenerator parsePipeEncoding: pipeEncoding];
             [row addObject: cell];
         }
@@ -81,7 +81,7 @@
     [[[grid objectAtIndex: start[0]] objectAtIndex: start[1]] setIsStart: YES];
     [[[grid objectAtIndex: goal[0]] objectAtIndex: goal[1]] setIsGoal: YES];
     
-    return [NSMutableArray arrayWithArray:parsedLine];
+    return grid;
 }
 
 /* Input: A string encoding of a pipe
@@ -93,18 +93,13 @@
     
     // Extract values for cardinal directions from encoding
     BOOL north = [[pipeEncoding substringWithRange:NSMakeRange(0, 1)] isEqual: @"N"];
-    BOOL east = [[pipeEncoding substringWithRange:NSMakeRange(1, 2)] isEqual: @"E"];
-    BOOL south = [[pipeEncoding substringWithRange:NSMakeRange(2, 3)] isEqual: @"S"];
-    BOOL west = [[pipeEncoding substringWithRange:NSMakeRange(3, 4)] isEqual: @"W"];
-    
-    // Put openings information into an Openings object
-    PDOpenings *openings = [[PDOpenings alloc] init];
-    [openings setIsOpenNorth: north];
-    [openings setIsOpenEast: east];
-    [openings setIsOpenSouth: south];
-    [openings setIsOpenWest: west];
+    BOOL east = [[pipeEncoding substringWithRange:NSMakeRange(1, 1)] isEqual: @"E"];
+    BOOL south = [[pipeEncoding substringWithRange:NSMakeRange(2, 1)] isEqual: @"S"];
+    BOOL west = [[pipeEncoding substringWithRange:NSMakeRange(3, 1)] isEqual: @"W"];
     
     // Set cellModel's openings
+    PDOpenings *openings = [[PDOpenings alloc] init];
+    [openings setIsOpenNorth: north East: east South: south West: west];
     [cellModel setOpenings: openings];
     
     return cellModel;

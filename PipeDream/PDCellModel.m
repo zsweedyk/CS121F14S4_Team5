@@ -13,13 +13,12 @@
 #pragma mark Public methods
 
 
-- (void) rotateClockwise
-{
+- (void) rotateClockwise {
     BOOL tempIsOpenWest = [_openings isOpenWest];
     [_openings setIsOpenWest: [_openings isOpenSouth]];
     [_openings setIsOpenSouth: [_openings isOpenEast]];
     [_openings setIsOpenEast: [_openings isOpenNorth]];
-    [_openings setIsOpenEast: tempIsOpenWest];
+    [_openings setIsOpenNorth: tempIsOpenWest];
 }
 
 #pragma mark Private methods
