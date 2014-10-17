@@ -8,16 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class PDOpenings;
+
 @interface PDGridModel : NSObject
 
 - (id) initWithLevelNumber:(NSInteger)number;
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL) isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
                       toRow:(NSInteger)rowTo col:(NSInteger)colTo;
-- (BOOL) isOpenNorthAtRow:(NSInteger)row col:(NSInteger)col;
-- (BOOL) isOpenEastAtRow:(NSInteger)row col:(NSInteger)col;
-- (BOOL) isOpenSouthAtRow:(NSInteger)row col:(NSInteger)col;
-- (BOOL) isOpenWestAtRow:(NSInteger)row col:(NSInteger)col;
+- (PDOpenings *) openingsAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL) isStartAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL) isGoalAtRow:(NSInteger)row col:(NSInteger)col;
 
