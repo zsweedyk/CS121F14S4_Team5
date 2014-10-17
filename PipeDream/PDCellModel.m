@@ -15,11 +15,11 @@
 
 - (void) rotateClockwise
 {
-    BOOL tempIsOpenWest = _isOpenWest;
-    _isOpenWest = _isOpenSouth;
-    _isOpenSouth = _isOpenEast;
-    _isOpenEast = _isOpenNorth;
-    _isOpenNorth = tempIsOpenWest;
+    BOOL tempIsOpenWest = [_openings isOpenWest];
+    [_openings setIsOpenWest: [_openings isOpenSouth]];
+    [_openings setIsOpenSouth: [_openings isOpenEast]];
+    [_openings setIsOpenEast: [_openings isOpenNorth]];
+    [_openings setIsOpenEast: tempIsOpenWest];
 }
 
 #pragma mark Private methods
