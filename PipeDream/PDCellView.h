@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PDCellPressedDelegate.h"
 
 @interface PDCellView : UIView
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<PDCellPressedDelegate> delegate;
 
 - (void) rotateClockwise;
 - (void) setCellIsOpenNorth:(BOOL)north south:(BOOL)south east:(BOOL)east west:(BOOL)west;

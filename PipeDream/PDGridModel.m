@@ -24,6 +24,16 @@
     return nil;
 }
 
+- (NSInteger) numRows {
+    // TODO: Implement this method.
+    return 0;
+}
+
+- (NSInteger) numCols {
+    // TODO: Implement this method.
+    return 0;
+}
+
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
     // TODO: Implement this method.
 }

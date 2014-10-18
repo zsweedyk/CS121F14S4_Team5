@@ -15,9 +15,7 @@
 @property (nonatomic, weak) IBOutlet PDGridView *gridView;
 
 - (void) startLevelNumber:(NSInteger)levelNumber;
-- (void) initializeGridView;
-- (void) initializeGridModel;
-- (void) rotateClockwisePipeAtRow:(NSInteger)row col:(NSInteger)col;
+- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
 
 @end
 
