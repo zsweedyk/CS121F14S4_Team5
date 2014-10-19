@@ -36,6 +36,7 @@
 /* Begin PBXFileReference section */
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
+		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF62561F19EC93F0008175CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 				BF53EF4019F0A63A004BA422 /* PDOpenings.h */,
 				93A3903E19F0DBB600D93EB1 /* PDOpenings.m */,
 				93A3904019F0E44A00D93EB1 /* grids.txt */,
+				BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */,
 				BF62562819EC93F0008175CC /* Main.storyboard */,
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
 				BF62562D19EC93F0008175CC /* LaunchScreen.xib */,

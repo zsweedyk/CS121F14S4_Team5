@@ -28,11 +28,6 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
 - (void) testRotateClockwise {
     
     // Rotate a horizontal pipe, expect a vertical pipe
@@ -80,13 +75,6 @@
               [[topLeftCell openings] isOpenEast] &&
               ![[topLeftCell openings] isOpenSouth] &&
               ![[topLeftCell openings] isOpenWest], @"Top left cell properly decoded");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    //[self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    //}];
 }
 
 @end
