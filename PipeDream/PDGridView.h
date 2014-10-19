@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PDCellPressedDelegate.h"
+#import "PDCellView.h"
 
 @interface PDGridView : UIView
 
