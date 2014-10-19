@@ -16,6 +16,22 @@
     // TODO: Implement this method.
 }
 
+- (BOOL) isOpenNorth {
+    return [_openings isOpenNorth];
+}
+
+- (BOOL) isOpenEast {
+    return [_openings isOpenEast];
+}
+
+- (BOOL) isOpenSouth {
+    return [_openings isOpenSouth];
+}
+
+- (BOOL) isOpenWest {
+    return [_openings isOpenWest];
+}
+
 #pragma mark Private methods
 
 @end
