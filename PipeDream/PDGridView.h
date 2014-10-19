@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PDCellPressedDelegate.h"
 
 @interface PDGridView : UIView
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<PDCellPressedDelegate> delegate;
 
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col;
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col

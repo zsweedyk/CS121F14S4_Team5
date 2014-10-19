@@ -38,8 +38,7 @@
 #pragma mark Private methods
 
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
-    // this method will be called when a CellView tells us, since we will be its delegate
-    // TODO: Implement this method.
+    [self.delegate cellPressedAtRow:row col:col];
 }
 
 @end
