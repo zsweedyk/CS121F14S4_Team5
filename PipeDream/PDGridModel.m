@@ -8,6 +8,7 @@
 
 #import "PDGridModel.h"
 #import "PDOpenings.h"
+#import "PDCellModel.h"
 
 @interface PDGridModel ()
 
@@ -25,17 +26,33 @@
 }
 
 - (NSInteger) numRows {
-    // TODO: Implement this method.
-    return 0;
+    if (_cells == nil) {
+        return 0;
+    }
+    
+    return [_cells count];
 }
 
 - (NSInteger) numCols {
-    // TODO: Implement this method.
-    return 0;
+    if (_cells == nil) {
+        return 0;
+    }
+    
+    if ([_cells count] == 0) {
+        return 0;
+    }
+    
+    return [[_cells objectAtIndex:0] count];
 }
 
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    
+    if (cell == nil) {
+        return;
+    }
+    
+    [cell rotateClockwise];
 }
 
 - (BOOL) isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
@@ -45,18 +62,50 @@
 }
 
 - (PDOpenings *) openingsAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    return nil;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    
+    if (cell == nil) {
+        return nil;
+    }
+    
+    return [cell openings];
 }
 
 - (BOOL) isStartAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    return NO;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    
+    if (cell == nil) {
+        return nil;
+    }
+    
+    return [cell isStart];
 }
 
 - (BOOL) isGoalAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    return NO;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    
+    if (cell == nil) {
+        return nil;
+    }
+    
+    return [cell isGoal];
+}
+
+- (PDCellModel*) getCellAtRow:(NSInteger)row col:(NSInteger)col {
+    if (_cells != nil) {
+        return nil;
+    }
+    
+    if ([_cells count] <= row) {
+        return nil;
+    }
+    
+    if ([[_cells objectAtIndex:row] count] <= col) {
+        return nil;
+    }
+    
+    PDCellModel *cell = [[_cells objectAtIndex:row] objectAtIndex:col];
+    return cell;
 }
 
 #pragma mark Private methods
