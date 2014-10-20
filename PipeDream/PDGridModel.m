@@ -15,6 +15,9 @@
 @interface PDGridModel ()
 
 @property (nonatomic, strong) NSMutableArray *cells;
+@property (nonatomic, strong) PDCellModel *startCell;
+@property (nonatomic, strong) PDCellModel *goalCell;
+
 
 @end
 
@@ -29,6 +32,18 @@
     self = [super init];
     if (self) {
         _cells = [PDGridGenerator generateGridForLevelNumber:number];
+        for (int r = 0; r < [_cells count]; r++) {
+            for (int c = 0; c < [[_cells objectAtIndex:r] count]; c++) {
+                PDCellModel *current = [[_cells objectAtIndex:r] objectAtIndex:c];
+                if ([current isStart]) {
+                    _startCell = current;
+                }
+                
+                if ([current isGoal]) {
+                    _goalCell = current;
+                }
+            }
+        }
     }
     return self;
 }
@@ -37,6 +52,19 @@
     self = [super init];
     if (self) {
         _cells = grid;
+        for (int r = 0; r < [_cells count]; r++) {
+            for (int c = 0; c < [[_cells objectAtIndex:r] count]; c++) {
+                PDCellModel *current = [[_cells objectAtIndex:r] objectAtIndex:c];
+                if ([current isStart]) {
+                    _startCell = current;
+                }
+                
+                if ([current isGoal]) {
+                    _goalCell = current;
+                }
+            }
+        }
+        
     }
     return self;
 }
@@ -75,6 +103,10 @@
     }
     
     [cell rotateClockwise];
+}
+
+- (BOOL) isStartConnectedToGoal {
+    return [self isConnectedFromRow:[_startCell row] col:[_startCell col] toRow:[_goalCell row] col:[_goalCell col]];
 }
 
 /* Output: YES if there exists a path of connections from the cell at the first 

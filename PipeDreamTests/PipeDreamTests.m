@@ -181,11 +181,14 @@
     
     XCTAssert(![model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly fails to find path between unconnected cells.");
     
+    XCTAssert(![model isStartConnectedToGoal], @"Correctly fails to find path between start and goal.");
+    
     [model rotateClockwiseCellAtRow:3 col:1];
     [model rotateClockwiseCellAtRow:3 col:1];
     [model rotateClockwiseCellAtRow:2 col:1];
     [model rotateClockwiseCellAtRow:1 col:2];
     
     XCTAssert([model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly finds path after rotations.");
+    XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
 }
 @end
