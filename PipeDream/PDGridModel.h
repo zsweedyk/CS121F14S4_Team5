@@ -13,6 +13,7 @@
 @interface PDGridModel : NSObject
 
 - (id) initWithLevelNumber:(NSInteger)number;
+- (id) initWithGrid:(NSMutableArray*)grid;
 - (NSInteger) numRows;
 - (NSInteger) numCols;
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col;
