@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
+		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
+		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +117,8 @@
 				BF62565019EC95A0008175CC /* PDGridGenerator.h */,
 				BF62565119EC95A0008175CC /* PDGridGenerator.m */,
 				BF53EF4019F0A63A004BA422 /* PDOpenings.h */,
+				93A3903E19F0DBB600D93EB1 /* PDOpenings.m */,
+				93A3904019F0E44A00D93EB1 /* grids.txt */,
 				BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */,
 				BF62562819EC93F0008175CC /* Main.storyboard */,
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
@@ -228,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A3904119F0E44A00D93EB1 /* grids.txt in Resources */,
 				BF62562A19EC93F0008175CC /* Main.storyboard in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
@@ -251,6 +258,7 @@
 				BF62564919EC9571008175CC /* PDCellView.m in Sources */,
 				BF62564F19EC9591008175CC /* PDCellModel.m in Sources */,
 				BF62564619EC955B008175CC /* PDGridView.m in Sources */,
+				93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */,
 				BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */,
 				BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */,
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
@@ -410,6 +418,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = PipeDreamTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PipeDream.app/PipeDream";
@@ -425,6 +434,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = PipeDreamTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PipeDream.app/PipeDream";
