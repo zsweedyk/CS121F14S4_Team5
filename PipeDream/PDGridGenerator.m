@@ -23,6 +23,12 @@
     return [PDGridGenerator parseLine:line];
 }
 
+/* Input: Level string
+ * Output: An array of rows of CellModels corresponding to that level */
++ (NSMutableArray *) generateGridFromString:(NSString*)string {
+    return [PDGridGenerator parseLine:string];
+}
+
 #pragma mark Private methods
 
 /* Returns the string of text from the grids file */
@@ -72,6 +78,8 @@
             NSUInteger index = rowStartIndex + c + 6;
             NSString *pipeEncoding = [parsedLine objectAtIndex: index];
             PDCellModel *cell = [PDGridGenerator parsePipeEncoding: pipeEncoding];
+            [cell setRow:r];
+            [cell setCol:c];
             [row addObject: cell];
         }
         [grid addObject: row];

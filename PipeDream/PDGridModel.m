@@ -10,6 +10,7 @@
 #import "PDOpenings.h"
 #import "PDCellModel.h"
 #import "PDQueue.h"
+#import "PDGridGenerator.h"
 
 @interface PDGridModel ()
 
@@ -20,12 +21,18 @@
 @implementation PDGridModel
 
 #pragma mark Public methods
-
+/* Input: A level number.
+ * Output: Initialized GridModel.
+ * Creates the array of cells corresponding to the level.
+ */
 - (id) initWithLevelNumber:(NSInteger)number {
-    // TODO: Implement this method.
-    return nil;
+    self = [super init];
+    _cells = [PDGridGenerator generateGridForLevelNumber:number];
+    return self;
 }
 
+/* Output: The number of rows of cells.
+ */
 - (NSInteger) numRows {
     if (_cells == nil) {
         return 0;
@@ -34,6 +41,8 @@
     return [_cells count];
 }
 
+/* Output: The number of columns of cells.
+ */
 - (NSInteger) numCols {
     if (_cells == nil) {
         return 0;
@@ -46,6 +55,8 @@
     return [[_cells objectAtIndex:0] count];
 }
 
+/* Rotates the cell at the given coordinates clockwise.
+ */
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
@@ -56,6 +67,10 @@
     [cell rotateClockwise];
 }
 
+/* Output: YES if there exists a path of connections from the cell at the first 
+ * given coordinates to the cell at the second given coordinates, where a 
+ * connection is when adjacent cells have complementary openings.
+ */
 - (BOOL) isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
                       toRow:(NSInteger)rowTo col:(NSInteger)colTo {
     // Create an array to track which cells have been searched.
@@ -96,6 +111,8 @@
     return NO;
 }
 
+/* Output: The openings of the cell at the given coordinates.
+ */
 - (PDOpenings *) openingsAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
@@ -106,6 +123,8 @@
     return [cell openings];
 }
 
+/* Output: YES if the cell at the given coordinates is a starting cell.
+ */
 - (BOOL) isStartAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
@@ -116,6 +135,8 @@
     return [cell isStart];
 }
 
+/* Output: YES if the cell at the given coordinates is a goal cell.
+ */
 - (BOOL) isGoalAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
@@ -155,7 +176,8 @@
     
     int numConnected = 0;
     
-    // For each cardinal neighbor, check that the neighbor will be in bounds, and then check whether it is connected.
+    // For each cardinal neighbor, check that the neighbor will be in bounds,
+    // and then check whether it is connected.
     
     // North neighbor.
     if (row > 0) {
