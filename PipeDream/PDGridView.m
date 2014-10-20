@@ -79,7 +79,7 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
     // TODO: Implement this method.
-    // 
+    //
 }
 
 - (void) setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
