@@ -57,10 +57,6 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
             CGRect cellViewFrame = CGRectMake(horizontalOffset, verticalOffset, cellSize, cellSize);
             PDCellView *cellView = [[PDCellView alloc] initWithFrame:cellViewFrame];
             
-            // place holder
-            // will actually need to call setCellAtRowCol
-            [cellView setBackgroundColor:[UIColor whiteColor]];
-            
             [currentRow addObject:cellView];
             [self addSubview:cellView];
         }
@@ -71,23 +67,24 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 
 
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
-    // Pull UI Image from the given row, col and cell view
-    // and rotate it
+    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+    [currentCell rotateClockwise];
 }
 
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
-    // TODO: Implement this method.
-    // 
+    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+    [currentCell setCellIsOpenNorth:north south:south east:east west:west];
 }
 
 - (void) setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
+    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+    [currentCell setStart:start];
 }
 
 - (void) setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this method.
+    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+    [currentCell setGoal:goal];
 }
 
 #pragma mark Private methods
