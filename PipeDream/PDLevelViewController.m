@@ -63,6 +63,7 @@
 
 // setGridViewToMatchModel sets every cell in the gridView to match the gridModel.
 - (void) setGridViewToMatchModel {
+    
     NSInteger numRows = [self.gridModel numRows];
     NSInteger numCols = [self.gridModel numCols];
     for (int row = 0; row < numRows; row++) {
@@ -80,6 +81,7 @@
                 self.goalCol = col;
             }
             
+            NSLog(@"view controller asks grid view to use cell view method");
             [self.gridView setCellAtRow:row col:col isOpenNorth:[openings isOpenNorth] east:[openings isOpenEast]
                                   south:[openings isOpenSouth] west:[openings isOpenWest]];
             [self.gridView setStart:isStart atRow:row col:col];

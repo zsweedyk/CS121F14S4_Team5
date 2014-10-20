@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FDAB44319F5A32B006432F4 /* PDCellViewImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDAB44219F5A32B006432F4 /* PDCellViewImageUtility.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
@@ -35,8 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0FDAB44119F5A32B006432F4 /* PDCellViewImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCellViewImageUtility.h; sourceTree = "<group>"; };
-		0FDAB44219F5A32B006432F4 /* PDCellViewImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCellViewImageUtility.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
@@ -127,8 +124,6 @@
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
 				BF62562D19EC93F0008175CC /* LaunchScreen.xib */,
 				BF62561E19EC93F0008175CC /* Supporting Files */,
-				0FDAB44119F5A32B006432F4 /* PDCellViewImageUtility.h */,
-				0FDAB44219F5A32B006432F4 /* PDCellViewImageUtility.m */,
 			);
 			path = PipeDream;
 			sourceTree = "<group>";
@@ -269,7 +264,6 @@
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
 				BF62562119EC93F0008175CC /* main.m in Sources */,
 				BF62564C19EC957F008175CC /* PDGridModel.m in Sources */,
-				0FDAB44319F5A32B006432F4 /* PDCellViewImageUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

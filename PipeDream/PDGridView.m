@@ -37,6 +37,8 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 
 
 - (void) drawGrid {
+    
+    NSLog(@"got here");
     self.backgroundColor = [UIColor blackColor];
     _cellViews = [[NSMutableArray alloc] initWithCapacity:GRID_DIMENSION];
     CGFloat frameDimensions = CGRectGetWidth(self.frame);
@@ -56,6 +58,7 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
             
             CGRect cellViewFrame = CGRectMake(horizontalOffset, verticalOffset, cellSize, cellSize);
             PDCellView *cellView = [[PDCellView alloc] initWithFrame:cellViewFrame];
+            [cellView setBackgroundColor:[UIColor whiteColor]];
             
             [currentRow addObject:cellView];
             [self addSubview:cellView];
@@ -74,7 +77,9 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
     PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+     NSLog(@"called cell view method");
     [currentCell setCellIsOpenNorth:north south:south east:east west:west];
+   
 }
 
 - (void) setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
