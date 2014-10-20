@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PDCellPressedDelegate.h"
+#import "PDCellView.h"
 
 @interface PDGridView : UIView
 
 @property (nonatomic, weak) id<PDCellPressedDelegate> delegate;
-
+- (void) drawGridFromDimension: (int) gridDimension;
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col;
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west;
