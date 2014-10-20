@@ -30,7 +30,7 @@
     
     self.gridView.delegate = self;
     
-    const NSInteger firstLevelNumber = 1;
+    const NSInteger firstLevelNumber = 0;
     [self startLevelNumber:firstLevelNumber];
 }
 
