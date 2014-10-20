@@ -31,6 +31,12 @@
     return self;
 }
 
+- (id) initWithGrid:(NSMutableArray*)grid {
+    self = [super init];
+    _cells = grid;
+    return self;
+}
+
 /* Output: The number of rows of cells.
  */
 - (NSInteger) numRows {
@@ -131,7 +137,7 @@
     if (cell == nil) {
         return nil;
     }
-    
+
     return [cell isStart];
 }
 
@@ -149,7 +155,7 @@
 
 #pragma mark Private methods
 - (PDCellModel*) getCellAtRow:(NSInteger)row col:(NSInteger)col {
-    if (_cells != nil) {
+    if (_cells == nil) {
         return nil;
     }
     
@@ -235,6 +241,5 @@
     
     return neighbors;
 }
-
 
 @end
