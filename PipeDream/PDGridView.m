@@ -14,7 +14,7 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 
 
 @interface PDGridView () {
-    NSMutableArray *_cellViewArray;
+    NSMutableArray *_cellViews;
 }
 
 @property (nonatomic, strong) NSMutableArray *cellViews;
@@ -38,7 +38,7 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 
 - (void) drawGrid {
     self.backgroundColor = [UIColor blackColor];
-    _cellViewArray = [[NSMutableArray alloc] initWithCapacity:GRID_DIMENSION];
+    _cellViews = [[NSMutableArray alloc] initWithCapacity:GRID_DIMENSION];
     CGFloat frameDimensions = CGRectGetWidth(self.frame);
     
     // Treat cellSize as an unit to fill screen with cells and borders.
@@ -64,7 +64,7 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
             [currentRow addObject:cellView];
             [self addSubview:cellView];
         }
-        [_cellViewArray addObject:currentRow];
+        [_cellViews addObject:currentRow];
     }
     
 }
@@ -73,13 +73,13 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 - (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
     // TODO: Implement this method.
     // Pull UI Image from the given row, col and cell view
-    // roate it.
+    // and rotate it
 }
 
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
     // TODO: Implement this method.
-    //
+    // 
 }
 
 - (void) setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
