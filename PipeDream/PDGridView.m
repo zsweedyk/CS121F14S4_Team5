@@ -8,14 +8,10 @@
 
 #import "PDGridView.h"
 
-static int GRID_DIMENSION = 5;
 static float BORDER_RATIO = 0.25;
-static int NUM_BORDERS_PER_DIMENSION = 6;
 
 
-@interface PDGridView () {
-    NSMutableArray *_cellViews;
-}
+@interface PDGridView ()
 
 @property (nonatomic, strong) NSMutableArray *cellViews;
 
@@ -25,32 +21,20 @@ static int NUM_BORDERS_PER_DIMENSION = 6;
 
 #pragma mark Public methods
 
-
--(id) initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self drawGrid];
-    }
-    return self;
-}
-
-
-
-- (void) drawGrid {
-    
-    NSLog(@"got here");
+- (void) drawGridFromDimension: (int) gridDimension {
+    int numBordersInGrid = gridDimension + 1;
     self.backgroundColor = [UIColor blackColor];
-    _cellViews = [[NSMutableArray alloc] initWithCapacity:GRID_DIMENSION];
+    _cellViews = [[NSMutableArray alloc] initWithCapacity:gridDimension];
     CGFloat frameDimensions = CGRectGetWidth(self.frame);
     
     // Treat cellSize as an unit to fill screen with cells and borders.
     // effectiveNumCells is the number of these units.
-    CGFloat effectiveNumCells = GRID_DIMENSION + (BORDER_RATIO * NUM_BORDERS_PER_DIMENSION);
+    CGFloat effectiveNumCells = gridDimension + (BORDER_RATIO * numBordersInGrid);
     CGFloat cellSize = frameDimensions / effectiveNumCells;
     
-    for (int row = 0; row < GRID_DIMENSION; row++) {
-        NSMutableArray *currentRow = [[NSMutableArray alloc] initWithCapacity:GRID_DIMENSION];
-        for (int col = 0; col < GRID_DIMENSION; col++) {
+    for (int row = 0; row < gridDimension; row++) {
+        NSMutableArray *currentRow = [[NSMutableArray alloc] initWithCapacity:gridDimension];
+        for (int col = 0; col < gridDimension; col++) {
 
             int horizontalOffset = [PDGridView offsetFromAxis:col forButtonSize:cellSize];
             int verticalOffset = [PDGridView offsetFromAxis:row forButtonSize:

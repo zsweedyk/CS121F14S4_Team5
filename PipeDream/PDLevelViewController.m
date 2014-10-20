@@ -30,7 +30,7 @@
     
     self.gridView.delegate = self;
     
-    const NSInteger firstLevelNumber = 1;
+    const NSInteger firstLevelNumber = 0;
     [self startLevelNumber:firstLevelNumber];
 }
 
@@ -66,6 +66,7 @@
     
     NSInteger numRows = [self.gridModel numRows];
     NSInteger numCols = [self.gridModel numCols];
+    [self.gridView drawGridFromDimension:numRows];
     for (int row = 0; row < numRows; row++) {
         for (int col = 0; col < numCols; col++) {
             PDOpenings *openings = [self.gridModel openingsAtRow:row col:col];
