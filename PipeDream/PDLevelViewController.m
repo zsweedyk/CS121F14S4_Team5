@@ -16,11 +16,6 @@
 
 @property (nonatomic, strong) PDGridModel *gridModel;
 
-@property (nonatomic) NSInteger startRow;
-@property (nonatomic) NSInteger startCol;
-@property (nonatomic) NSInteger goalRow;
-@property (nonatomic) NSInteger goalCol;
-
 @end
 
 @implementation PDLevelViewController
@@ -45,8 +40,7 @@
     [self.gridModel rotateClockwiseCellAtRow:row col:col];
     [self setGridViewToMatchModel];
     
-    if ([self.gridModel isConnectedFromRow:self.startRow col:self.startCol
-                                     toRow:self.goalRow col:self.goalCol]) {
+    if ([self.gridModel isStartConnectedToGoal]) {
         NSString *levelCompletedTitle = @"Level completed!";
         NSString *cancelButtonTitle = @"Ok!";
         UIAlertView *alertView = [[UIAlertView alloc]
@@ -70,15 +64,6 @@
             PDOpenings *openings = [self.gridModel openingsAtRow:row col:col];
             BOOL isStart = [self.gridModel isStartAtRow:row col:col];
             BOOL isGoal = [self.gridModel isGoalAtRow:row col:col];
-            
-            if (isStart) {
-                self.startRow = row;
-                self.startCol = col;
-            }
-            if (isGoal) {
-                self.goalRow = row;
-                self.goalCol = col;
-            }
             
             [self.gridView setCellAtRow:row col:col isOpenNorth:[openings isOpenNorth] east:[openings isOpenEast]
                                   south:[openings isOpenSouth] west:[openings isOpenWest]];
