@@ -27,13 +27,17 @@
  */
 - (id) initWithLevelNumber:(NSInteger)number {
     self = [super init];
-    _cells = [PDGridGenerator generateGridForLevelNumber:number];
+    if (self) {
+        _cells = [PDGridGenerator generateGridForLevelNumber:number];
+    }
     return self;
 }
 
 - (id) initWithGrid:(NSMutableArray*)grid {
     self = [super init];
-    _cells = grid;
+    if (self) {
+        _cells = grid;
+    }
     return self;
 }
 
