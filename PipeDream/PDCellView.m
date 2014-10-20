@@ -16,7 +16,36 @@
     // TODO: Implement this method.
 }
 
+// Files for cell images have the format NESW if all directions are open
+// Expect to see an x for a direction that is not open.
 - (void) setCellIsOpenNorth:(BOOL)north south:(BOOL)south east:(BOOL)east west:(BOOL)west {
+    NSString *filename = @"";
+    
+    if (north) {
+        [filename stringByAppendingString:@"N"];
+    } else {
+        [filename stringByAppendingString:@"x"];
+    }
+    
+    if (south) {
+        [filename stringByAppendingString:@"S"];
+    } else {
+        [filename stringByAppendingString:@"x"];
+    }
+    
+    if (east) {
+        [filename stringByAppendingString:@"E"];
+    } else {
+        [filename stringByAppendingString:@"x"];
+    }
+    
+    if (west) {
+        [filename stringByAppendingString:@"W"];
+    } else {
+        [filename stringByAppendingString:@"x"];
+    }
+    
+    
     // TODO: Implement this method.
 }
 
