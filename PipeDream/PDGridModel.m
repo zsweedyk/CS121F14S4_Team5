@@ -171,7 +171,7 @@
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
     if (cell == nil) {
-        return nil;
+        return NO;
     }
 
     return [cell isStart];
@@ -183,7 +183,7 @@
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
     if (cell == nil) {
-        return nil;
+        return NO;
     }
     
     return [cell isGoal];
