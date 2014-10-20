@@ -28,7 +28,7 @@
     [super tearDown];
 }
 
-- (void) testRotateClockwise {
+- (void) testCellRotateClockwise {
     
     // Rotate a horizontal pipe, expect a vertical pipe
     PDCellModel *straightPipe = [[PDCellModel alloc] init];
@@ -60,8 +60,8 @@
 // NESW xExW NxxW xxSW
 // xExx xESx xESW NExW
 - (void) testGridGenerator {
-    
-    NSMutableArray *gridArray = [PDGridGenerator generateGridForLevelNumber: 0];
+    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
+    NSMutableArray *gridArray = [PDGridGenerator generateGridFromString:testString];
     
     // Check that start cell and goal cell are properly assigned
     PDCellModel *startCell = [[gridArray objectAtIndex: 3] objectAtIndex: 0];
