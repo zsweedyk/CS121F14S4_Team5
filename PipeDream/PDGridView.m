@@ -11,7 +11,7 @@
 static float BORDER_RATIO = 0.25;
 
 
-@interface PDGridView ()
+@interface PDGridView () <PDCellPressedDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cellViews;
 
@@ -21,10 +21,12 @@ static float BORDER_RATIO = 0.25;
 
 #pragma mark Public methods
 
-- (void) drawGridFromDimension: (int) gridDimension {
-    int numBordersInGrid = gridDimension + 1;
+- (void) drawGridFromDimension: (NSInteger) gridDimension {
+    
+    NSInteger numBordersInGrid = gridDimension + 1;
     self.backgroundColor = [UIColor blackColor];
-    _cellViews = [[NSMutableArray alloc] initWithCapacity:gridDimension];
+    [self clearCellViews];
+    
     CGFloat frameDimensions = CGRectGetWidth(self.frame);
     
     // Treat cellSize as an unit to fill screen with cells and borders.
@@ -42,13 +44,26 @@ static float BORDER_RATIO = 0.25;
             
             CGRect cellViewFrame = CGRectMake(horizontalOffset, verticalOffset, cellSize, cellSize);
             PDCellView *cellView = [[PDCellView alloc] initWithFrame:cellViewFrame];
-            [cellView setBackgroundColor:[UIColor whiteColor]];
-            
+            cellView.delegate  = self;
+            cellView.row = row;
+            cellView.col = col;
             [currentRow addObject:cellView];
             [self addSubview:cellView];
         }
         [_cellViews addObject:currentRow];
     }
+    
+}
+
+-(void) clearCellViews {
+    for (int row = 0; row <[_cellViews count]; row++) {
+        NSMutableArray *currentRow = [_cellViews objectAtIndex:row];
+        for (int col = 0; col < [currentRow count]; col++) {
+            PDCellView *currentCellView = [currentRow objectAtIndex:col];
+            [currentCellView removeFromSuperview];
+        }
+    }
+    _cellViews = [[NSMutableArray alloc] init];
     
 }
 
@@ -61,7 +76,6 @@ static float BORDER_RATIO = 0.25;
 - (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
     PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
-     NSLog(@"called cell view method");
     [currentCell setCellIsOpenNorth:north south:south east:east west:west];
    
 }

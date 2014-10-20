@@ -56,8 +56,8 @@
     NSArray *parsedLine = [gridLine componentsSeparatedByString:@" "];
     
     // Get the width and height of the grid
-    int width = [[parsedLine objectAtIndex: 0] integerValue];
-    int height = [[parsedLine objectAtIndex: 1] integerValue];
+    NSInteger width = [[parsedLine objectAtIndex: 0] integerValue];
+    NSInteger height = [[parsedLine objectAtIndex: 1] integerValue];
     
     // Get the position of the starting element
     NSInteger start[2];
@@ -73,7 +73,7 @@
     NSMutableArray *grid = [[NSMutableArray alloc] initWithCapacity: height];
     for (int r = 0; r < height; r++) {
         NSMutableArray *row = [[NSMutableArray alloc] initWithCapacity: width];
-        int rowStartIndex = r * width;
+        NSInteger rowStartIndex = r * width;
         for (int c = 0; c < width; c++) {
             NSUInteger index = rowStartIndex + c + 6;
             NSString *pipeEncoding = [parsedLine objectAtIndex: index];

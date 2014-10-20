@@ -12,68 +12,68 @@
 
 #pragma mark Public methods
 
+
+-(id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if(self) {
+        [self addTarget:self action:@selector(cellPressed) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return self;
+}
+
 - (void) rotateClockwise {
-    // TODO: Implement this method.
+    // Leaving empty for alpha because setCellIsOpenNorth:south:east:west is called immediately after this. Pulling a new image instead of changing existing image.
 }
 
 // Files for cell images have the format NESW if all directions are open
 // Expect to see an x for a direction that is not open.
 - (void) setCellIsOpenNorth:(BOOL)north south:(BOOL)south east:(BOOL)east west:(BOOL)west {
     NSString *filename = @"";
-    NSLog(@"cell view method called");
     
     if (north) {
-        [filename stringByAppendingString:[PDCellView openNorthEncoding]];
+        filename  = [filename stringByAppendingString:[PDCellView openNorthEncoding]];
     } else {
-        [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
-    }
-    
-    if (south) {
-        [filename stringByAppendingString:[PDCellView openSouthEncoding]];
-    } else {
-        [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
+        filename  = [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
     }
     
     if (east) {
-        [filename stringByAppendingString:[PDCellView openEastEncoding]];
+        filename  = [filename stringByAppendingString:[PDCellView openEastEncoding]];
     } else {
-        [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
+        filename  = [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
+    }
+    
+    if (south) {
+        filename  = [filename stringByAppendingString:[PDCellView openSouthEncoding]];
+    } else {
+        filename  = [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
     }
     
     if (west) {
-        [filename stringByAppendingString:[PDCellView openWestEncoding]];
+        filename  = [filename stringByAppendingString:[PDCellView openWestEncoding]];
     } else {
-        [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
+        filename  = [filename stringByAppendingString:[PDCellView closeDirectionEncoding]];
     }
     
-    [self setBackgroundColor:[self backgroundColorFromImageStringName:filename]];
-    
-    
+    [self setImage:[UIImage imageNamed:filename] forState:UIControlStateNormal];
+
 }
 
 - (void) setStart:(BOOL)start {
     if (start) {
-        [self setBackgroundColor:[self backgroundColorFromImageStringName:[PDCellView startImageName]]];
+        [self setImage:[UIImage imageNamed:[PDCellView startImageName]] forState:UIControlStateNormal];
     }
 }
 
 - (void) setGoal:(BOOL)goal {
     if (goal) {
-        [self setBackgroundColor:[self backgroundColorFromImageStringName:[PDCellView goalImageName]]];
+        [self setImage:[UIImage imageNamed:[PDCellView goalImageName]] forState:UIControlStateNormal];
     }
 }
 
 #pragma mark Private methods
 
-// Making a centered background color from an image
-// Credit: http://stackoverflow.com/questions/8077740/how-to-fill-background-image-of-an-uiview
--(UIColor*) backgroundColorFromImageStringName: (NSString*) imageFilename {
-    UIGraphicsBeginImageContext(self.frame.size);
-    NSString* fullFileNamePath = [imageFilename stringByAppendingString:[PDCellView imageFileExtension]];
-    [[UIImage imageNamed:fullFileNamePath] drawInRect:self.bounds];
-    UIImage* processedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return [UIColor colorWithPatternImage:processedImage];
+-(void) cellPressed {
+    [self.delegate cellPressedAtRow:_row col:_col];
 }
 
 +(NSString*) startImageName {
