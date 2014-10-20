@@ -11,5 +11,6 @@
 @interface PDGridGenerator : NSObject
 
 + (NSMutableArray *) generateGridForLevelNumber:(NSInteger)levelNumber;
++ (NSMutableArray *) generateGridFromString:(NSString*)string;
 
 @end

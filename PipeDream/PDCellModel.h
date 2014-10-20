@@ -14,7 +14,13 @@
 @property (nonatomic, strong) PDOpenings *openings;
 @property (nonatomic) BOOL isStart;
 @property (nonatomic) BOOL isGoal;
+@property (nonatomic) int row;
+@property (nonatomic) int col;
 
 - (void) rotateClockwise;
+- (BOOL) isOpenNorth;
+- (BOOL) isOpenEast;
+- (BOOL) isOpenSouth;
+- (BOOL) isOpenWest;
 
 @end
