@@ -16,8 +16,6 @@
 
 @property (nonatomic, strong) PDGridModel *gridModel;
 
-
-
 @end
 
 @implementation PDLevelViewController
