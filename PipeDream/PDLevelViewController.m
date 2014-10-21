@@ -57,6 +57,7 @@
 
 // setGridViewToMatchModel sets every cell in the gridView to match the gridModel.
 - (void) setGridViewToMatchModel {
+    
     NSInteger numRows = [self.gridModel numRows];
     NSInteger numCols = [self.gridModel numCols];
     [self.gridView drawGridFromDimension:numRows];
@@ -65,7 +66,7 @@
             PDOpenings *openings = [self.gridModel openingsAtRow:row col:col];
             BOOL isStart = [self.gridModel isStartAtRow:row col:col];
             BOOL isGoal = [self.gridModel isGoalAtRow:row col:col];
-            
+
             [self.gridView setCellAtRow:row col:col isOpenNorth:[openings isOpenNorth] east:[openings isOpenEast]
                                   south:[openings isOpenSouth] west:[openings isOpenWest]];
             [self.gridView setStart:isStart atRow:row col:col];
