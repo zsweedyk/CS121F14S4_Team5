@@ -191,4 +191,20 @@
     XCTAssert([model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly finds path after rotations.");
     XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
 }
+
+// NxxW NESW NxxW NxxW NxxW
+// NxxW NxSx NxxW NxxW NxxW
+// NxxW NExx xExW xESW xxSW
+// NxxW NxxW NxxW NxxW NxSx
+// xExx NExW xExW xExW NxxW
+- (void) testStartGoalConnection {
+    NSString *testString = @"5 5 4 0 0 1 NxxW NESW NxxW NxxW NxxW NxxW NxSx NxxW NxxW NxxW NxxW NExx xExW xESW xxSW NxxW NxxW NxxW NxxW NxSx xExx NExW xExW xExW NxxW";
+    
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+    
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
+}
+
 @end

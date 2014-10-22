@@ -136,7 +136,7 @@
     while (![queue isEmpty]) {
         PDCellModel *cell = [queue dequeue];
         // If destination is reached, then cells are connected.
-        if ([cell row] == rowTo && [cell col] == rowFrom) {
+        if ([cell row] == rowTo && [cell col] == colTo) {
             return YES;
         }
         
