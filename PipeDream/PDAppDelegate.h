@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PDAppDelegate.h
 //  PipeDream
 //
 //  Created by Vincent Fiorentini on 10/13/14.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface PDAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

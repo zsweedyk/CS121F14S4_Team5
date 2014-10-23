@@ -1,18 +1,18 @@
 //
-//  AppDelegate.m
+//  PDAppDelegate.m
 //  PipeDream
 //
 //  Created by Vincent Fiorentini on 10/13/14.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "PDAppDelegate.h"
 
-@interface AppDelegate ()
+@interface PDAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation PDAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
