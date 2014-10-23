@@ -25,8 +25,7 @@
     
     self.gridView.delegate = self;
     
-    const NSInteger firstLevelNumber = 0;
-    [self startLevelNumber:firstLevelNumber];
+    [self startLevelNumber:self.levelToPlay];
 }
 
 #pragma mark Public methods

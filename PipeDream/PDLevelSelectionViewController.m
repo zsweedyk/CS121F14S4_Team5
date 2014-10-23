@@ -32,7 +32,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PDLevelViewController *levelViewController = [segue destinationViewController];
-    [levelViewController startLevelNumber:self.levelToPlay];
+    levelViewController.levelToPlay = self.levelToPlay;
 }
 
 @end
