@@ -8,7 +8,7 @@
 
 #import "PDGridView.h"
 
-static float BORDER_RATIO = 0.25;
+static float BORDER_RATIO = 0.03;
 
 
 @interface PDGridView () <PDCellPressedDelegate>
@@ -24,7 +24,10 @@ static float BORDER_RATIO = 0.25;
 - (void) drawGridFromDimension: (NSInteger) gridDimension {
     
     NSInteger numBordersInGrid = gridDimension + 1;
-    self.backgroundColor = [UIColor blackColor];
+    CGFloat backgroundDarkness = 0.2;
+    CGFloat backgroundOpacity = 1;
+    self.backgroundColor = [UIColor colorWithRed:backgroundDarkness green:backgroundDarkness
+                            blue:backgroundDarkness alpha:backgroundOpacity];
     [self clearCellViews];
     
     CGFloat frameDimensions = CGRectGetWidth(self.frame);
