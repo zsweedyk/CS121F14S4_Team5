@@ -36,7 +36,9 @@
 }
 
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
-    [self.gridModel rotateClockwiseCellAtRow:row col:col];
+    if (![self.gridModel isGoalAtRow:row col:col] && ![self.gridModel isStartAtRow:row col:col]) {
+        [self.gridModel rotateClockwiseCellAtRow:row col:col];
+    }
     [self setGridViewToMatchModel];
     
     if ([self.gridModel isStartConnectedToGoal]) {
