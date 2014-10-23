@@ -18,6 +18,10 @@
     if(self) {
         [self addTarget:self action:@selector(cellPressed) forControlEvents:UIControlEventTouchUpInside];
     }
+    CGFloat backgroundDarkness = 0.3;
+    CGFloat backgroundOpacity = 1;
+    self.backgroundColor = [UIColor colorWithRed:backgroundDarkness green:backgroundDarkness
+                                            blue:backgroundDarkness alpha:backgroundOpacity];
     return self;
 }
 
