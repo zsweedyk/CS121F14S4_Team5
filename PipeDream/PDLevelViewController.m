@@ -46,7 +46,7 @@
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:levelCompletedTitle
                                   message:nil
-                                  delegate:nil
+                                  delegate:self
                                   cancelButtonTitle:cancelButtonTitle
                                   otherButtonTitles:nil];
         [alertView show];
@@ -73,6 +73,10 @@
             [self.gridView setGoal:isGoal atRow:row col:col];
         }
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

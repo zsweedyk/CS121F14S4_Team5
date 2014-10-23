@@ -10,7 +10,7 @@
 
 @class PDGridView;
 
-@interface PDLevelViewController : UIViewController
+@interface PDLevelViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet PDGridView *gridView;
 
