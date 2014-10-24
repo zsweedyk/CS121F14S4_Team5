@@ -32,8 +32,10 @@
     self = [super init];
     if (self) {
         _cells = [PDGridGenerator generateGridForLevelNumber:number];
-        for (int row = 0; row < [_cells count]; row++) {
-            for (int col = 0; col < [[_cells objectAtIndex:row] count]; col++) {
+        NSUInteger numRows = [_cells count];
+        for (int row = 0; row < numRows ; row++) {
+            NSUInteger numCols = [[_cells objectAtIndex:row] count];
+            for (int col = 0; col < numCols; col++) {
                 PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
                 if ([current isStart]) {
                     _startCell = current;
@@ -52,8 +54,10 @@
     self = [super init];
     if (self) {
         _cells = grid;
-        for (int row = 0; row < [_cells count]; row++) {
-            for (int col = 0; col < [[_cells objectAtIndex:row] count]; col++) {
+        NSUInteger numRows = [_cells count];
+        for (int row = 0; row < numRows; row++) {
+            NSUInteger numCols = [[_cells objectAtIndex:row] count];
+            for (int col = 0; col < numCols; col++) {
                 PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
                 if ([current isStart]) {
                     _startCell = current;
@@ -139,7 +143,8 @@
         // Enqueue all non-visited connected neighboring cells.
         NSMutableArray *neighbors = [self getConnectedNeighborsOfCellAtRow:[cell row]
             col:[cell col]];
-        for (int i = 0; i < [neighbors count]; i++) {
+        NSUInteger numNeighbors =[neighbors count];
+        for (int i = 0; i < numNeighbors; i++) {
             PDCellModel *connectedCell = [neighbors objectAtIndex:i];
             if ([[[visited objectAtIndex:[connectedCell row]] objectAtIndex:
                   [connectedCell col]] boolValue] == NO) {
