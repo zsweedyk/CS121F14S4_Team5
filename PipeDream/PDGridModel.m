@@ -2,7 +2,7 @@
 //  PDGridModel.m
 //  PipeDream
 //
-//  Created by Vincent Fiorentini on 10/13/14.
+//  Created by Jean Sung, Kathryn Aplin, Paula Yuan and Vincent Fiorentini.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
@@ -28,13 +28,13 @@
  * Output: Initialized GridModel.
  * Creates the array of cells corresponding to the level.
  */
-- (id) initWithLevelNumber:(NSInteger)number {
+- (id)initWithLevelNumber:(NSInteger)number {
     self = [super init];
     if (self) {
         _cells = [PDGridGenerator generateGridForLevelNumber:number];
-        for (int r = 0; r < [_cells count]; r++) {
-            for (int c = 0; c < [[_cells objectAtIndex:r] count]; c++) {
-                PDCellModel *current = [[_cells objectAtIndex:r] objectAtIndex:c];
+        for (int row = 0; row < [_cells count]; row++) {
+            for (int col = 0; col < [[_cells objectAtIndex:row] count]; col++) {
+                PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
                 if ([current isStart]) {
                     _startCell = current;
                 }
@@ -48,13 +48,13 @@
     return self;
 }
 
-- (id) initWithGrid:(NSMutableArray*)grid {
+- (id)initWithGrid:(NSMutableArray*)grid {
     self = [super init];
     if (self) {
         _cells = grid;
-        for (int r = 0; r < [_cells count]; r++) {
-            for (int c = 0; c < [[_cells objectAtIndex:r] count]; c++) {
-                PDCellModel *current = [[_cells objectAtIndex:r] objectAtIndex:c];
+        for (int row = 0; row < [_cells count]; row++) {
+            for (int col = 0; col < [[_cells objectAtIndex:row] count]; col++) {
+                PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
                 if ([current isStart]) {
                     _startCell = current;
                 }
@@ -69,9 +69,7 @@
     return self;
 }
 
-/* Output: The number of rows of cells.
- */
-- (NSInteger) numRows {
+- (NSInteger)numRows {
     if (_cells == nil) {
         return 0;
     }
@@ -79,9 +77,7 @@
     return [_cells count];
 }
 
-/* Output: The number of columns of cells.
- */
-- (NSInteger) numCols {
+- (NSInteger)numCols {
     if (_cells == nil) {
         return 0;
     }
@@ -93,9 +89,7 @@
     return [[_cells objectAtIndex:0] count];
 }
 
-/* Rotates the cell at the given coordinates clockwise.
- */
-- (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
+- (void)rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
     if (cell == nil) {
@@ -105,8 +99,9 @@
     [cell rotateClockwise];
 }
 
-- (BOOL) isStartConnectedToGoal {
-    return [self isConnectedFromRow:[_startCell row] col:[_startCell col] toRow:[_goalCell row] col:[_goalCell col]];
+- (BOOL)isStartConnectedToGoal {
+    return [self isConnectedFromRow:[_startCell row] col:[_startCell col] toRow:[_goalCell row]
+        col:[_goalCell col]];
 }
 
 /* Output: YES if there exists a path of connections from the cell at the first 
@@ -131,7 +126,8 @@
     // Enqueue the starting cell.
     PDCellModel *startCell = [self getCellAtRow:rowFrom col:colFrom];
     [queue enqueue:startCell];
-    [[visited objectAtIndex:rowFrom] replaceObjectAtIndex:colFrom withObject:[NSNumber numberWithBool:YES]];
+    [[visited objectAtIndex:rowFrom] replaceObjectAtIndex:colFrom withObject:
+        [NSNumber numberWithBool:YES]];
     
     while (![queue isEmpty]) {
         PDCellModel *cell = [queue dequeue];
@@ -141,21 +137,23 @@
         }
         
         // Enqueue all non-visited connected neighboring cells.
-        NSMutableArray *neighbors = [self getConnectedNeighborsOfCellAtRow:[cell row] col:[cell col]];
+        NSMutableArray *neighbors = [self getConnectedNeighborsOfCellAtRow:[cell row]
+            col:[cell col]];
         for (int i = 0; i < [neighbors count]; i++) {
             PDCellModel *connectedCell = [neighbors objectAtIndex:i];
-            if ([[[visited objectAtIndex:[connectedCell row]] objectAtIndex:[connectedCell col]] boolValue] == NO) {
-                [queue enqueue:connectedCell];
-                [[visited objectAtIndex:[connectedCell row]] replaceObjectAtIndex:[connectedCell col] withObject:[NSNumber numberWithBool:YES]];
+            if ([[[visited objectAtIndex:[connectedCell row]] objectAtIndex:
+                  [connectedCell col]] boolValue] == NO) {
+                    [queue enqueue:connectedCell];
+                    [[visited objectAtIndex:[connectedCell row]]
+                     replaceObjectAtIndex:[connectedCell col]
+                     withObject:[NSNumber numberWithBool:YES]];
             }
         }
     }
     return NO;
 }
 
-/* Output: The openings of the cell at the given coordinates.
- */
-- (PDOpenings *) openingsAtRow:(NSInteger)row col:(NSInteger)col {
+- (PDOpenings *)openingsAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
     if (cell == nil) {
@@ -165,9 +163,7 @@
     return [cell openings];
 }
 
-/* Output: YES if the cell at the given coordinates is a starting cell.
- */
-- (BOOL) isStartAtRow:(NSInteger)row col:(NSInteger)col {
+- (BOOL)isStartAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
     if (cell == nil) {
@@ -177,9 +173,7 @@
     return [cell isStart];
 }
 
-/* Output: YES if the cell at the given coordinates is a goal cell.
- */
-- (BOOL) isGoalAtRow:(NSInteger)row col:(NSInteger)col {
+- (BOOL)isGoalAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
     if (cell == nil) {
@@ -190,7 +184,8 @@
 }
 
 #pragma mark Private methods
-- (PDCellModel*) getCellAtRow:(NSInteger)row col:(NSInteger)col {
+
+- (PDCellModel*)getCellAtRow:(NSInteger)row col:(NSInteger)col {
     if (_cells == nil) {
         return nil;
     }
