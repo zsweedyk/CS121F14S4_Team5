@@ -150,8 +150,8 @@
                   [connectedCell col]] boolValue] == NO) {
                     [queue enqueue:connectedCell];
                     [[visited objectAtIndex:[connectedCell row]]
-                     replaceObjectAtIndex:[connectedCell col]
-                     withObject:[NSNumber numberWithBool:YES]];
+                        replaceObjectAtIndex:[connectedCell col]
+                        withObject:[NSNumber numberWithBool:YES]];
             }
         }
     }
