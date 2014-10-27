@@ -10,6 +10,8 @@
 
 @interface PDLevelSelectionViewController : UIViewController
 
-- (IBAction) levelButtonPressed:(id)sender;
+- (void)updateLevelSelectButtonsEnabled;
++ (void)unlockLevelNumber:(NSInteger)levelNumber;
+- (IBAction)levelButtonPressed:(id)sender;
 
 @end

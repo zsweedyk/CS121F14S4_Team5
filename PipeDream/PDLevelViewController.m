@@ -11,6 +11,7 @@
 #import "PDGridModel.h"
 #import "PDCellPressedDelegate.h"
 #import "PDOpenings.h"
+#import "PDLevelSelectionViewController.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
@@ -25,15 +26,10 @@
     
     self.gridView.delegate = self;
     
-    [self startLevelNumber:self.levelToPlay];
+    [self startLevelNumber:self.levelNumber];
 }
 
 #pragma mark Public methods
-
-- (void) startLevelNumber:(NSInteger)levelNumber {
-    self.gridModel = [[PDGridModel alloc] initWithLevelNumber:levelNumber];
-    [self setGridViewToMatchModel];
-}
 
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
     if (![self.gridModel isGoalAtRow:row col:col] && ![self.gridModel isStartAtRow:row col:col]) {
@@ -56,6 +52,12 @@
 
 #pragma mark Private methods
 
+- (void) startLevelNumber:(NSInteger)levelNumber {
+    NSInteger zeroIndexedLevelNumber = levelNumber - 1;
+    self.gridModel = [[PDGridModel alloc] initWithLevelNumber:zeroIndexedLevelNumber];
+    [self setGridViewToMatchModel];
+}
+
 // setGridViewToMatchModel sets every cell in the gridView to match the gridModel.
 - (void) setGridViewToMatchModel {
     
@@ -77,6 +79,11 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // When the "level complete" alert is clicked, return to level select and unlock the next level.
+    [PDLevelSelectionViewController unlockLevelNumber:self.levelNumber + 1];
+    PDLevelSelectionViewController *levelSelectionViewController =
+        (PDLevelSelectionViewController *) self.presentingViewController;
+    [levelSelectionViewController updateLevelSelectButtonsEnabled];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
