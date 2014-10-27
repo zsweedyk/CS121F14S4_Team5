@@ -25,17 +25,15 @@
     return [_openings isOpenNorth];
 }
 
-
-- (BOOL) isOpenEast {
+- (BOOL)isOpenEast {
     return [_openings isOpenEast];
 }
 
-
-- (BOOL) isOpenSouth {
+- (BOOL)isOpenSouth {
     return [_openings isOpenSouth];
 }
 
-- (BOOL) isOpenWest {
+- (BOOL)isOpenWest {
     return [_openings isOpenWest];
 }
 

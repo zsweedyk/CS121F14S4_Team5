@@ -50,7 +50,7 @@
     return self;
 }
 
-- (id)initWithGrid:(NSMutableArray*)grid {
+- (id)initWithGrid:(NSMutableArray *)grid {
     self = [super init];
     if (self) {
         _cells = grid;
@@ -112,7 +112,7 @@
  * given coordinates to the cell at the second given coordinates, where a 
  * connection is when adjacent cells have complementary openings.
  */
-- (BOOL) isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
+- (BOOL)isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
                       toRow:(NSInteger)rowTo col:(NSInteger)colTo {
     // Create an array to track which cells have been searched.
     NSMutableArray *visited = [[NSMutableArray alloc] initWithCapacity:[self numRows]];
@@ -190,7 +190,7 @@
 
 #pragma mark Private methods
 
-- (PDCellModel*)getCellAtRow:(NSInteger)row col:(NSInteger)col {
+- (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
     if (_cells == nil) {
         return nil;
     }
@@ -207,7 +207,7 @@
     return cell;
 }
 
-- (NSMutableArray*) getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger) col {
+- (NSMutableArray *)getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger) col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
 
     // Nil marks the cell as unconnected.
