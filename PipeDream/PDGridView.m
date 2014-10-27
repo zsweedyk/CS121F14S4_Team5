@@ -21,7 +21,11 @@ static float BORDER_RATIO = 0.03;
 
 #pragma mark Public methods
 
-- (void) drawGridFromDimension: (NSInteger) gridDimension {
+/*
+ * Draws a grid of cells.
+ * Input: Number of cells per row and per column of the grid to be displayed.
+ */
+- (void)drawGridFromDimension:(NSInteger)gridDimension {
     
     NSInteger numBordersInGrid = gridDimension + 1;
     CGFloat backgroundDarkness = 0.2;
@@ -53,53 +57,61 @@ static float BORDER_RATIO = 0.03;
             [currentRow addObject:cellView];
             [self addSubview:cellView];
         }
-        [_cellViews addObject:currentRow];
+        [self.cellViews addObject:currentRow];
     }
     
 }
 
--(void) clearCellViews {
-    for (int row = 0; row <[_cellViews count]; row++) {
-        NSMutableArray *currentRow = [_cellViews objectAtIndex:row];
+/*
+ * Clears the views for all cells.
+ */
+- (void)clearCellViews {
+    for (int row = 0; row <[self.cellViews count]; row++) {
+        NSMutableArray *currentRow = [self.cellViews objectAtIndex:row];
         for (int col = 0; col < [currentRow count]; col++) {
             PDCellView *currentCellView = [currentRow objectAtIndex:col];
             [currentCellView removeFromSuperview];
         }
     }
-    _cellViews = [[NSMutableArray alloc] init];
+    self.cellViews = [[NSMutableArray alloc] init];
     
 }
 
-
-- (void) rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+/*
+ * Given the coordinates of a cell, rotates that cell.
+ */
+- (void)rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
+    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
     [currentCell rotateClockwise];
 }
 
-- (void) setCellAtRow:(NSInteger)row col:(NSInteger)col
+/*
+ * Given the coordinates of a cell, sets the openings of that cell.
+ */
+- (void)setCellAtRow:(NSInteger)row col:(NSInteger)col
           isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
-    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
     [currentCell setCellIsOpenNorth:north south:south east:east west:west];
    
 }
 
-- (void) setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+- (void)setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
+    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
     [currentCell setStart:start];
 }
 
-- (void) setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[_cellViews objectAtIndex:row] objectAtIndex:col];
+- (void)setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)col {
+    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
     [currentCell setGoal:goal];
 }
 
 #pragma mark Private methods
 
-- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
+- (void)cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
     [self.delegate cellPressedAtRow:row col:col];
 }
 
-+ (int) offsetFromAxis:(int) axis forButtonSize:(CGFloat) buttonSize {
++ (int)offsetFromAxis:(int)axis forButtonSize:(CGFloat)buttonSize {
     int offsetsFromPreviousButtons = axis * buttonSize;
     int numPreviousBorders = axis + 1;
     int borderOffsets = buttonSize * BORDER_RATIO * numPreviousBorders;

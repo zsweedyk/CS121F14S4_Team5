@@ -15,6 +15,6 @@
 @property (nonatomic) BOOL isOpenSouth;
 @property (nonatomic) BOOL isOpenWest;
 
-- (void) setIsOpenNorth:(BOOL)north East:(BOOL)east South:(BOOL)south West:(BOOL)west;
+- (void)setIsOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west;
 
 @end

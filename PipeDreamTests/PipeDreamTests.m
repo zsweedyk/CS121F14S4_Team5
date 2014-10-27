@@ -36,7 +36,7 @@
     // Rotate a horizontal pipe, expect a vertical pipe
     PDCellModel *straightPipe = [[PDCellModel alloc] init];
     PDOpenings *straightPipeOpenings = [[PDOpenings alloc] init];
-    [straightPipeOpenings setIsOpenNorth: NO East: YES South: NO West: YES];
+    [straightPipeOpenings setIsOpenNorth: NO east: YES south: NO west: YES];
     [straightPipe setOpenings: straightPipeOpenings];
     [straightPipe rotateClockwise];
     XCTAssert([[straightPipe openings] isOpenNorth] &&
@@ -47,7 +47,7 @@
     // Rotate a pipe with all openings but north, expect a pipe with all openings but east
     PDCellModel *threeWayPipe = [[PDCellModel alloc] init];
     PDOpenings *threeWayPipeOpenings = [[PDOpenings alloc] init];
-    [threeWayPipeOpenings setIsOpenNorth: NO East: YES South: YES West: YES];
+    [threeWayPipeOpenings setIsOpenNorth: NO east: YES south: YES west: YES];
     [threeWayPipe setOpenings: threeWayPipeOpenings];
     [threeWayPipe rotateClockwise];
     XCTAssert([[threeWayPipe openings] isOpenNorth] &&
@@ -65,7 +65,7 @@
     // xxSW NESx xESW xExW
     // NESW xExW NxxW xxSW
     // xExx xESx xESW NExW
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
+    NSString *testString = @"4 4 3 0 0 3 1 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
     NSMutableArray *gridArray = [PDGridGenerator generateGridFromString:testString];
     
     // Check that start cell and goal cell are properly assigned
@@ -74,8 +74,14 @@
     PDCellModel *goalCell = [[gridArray objectAtIndex: 0] objectAtIndex: 3];
     XCTAssert([goalCell isGoal], @"Goal cell properly assigned");
     
-    // Check that pipes are properly decoded
+    // Check that visibility is properly set
+    XCTAssertFalse([goalCell isVisible], @"Visibility is properly set");
+    
+    // Check that infection is properly set
     PDCellModel *topLeftCell = [[gridArray objectAtIndex: 0] objectAtIndex: 0];
+    XCTAssert([topLeftCell isInfected], @"Infection is properly set");
+    
+    // Check that pipes are properly decoded
     XCTAssert([[topLeftCell openings] isOpenNorth] &&
               [[topLeftCell openings] isOpenEast] &&
               ![[topLeftCell openings] isOpenSouth] &&
