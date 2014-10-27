@@ -114,45 +114,11 @@
  */
 - (BOOL)isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
                       toRow:(NSInteger)rowTo col:(NSInteger)colTo {
-    // Create an array to track which cells have been searched.
-    NSMutableArray *visited = [[NSMutableArray alloc] initWithCapacity:[self numRows]];
-    for (int row = 0; row < [self numRows]; row++) {
-        NSMutableArray *visitedRow = [[NSMutableArray alloc] initWithCapacity:[self numCols]];
-        for (int col = 0; col < [self numCols]; col++) {
-            [visitedRow addObject:[NSNumber numberWithBool:NO]];
-        }
-        [visited addObject:visitedRow];
-    }
-    
-    // Create a queue to handle BFS.
-    PDQueue *queue = [[PDQueue alloc] init];
-
-    // Enqueue the starting cell.
-    PDCellModel *startCell = [self getCellAtRow:rowFrom col:colFrom];
-    [queue enqueue:startCell];
-    [[visited objectAtIndex:rowFrom] replaceObjectAtIndex:colFrom withObject:
-        [NSNumber numberWithBool:YES]];
-    
-    while (![queue isEmpty]) {
-        PDCellModel *cell = [queue dequeue];
-        // If destination is reached, then cells are connected.
+    NSMutableArray* searched = [self breadthFirstSearchConnectedCellsFromCellAtRow:rowFrom col:colFrom];
+    for (int i = 0; i < [searched count]; i++) {
+        PDCellModel *cell = [searched objectAtIndex:i];
         if ([cell row] == rowTo && [cell col] == colTo) {
             return YES;
-        }
-        
-        // Enqueue all non-visited connected neighboring cells.
-        NSMutableArray *neighbors = [self getConnectedNeighborsOfCellAtRow:[cell row]
-            col:[cell col]];
-        NSUInteger numNeighbors =[neighbors count];
-        for (int i = 0; i < numNeighbors; i++) {
-            PDCellModel *connectedCell = [neighbors objectAtIndex:i];
-            if ([[[visited objectAtIndex:[connectedCell row]] objectAtIndex:
-                  [connectedCell col]] boolValue] == NO) {
-                    [queue enqueue:connectedCell];
-                    [[visited objectAtIndex:[connectedCell row]]
-                        replaceObjectAtIndex:[connectedCell col]
-                        withObject:[NSNumber numberWithBool:YES]];
-            }
         }
     }
     return NO;
@@ -189,6 +155,54 @@
 }
 
 #pragma mark Private methods
+/* Executes a breadth-first-search from a cell, returning the cell and anything that is connected to
+ * it in the order visited.
+ */
+- (NSMutableArray*)breadthFirstSearchConnectedCellsFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    // Create an array to track which cells have been searched.
+    NSMutableArray *visited = [[NSMutableArray alloc] initWithCapacity:[self numRows]];
+    for (int row = 0; row < [self numRows]; row++) {
+        NSMutableArray *visitedRow = [[NSMutableArray alloc] initWithCapacity:[self numCols]];
+        for (int col = 0; col < [self numCols]; col++) {
+            [visitedRow addObject:[NSNumber numberWithBool:NO]];
+        }
+        [visited addObject:visitedRow];
+    }
+    
+    // Create a queue to handle BFS.
+    PDQueue *queue = [[PDQueue alloc] init];
+    
+    // Create a queue to hold everything that has been visited.
+    NSMutableArray *vistedArray = [[NSMutableArray alloc] init];
+    
+    // Enqueue the starting cell.
+    PDCellModel *startCell = [self getCellAtRow:row col:col];
+    [queue enqueue:startCell];
+    [[visited objectAtIndex:row] replaceObjectAtIndex:col withObject:
+     [NSNumber numberWithBool:YES]];
+    
+    while (![queue isEmpty]) {
+        PDCellModel *cell = [queue dequeue];
+        [vistedArray addObject:cell];
+        
+        // Enqueue all non-visited connected neighboring cells.
+        NSMutableArray *neighbors = [self getConnectedNeighborsOfCellAtRow:[cell row]
+                                                                       col:[cell col]];
+        NSUInteger numNeighbors =[neighbors count];
+        for (int i = 0; i < numNeighbors; i++) {
+            PDCellModel *connectedCell = [neighbors objectAtIndex:i];
+            if ([[[visited objectAtIndex:[connectedCell row]] objectAtIndex:
+                  [connectedCell col]] boolValue] == NO) {
+                [queue enqueue:connectedCell];
+                [[visited objectAtIndex:[connectedCell row]]
+                 replaceObjectAtIndex:[connectedCell col]
+                 withObject:[NSNumber numberWithBool:YES]];
+            }
+        }
+    }
+    
+    return vistedArray;
+}
 
 - (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
     if (_cells == nil) {
@@ -207,7 +221,7 @@
     return cell;
 }
 
-- (NSMutableArray *)getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger) col {
+- (NSMutableArray *)getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {
     PDCellModel *cell = [self getCellAtRow:row col:col];
 
     // Nil marks the cell as unconnected.
