@@ -22,7 +22,7 @@ NSString* GOAL_IMAGE_NAME = @"goal";
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if(self) {
+    if (self) {
         [self addTarget:self action:@selector(cellPressed)
             forControlEvents:UIControlEventTouchUpInside];
     }

@@ -111,7 +111,7 @@ static float BORDER_RATIO = 0.03;
     [self.delegate cellPressedAtRow:row col:col];
 }
 
-+ (int)offsetFromAxis:(int)axis forButtonSize:(CGFloat) buttonSize {
++ (int)offsetFromAxis:(int)axis forButtonSize:(CGFloat)buttonSize {
     int offsetsFromPreviousButtons = axis * buttonSize;
     int numPreviousBorders = axis + 1;
     int borderOffsets = buttonSize * BORDER_RATIO * numPreviousBorders;
