@@ -105,7 +105,7 @@
     
     // Set cellModel's openings
     PDOpenings *openings = [[PDOpenings alloc] init];
-    [openings setIsOpenNorth: north East: east South: south West: west];
+    [openings setIsOpenNorth: north east: east south: south west: west];
     [cellModel setOpenings: openings];
     
     return cellModel;

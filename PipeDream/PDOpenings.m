@@ -10,11 +10,11 @@
 
 @implementation PDOpenings
 
-- (void)setIsOpenNorth:(BOOL)north East:(BOOL)east South:(BOOL)south West:(BOOL)west {
-    _isOpenNorth = north;
-    _isOpenEast = east;
-    _isOpenSouth = south;
-    _isOpenWest = west;
+- (void)setIsOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
+    self.isOpenNorth = north;
+    self.isOpenEast = east;
+    self.isOpenSouth = south;
+    self.isOpenWest = west;
 }
 
 @end

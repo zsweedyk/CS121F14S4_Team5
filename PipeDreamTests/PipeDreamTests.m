@@ -36,7 +36,7 @@
     // Rotate a horizontal pipe, expect a vertical pipe
     PDCellModel *straightPipe = [[PDCellModel alloc] init];
     PDOpenings *straightPipeOpenings = [[PDOpenings alloc] init];
-    [straightPipeOpenings setIsOpenNorth: NO East: YES South: NO West: YES];
+    [straightPipeOpenings setIsOpenNorth: NO east: YES south: NO west: YES];
     [straightPipe setOpenings: straightPipeOpenings];
     [straightPipe rotateClockwise];
     XCTAssert([[straightPipe openings] isOpenNorth] &&
@@ -47,7 +47,7 @@
     // Rotate a pipe with all openings but north, expect a pipe with all openings but east
     PDCellModel *threeWayPipe = [[PDCellModel alloc] init];
     PDOpenings *threeWayPipeOpenings = [[PDOpenings alloc] init];
-    [threeWayPipeOpenings setIsOpenNorth: NO East: YES South: YES West: YES];
+    [threeWayPipeOpenings setIsOpenNorth: NO east: YES south: YES west: YES];
     [threeWayPipe setOpenings: threeWayPipeOpenings];
     [threeWayPipe rotateClockwise];
     XCTAssert([[threeWayPipe openings] isOpenNorth] &&
