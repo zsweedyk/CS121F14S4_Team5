@@ -12,7 +12,6 @@ NSString* OPEN_NORTH_ENCODING = @"N";
 NSString* OPEN_EAST_ENCODING = @"E";
 NSString* OPEN_SOUTH_ENCODING = @"S";
 NSString* OPEN_WEST_ENCODING = @"W";
-NSString* IMAGE_FILE_EXTENSION = @"png";
 NSString* CLOSE_DIRECTION_ENCODING = @"x";
 NSString* START_IMAGE_NAME = @"computerHealthy";
 NSString* GOAL_IMAGE_NAME = @"goal";
