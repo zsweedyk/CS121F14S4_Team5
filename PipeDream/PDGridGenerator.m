@@ -2,13 +2,12 @@
 //  PDGridGenerator.m
 //  PipeDream
 //
-//  Created by Vincent Fiorentini on 10/13/14.
+//  Created by Jean Sung, Kathryn Aplin, Paula Yuan and Vincent Fiorentini.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
 #import "PDGridGenerator.h"
-#import "PDCellModel.h"
-#import "PDOpenings.h"
+
 
 @implementation PDGridGenerator
 
@@ -16,7 +15,7 @@
 
 /* Input: Level number
  * Output: An array of rows of CellModels corresponding to that level */
-+ (NSMutableArray *) generateGridForLevelNumber:(NSInteger)levelNumber {
++ (NSMutableArray *)generateGridForLevelNumber:(NSInteger)levelNumber {
     NSString *readString = [PDGridGenerator readFromFile];
     NSString *line = [PDGridGenerator getLineFromString: readString
                                                forLevel: levelNumber];
@@ -32,25 +31,24 @@
 #pragma mark Private methods
 
 /* Returns the string of text from the grids file */
-+ (NSString *) readFromFile {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"grids"
-                                                     ofType:@"txt"];
++ (NSString *)readFromFile {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"grids" ofType:@"txt"];
     NSError *error;
     NSString *readString = [[NSString alloc] initWithContentsOfFile:path
-                                                           encoding:NSUTF8StringEncoding error:&error];
+        encoding:NSUTF8StringEncoding error:&error];
     return readString;
 }
 
 /* Input: A string composed of multiple lines, level number
  * Output: A single line from the input */
-+ (NSString *) getLineFromString:(NSString *)allGrids forLevel:(NSInteger)levelNumber {
++ (NSString *)getLineFromString:(NSString *)allGrids forLevel:(NSInteger)levelNumber {
     NSArray *allLines = [allGrids componentsSeparatedByString:@"\n"];
     return [allLines objectAtIndex: levelNumber];
 }
 
 /* Input: A string encoding of a level
  * Output: A 2D array of CellModels corresponding to the level */
-+ (NSMutableArray *) parseLine:(NSString *)gridLine {
++ (NSMutableArray *)parseLine:(NSString *)gridLine {
     
     // Turns the string into an array of strings
     NSArray *parsedLine = [gridLine componentsSeparatedByString:@" "];
@@ -71,18 +69,18 @@
 
     // Parse the strings in the array into CellModels
     NSMutableArray *grid = [[NSMutableArray alloc] initWithCapacity: height];
-    for (int r = 0; r < height; r++) {
-        NSMutableArray *row = [[NSMutableArray alloc] initWithCapacity: width];
-        NSInteger rowStartIndex = r * width;
-        for (int c = 0; c < width; c++) {
-            NSUInteger index = rowStartIndex + c + 6;
+    for (int row = 0; row < height; row++) {
+        NSMutableArray *currentRow = [[NSMutableArray alloc] initWithCapacity: width];
+        NSInteger rowStartIndex = row * width;
+        for (int col = 0; col < width; col++) {
+            NSUInteger index = rowStartIndex + col + 6;
             NSString *pipeEncoding = [parsedLine objectAtIndex: index];
             PDCellModel *cell = [PDGridGenerator parsePipeEncoding: pipeEncoding];
-            [cell setRow:r];
-            [cell setCol:c];
-            [row addObject: cell];
+            [cell setRow:row];
+            [cell setCol:col];
+            [currentRow addObject: cell];
         }
-        [grid addObject: row];
+        [grid addObject: currentRow];
     }
     
     // Set start and goal cells
@@ -94,7 +92,7 @@
 
 /* Input: A string encoding of a pipe
  * Output: A CellModel corresponding to the string encoding */
-+ (PDCellModel *) parsePipeEncoding:(NSString *) pipeEncoding {
++ (PDCellModel *)parsePipeEncoding:(NSString *) pipeEncoding {
     
     // Initialize CellModel
     PDCellModel *cellModel = [[PDCellModel alloc] init];
