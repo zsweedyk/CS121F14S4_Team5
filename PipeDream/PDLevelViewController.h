@@ -13,9 +13,8 @@
 @interface PDLevelViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet PDGridView *gridView;
-@property (nonatomic) NSInteger levelToPlay;
+@property (nonatomic) NSInteger levelNumber;
 
-- (void) startLevelNumber:(NSInteger)levelNumber;
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
 
 @end

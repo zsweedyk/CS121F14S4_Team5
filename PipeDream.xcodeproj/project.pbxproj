@@ -110,10 +110,10 @@
 			children = (
 				BF62562219EC93F0008175CC /* PDAppDelegate.h */,
 				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
-				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
-				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
 				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
 				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
+				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
+				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
