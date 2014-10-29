@@ -114,7 +114,7 @@
  */
 - (BOOL)isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
                       toRow:(NSInteger)rowTo col:(NSInteger)colTo {
-    NSMutableArray* searched = [self getConnectedCellsFromCellAtRow:rowFrom col:colFrom];
+    NSMutableArray *searched = [self getConnectedCellsFromCellAtRow:rowFrom col:colFrom];
     for (int i = 0; i < [searched count]; i++) {
         PDCellModel *cell = [searched objectAtIndex:i];
         if ([cell row] == rowTo && [cell col] == colTo) {
@@ -158,7 +158,7 @@
 /* Executes a breadth-first-search from a cell, returning the cell and anything that is connected to
  * it in the order visited.
  */
-- (NSMutableArray*)getConnectedCellsFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+- (NSMutableArray *)getConnectedCellsFromCellAtRow:(NSInteger)row col:(NSInteger)col {
     // Create an array to track which cells have been searched.
     NSMutableArray *visited = [[NSMutableArray alloc] initWithCapacity:[self numRows]];
     for (int row = 0; row < [self numRows]; row++) {
@@ -191,8 +191,8 @@
         NSUInteger numNeighbors =[neighbors count];
         for (int i = 0; i < numNeighbors; i++) {
             PDCellModel *connectedCell = [neighbors objectAtIndex:i];
-            if ([[[visited objectAtIndex:[connectedCell row]] objectAtIndex:
-                  [connectedCell col]] boolValue] == NO) {
+            if (![[[visited objectAtIndex:[connectedCell row]] objectAtIndex:
+                  [connectedCell col]] boolValue]) {
                 [queue enqueue:connectedCell];
                 [[visited objectAtIndex:[connectedCell row]]
                  replaceObjectAtIndex:[connectedCell col]
