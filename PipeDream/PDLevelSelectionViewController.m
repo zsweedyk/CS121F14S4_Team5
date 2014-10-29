@@ -10,6 +10,7 @@
 #import "PDLevelViewController.h"
 
 NSString *UNLOCKED_LEVEL_KEY = @"levelUnlocked";
+NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
 
 @interface PDLevelSelectionViewController ()
 
@@ -63,7 +64,6 @@ NSString *UNLOCKED_LEVEL_KEY = @"levelUnlocked";
 /* Creates and stores levelSelectButtons
  */
 - (void)createLevelSelectButtons {
-    const NSInteger numLevelButtons = 5; // the number of levels buttons to display
     const NSInteger buttonWidth = 100;
     const NSInteger buttonHeight = 100;
     const NSInteger buttonXPadding = 30;
@@ -72,11 +72,11 @@ NSString *UNLOCKED_LEVEL_KEY = @"levelUnlocked";
     UIColor *buttonBackgroundColor = [UIColor whiteColor];
     
     float frameCenter = CGRectGetWidth(self.view.frame) / 2;
-    float buttonRowWidth = numLevelButtons * buttonWidth + (numLevelButtons - 1) * buttonXPadding;
+    float buttonRowWidth = NUM_LEVEL_BUTTONS * buttonWidth + (NUM_LEVEL_BUTTONS - 1) * buttonXPadding;
     float leftmostButtonXPos = frameCenter - (buttonRowWidth / 2.0);
     
     NSMutableArray *newLevelSelectButtons = [[NSMutableArray alloc] init];
-    for (int i = 0; i < numLevelButtons; i++) {
+    for (int i = 0; i < NUM_LEVEL_BUTTONS; i++) {
         NSInteger levelNumber = i + 1;
         
         float buttonRowXPos = leftmostButtonXPos + (buttonWidth + buttonXPadding) * i;
