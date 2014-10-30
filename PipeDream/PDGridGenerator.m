@@ -8,7 +8,6 @@
 
 #import "PDGridGenerator.h"
 
-
 @implementation PDGridGenerator
 
 #pragma mark Public methods
@@ -49,6 +48,9 @@
  * Output: A 2D array of CellModels corresponding to the level */
 + (NSMutableArray *)parseLine:(NSString *)gridLine {
     
+    // Define constant for start of pipe encodings in text file
+    NSInteger PIPE_ENCODING_START = 7;
+    
     // Turns the string into an array of strings
     NSArray *parsedLine = [gridLine componentsSeparatedByString:@" "];
     
@@ -75,7 +77,7 @@
         NSMutableArray *currentRow = [[NSMutableArray alloc] initWithCapacity:width];
         NSInteger rowStartIndex = row * width;
         for (int col = 0; col < width; col++) {
-            NSUInteger index = rowStartIndex + col + 7;
+            NSUInteger index = rowStartIndex + col + PIPE_ENCODING_START;
             NSString *pipeEncoding = [parsedLine objectAtIndex:index];
             PDCellModel *cell = [PDGridGenerator parsePipeEncoding:pipeEncoding];
             [cell setRow:row];
@@ -97,17 +99,25 @@
  * Output: A CellModel corresponding to the string encoding */
 + (PDCellModel *)parsePipeEncoding:(NSString *) pipeEncoding {
     
+    // Define constants
+    NSString* OPEN_NORTH_ENCODING = @"N";
+    NSString* OPEN_EAST_ENCODING = @"E";
+    NSString* OPEN_SOUTH_ENCODING = @"S";
+    NSString* OPEN_WEST_ENCODING = @"W";
+    NSString* INFECTED_ENCODING = @"*";
+    
     // Initialize CellModel
     PDCellModel *cellModel = [[PDCellModel alloc] init];
     
     // Extract values for cardinal directions and infection status from encoding
-    BOOL north = [[pipeEncoding substringWithRange:NSMakeRange(0, 1)] isEqual:@"N"];
-    BOOL east = [[pipeEncoding substringWithRange:NSMakeRange(1, 1)] isEqual:@"E"];
-    BOOL south = [[pipeEncoding substringWithRange:NSMakeRange(2, 1)] isEqual:@"S"];
-    BOOL west = [[pipeEncoding substringWithRange:NSMakeRange(3, 1)] isEqual:@"W"];
+    BOOL north = [[pipeEncoding substringWithRange:NSMakeRange(0, 1)] isEqual:OPEN_NORTH_ENCODING];
+    BOOL east = [[pipeEncoding substringWithRange:NSMakeRange(1, 1)] isEqual:OPEN_EAST_ENCODING];
+    BOOL south = [[pipeEncoding substringWithRange:NSMakeRange(2, 1)] isEqual:OPEN_SOUTH_ENCODING];
+    BOOL west = [[pipeEncoding substringWithRange:NSMakeRange(3, 1)] isEqual:OPEN_WEST_ENCODING];
     BOOL isInfected = NO;
     if ([pipeEncoding length] == 5) {
-        isInfected = [[pipeEncoding substringWithRange:NSMakeRange(4, 1)] isEqual:@"*"];
+        isInfected = [[pipeEncoding substringWithRange:NSMakeRange(4, 1)]
+                      isEqual:INFECTED_ENCODING];
     }
     
     // Set cellModel's openings and infection status
