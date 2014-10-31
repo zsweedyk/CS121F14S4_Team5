@@ -16,6 +16,6 @@
 @property (nonatomic) NSInteger levelNumber;
 
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
+- (void) completeMiniGameWithSuccess:(BOOL)success;
 
 @end
-

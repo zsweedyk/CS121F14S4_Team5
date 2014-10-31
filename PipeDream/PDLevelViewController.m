@@ -16,6 +16,8 @@
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
 @property (nonatomic, strong) PDGridModel *gridModel;
+@property (nonatomic) NSInteger selectedInfectedRow;
+@property (nonatomic) NSInteger selectedInfectedCol;
 
 @end
 
@@ -25,6 +27,8 @@
     [super viewDidLoad];
     
     self.gridView.delegate = self;
+    // To show a minigame view controller on top of this one, we set self.modalPresentationStyle.
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
     
     [self startLevelNumber:self.levelNumber];
 }
@@ -32,9 +36,21 @@
 #pragma mark Public methods
 
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
+    if (![self.gridModel isVisibleAtRow:row col:col]) {
+        return;
+    }
+    
+    if ([self.gridModel isInfectedAtRow:row col:col]) {
+        self.selectedInfectedRow = row;
+        self.selectedInfectedCol = col;
+        [self startMiniGame];
+        return;
+    }
+    
     if (![self.gridModel isGoalAtRow:row col:col] && ![self.gridModel isStartAtRow:row col:col]) {
         [self.gridModel rotateClockwiseCellAtRow:row col:col];
     }
+    
     [self setGridViewToMatchModel];
     
     if ([self.gridModel isStartConnectedToGoal]) {
@@ -48,6 +64,15 @@
                                   otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+// completeMiniGameWithSuccess clears the selected infection if success is YES.
+- (void) completeMiniGameWithSuccess:(BOOL)success {
+    if (!success) {
+        return;
+    }
+    [self.gridModel clearInfectionFromRow:self.selectedInfectedRow col:self.selectedInfectedCol];
+    [self setGridViewToMatchModel];
 }
 
 #pragma mark Private methods
@@ -69,13 +94,25 @@
             PDOpenings *openings = [self.gridModel openingsAtRow:row col:col];
             BOOL isStart = [self.gridModel isStartAtRow:row col:col];
             BOOL isGoal = [self.gridModel isGoalAtRow:row col:col];
+            BOOL isVisible = [self.gridModel isVisibleAtRow:row col:col];
+            BOOL isInfected = [self.gridModel isInfectedAtRow:row col:col];
 
             [self.gridView setCellAtRow:row col:col isOpenNorth:[openings isOpenNorth] east:[openings isOpenEast]
                                   south:[openings isOpenSouth] west:[openings isOpenWest]];
             [self.gridView setStart:isStart atRow:row col:col];
             [self.gridView setGoal:isGoal atRow:row col:col];
+            [self.gridView setCellVisibility:isVisible atRow:row col:col];
+            [self.gridView setCellInfected:isInfected atRow:row col:col];
         }
     }
+}
+
+// startMiniGame starts a randomly selected mini game.
+- (void)startMiniGame {
+    const NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToPassword", @"LevelToSpam",
+                                     nil];
+    int randomIndex = arc4random() % [allSeguesToMiniGames count];
+    [self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

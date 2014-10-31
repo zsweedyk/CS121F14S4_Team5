@@ -19,5 +19,7 @@
                south:(BOOL)south west:(BOOL)west;
 - (void)setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col;
 - (void)setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)col;
+- (void)setCellVisibility:(BOOL)visible atRow:(NSInteger)row col:(NSInteger)col;
+- (void)setCellInfected:(BOOL)infected atRow:(NSInteger)row col:(NSInteger)col;
 
 @end

@@ -105,6 +105,14 @@ static float BORDER_RATIO = 0.03;
     [currentCell setGoal:goal];
 }
 
+- (void)setCellVisibility:(BOOL)visible atRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: implement this
+}
+
+- (void)setCellInfected:(BOOL)infected atRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: implement this
+}
+
 #pragma mark Private methods
 
 - (void)cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
