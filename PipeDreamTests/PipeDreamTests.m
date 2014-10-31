@@ -19,6 +19,10 @@
 
 @implementation PipeDreamTests
 
+NSString *TEST_GRID_ENCODING = @"4 4 3 0 0 3 1 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
+NSString *TEST_NO_FOG = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
+NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW NxSx NxxW NxxW NxxW NxxW NExx xExW xESW xxSW NxxW NxxW NxxW NxxW NxSx xExx NExW xExW xExW NxxW";
+
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -60,13 +64,8 @@
  * that a pipe is correctly read, thus implicitly testing the openings methods.
  */
 - (void) testGridGenerator {
-    // 4 4 3 0 0 3
-    // NExx NxSx xESx xxSW
-    // xxSW NESx xESW xExW
-    // NESW xExW NxxW xxSW
-    // xExx xESx xESW NExW
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
-    NSMutableArray *gridArray = [PDGridGenerator generateGridFromString:testString];
+
+    NSMutableArray *gridArray = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     // Check that start cell and goal cell are properly assigned
     PDCellModel *startCell = [[gridArray objectAtIndex: 3] objectAtIndex: 0];
@@ -82,14 +81,33 @@
               ![[topLeftCell openings] isOpenWest], @"Top left cell properly decoded");
 }
 
+/* Tests that the GridGenerator properly sets infection and fog
+ */
+- (void) testGridGeneratorFogInfection {
+    
+    NSMutableArray *fogGridArray = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
+    NSMutableArray *noFogGridArray = [PDGridGenerator generateGridFromString:TEST_NO_FOG];
+    
+    // Check that visibility is properly set.
+    PDCellModel *foggyCell = [[fogGridArray objectAtIndex: 1] objectAtIndex: 1];
+    XCTAssertFalse([foggyCell isVisible], @"Visibility is properly set for fog");
+    PDCellModel *visibleCell = [[noFogGridArray objectAtIndex: 1] objectAtIndex: 1];
+    XCTAssert([visibleCell isVisible], @"Visibility is properly set for no fog");
+    
+    // Check that infection is properly set
+    PDCellModel *infectedCell = [[noFogGridArray objectAtIndex: 0] objectAtIndex: 0];
+    XCTAssert([infectedCell isInfected], @"Infection is properly set");
+    PDCellModel *healthyCell = [[noFogGridArray objectAtIndex: 1] objectAtIndex: 0];
+    XCTAssertFalse([healthyCell isInfected], @"Infection is properly set");
+}
+
 /* Tests that a gridModel is correctly initialized, with the cells correctly set and processed for
  * grid size, and for testing if cells are the start or goal. Implicitly tests initWithGrid for
  * GridModel.
  */
 - (void) testGridModelInitialization {
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
-    
-    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     XCTAssert([model numRows] == 4, @"Number of rows properly assigned.");
@@ -103,9 +121,8 @@
  * interface for querying a CellModel, rather than the openings directly.
  */
 - (void) testOpenings {
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
     
-    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -133,9 +150,8 @@
 /* Tests connections of an intial grid.
  */
 - (void) testConnectionPath {
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
     
-    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -146,9 +162,8 @@
 }
 
 - (void) testGridModelRotateClockwise {
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
-    
-    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -173,9 +188,8 @@
 // NESW xExW NxxW xxSW
 // xExx xESx xESW NExW
 - (void) testRotateConnection {
-    NSString *testString = @"4 4 3 0 0 3 NExx NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
     
-    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -198,9 +212,8 @@
 // NxxW NxxW NxxW NxxW NxSx
 // xExx NExW xExW xExW NxxW
 - (void) testStartGoalConnection {
-    NSString *testString = @"5 5 4 0 0 1 NxxW NESW NxxW NxxW NxxW NxxW NxSx NxxW NxxW NxxW NxxW NExx xExW xESW xxSW NxxW NxxW NxxW NxxW NxSx xExx NExW xExW xExW NxxW";
     
-    NSMutableArray *cells = [PDGridGenerator generateGridFromString:testString];
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GAME_COMPLETED];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     

@@ -12,6 +12,8 @@
 @interface PDCellModel : NSObject
 
 @property (nonatomic, strong) PDOpenings *openings;
+@property (nonatomic) BOOL isInfected;
+@property (nonatomic) BOOL isVisible;
 @property (nonatomic) BOOL isStart;
 @property (nonatomic) BOOL isGoal;
 @property (nonatomic) int row;

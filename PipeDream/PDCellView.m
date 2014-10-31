@@ -8,15 +8,16 @@
 
 #import "PDCellView.h"
 
+@implementation PDCellView
+
 NSString* OPEN_NORTH_ENCODING = @"N";
 NSString* OPEN_EAST_ENCODING = @"E";
 NSString* OPEN_SOUTH_ENCODING = @"S";
 NSString* OPEN_WEST_ENCODING = @"W";
+NSString* INFECTED_ENCODING = @"*";
 NSString* CLOSE_DIRECTION_ENCODING = @"x";
 NSString* START_IMAGE_NAME = @"computerHealthy";
 NSString* GOAL_IMAGE_NAME = @"goal";
-
-@implementation PDCellView
 
 #pragma mark Public methods
 
