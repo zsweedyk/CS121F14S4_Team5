@@ -108,6 +108,20 @@
         col:[_goalCell col]];
 }
 
+- (void) clearInfectionFromRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this
+}
+
+- (BOOL) isInfectedAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this
+    return NO;
+}
+
+- (BOOL) isVisibleAtRow:(NSInteger)row col:(NSInteger)col {
+    // TODO: Implement this
+    return YES;
+}
+
 /* Output: YES if there exists a path of connections from the cell at the first 
  * given coordinates to the cell at the second given coordinates, where a 
  * connection is when adjacent cells have complementary openings.

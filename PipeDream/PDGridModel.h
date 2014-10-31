@@ -18,6 +18,9 @@
 - (NSInteger)numCols;
 - (void)rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL)isStartConnectedToGoal;
+- (void) clearInfectionFromRow:(NSInteger)row col:(NSInteger)col;
+- (BOOL) isInfectedAtRow:(NSInteger)row col:(NSInteger)col;
+- (BOOL) isVisibleAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL)isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
     toRow:(NSInteger)rowTo col:(NSInteger)colTo;
 - (PDOpenings *)openingsAtRow:(NSInteger)row col:(NSInteger)col;
