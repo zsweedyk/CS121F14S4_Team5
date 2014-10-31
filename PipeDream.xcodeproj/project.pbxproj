@@ -25,6 +25,7 @@
 		BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */; };
 		BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */; };
 		BFF9430F1A0376CA009FF758 /* PDPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */; };
+		BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF943111A038271009FF758 /* PDMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSpamViewController.m; sourceTree = "<group>"; };
 		BFF9430D1A0376CA009FF758 /* PDPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDPasswordViewController.h; sourceTree = "<group>"; };
 		BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDPasswordViewController.m; sourceTree = "<group>"; };
+		BFF943101A038271009FF758 /* PDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDMenuViewController.h; sourceTree = "<group>"; };
+		BFF943111A038271009FF758 /* PDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 			children = (
 				BF62562219EC93F0008175CC /* PDAppDelegate.h */,
 				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
+				BFF943101A038271009FF758 /* PDMenuViewController.h */,
+				BFF943111A038271009FF758 /* PDMenuViewController.m */,
 				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
 				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
 				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
@@ -280,6 +285,7 @@
 				BF62564919EC9571008175CC /* PDCellView.m in Sources */,
 				2994C49119F45C6F00A11183 /* PDQueue.m in Sources */,
 				BF62564F19EC9591008175CC /* PDCellModel.m in Sources */,
+				BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */,
 				BF62564619EC955B008175CC /* PDGridView.m in Sources */,
 				93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */,
 				BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */,
