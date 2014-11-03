@@ -155,12 +155,18 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
-    XCTAssert([model isConnectedFromRow:1 col:0 toRow:0 col:1], @"Simple connection is correctly detected.");
-    XCTAssert([model isConnectedFromRow:1 col:2 toRow:2 col:0], @"Connection requiring path finding is correctly detected.");
+    XCTAssert([model isConnectedFromRow:1 col:0 toRow:0 col:1], @"Simple connection is correctly \
+              detected.");
+    XCTAssert([model isConnectedFromRow:1 col:2 toRow:2 col:0], @"Connection requiring path finding\
+               is correctly detected.");
     
-    XCTAssert(![model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly fails to find path between unconnected cells.");
+    XCTAssert(![model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly fails to find path \
+              between unconnected cells.");
 }
 
+/*
+ * Tests rotation of openings as accessed from model.
+ */
 - (void) testGridModelRotateClockwise {
 
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
@@ -180,37 +186,38 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
     XCTAssert(![rotatedOpenings isOpenNorth] &&
               [rotatedOpenings isOpenEast] &&
               [rotatedOpenings isOpenSouth] &&
-              ![rotatedOpenings isOpenWest], @"Rotated openings accessed correctly through GridModel");
+              ![rotatedOpenings isOpenWest], @"Rotated openings accessed correctly through \
+              GridModel");
 }
 
-// NExx NxSx xESx xxSW
-// xxSW NESx xESW xExW
-// NESW xExW NxxW xxSW
-// xExx xESx xESW NExW
+/*
+ * Tests connection of cells before and after rotations that lead to new connections.
+ */
 - (void) testRotateConnection {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
-    XCTAssert(![model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly fails to find path between unconnected cells.");
+    XCTAssert(![model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly fails to find path \
+              between unconnected cells.");
     
-    XCTAssert(![model isStartConnectedToGoal], @"Correctly fails to find path between start and goal.");
+    XCTAssert(![model isStartConnectedToGoal], @"Correctly fails to find path between start and \
+              goal.");
     
     [model rotateClockwiseCellAtRow:3 col:1];
     [model rotateClockwiseCellAtRow:3 col:1];
     [model rotateClockwiseCellAtRow:2 col:1];
     [model rotateClockwiseCellAtRow:1 col:2];
     
-    XCTAssert([model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly finds path after rotations.");
+    XCTAssert([model isConnectedFromRow:3 col:0 toRow:0 col:3], @"Correctly finds path after \
+              rotations.");
     XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
 }
 
-// NxxW NESW NxxW NxxW NxxW
-// NxxW NxSx NxxW NxxW NxxW
-// NxxW NExx xExW xESW xxSW
-// NxxW NxxW NxxW NxxW NxSx
-// xExx NExW xExW xExW NxxW
+/*
+ * Tests connection from start to goal given an initial grid with path already completed.
+ */
 - (void) testStartGoalConnection {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GAME_COMPLETED];
@@ -218,6 +225,23 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
     XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
+}
+
+/*
+ * Tests the spread of visibility for an initial grid and for after a rotation.
+ */
+- (void) testVisibilitySpread {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isVisibleAtRow:3 col:0], @"Start cell is correctly visible.");
+    XCTAssertFalse([model isVisibleAtRow:2 col:1],
+                   @"Cell not connected to start or path is not visible.");
+    XCTAssert([model isVisibleAtRow:3 col:1], @"Cell connected to start or path is visible.");
+    
+    [model rotateClockwiseCellAtRow:3 col:1];
+    XCTAssert([model isVisibleAtRow:2 col:1], @"Cell previously unconnected to start or path is \
+              visible");
 }
 
 @end

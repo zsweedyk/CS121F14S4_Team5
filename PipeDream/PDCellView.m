@@ -18,6 +18,7 @@ NSString* INFECTED_ENCODING = @"*";
 NSString* CLOSE_DIRECTION_ENCODING = @"x";
 NSString* START_IMAGE_NAME = @"computerHealthy";
 NSString* GOAL_IMAGE_NAME = @"goal";
+NSString* NOT_VISIBLE_IMAGE_NAME = @"NESWi";
 
 #pragma mark Public methods
 
@@ -96,7 +97,7 @@ NSString* GOAL_IMAGE_NAME = @"goal";
 
 - (void)setVisiblity:(BOOL)isVisible {
     if (!isVisible) {
-        [self setImage:[UIImage imageNamed:@"NESWi"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:NOT_VISIBLE_IMAGE_NAME] forState:UIControlStateNormal];
     }
 }
 
