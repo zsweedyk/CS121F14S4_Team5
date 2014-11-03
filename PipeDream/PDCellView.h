@@ -20,5 +20,6 @@
 - (void)setStart:(BOOL)start;
 - (void)setGoal:(BOOL)goal;
 - (void)setVisiblity:(BOOL)isVisible;
+- (void)setInfected:(BOOL)isInfected;
 
 @end

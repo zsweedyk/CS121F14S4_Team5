@@ -38,6 +38,7 @@
     if (self) {
         [self setGrid:grid];
         [self spreadVisiblityFromStart];
+        [self spreadInitialInfection];
     }
     return self;
 }
@@ -71,6 +72,7 @@
     
     [cell rotateClockwise];
     [self spreadVisiblityFromStart];
+    [self checkRotationInfectionSpreadFromCellAtRow:row col:col];
 }
 
 - (BOOL)isStartConnectedToGoal {
@@ -79,12 +81,12 @@
 }
 
 - (void) clearInfectionFromRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this
+    [self setInfectedFromCellAtRow:row col:col infected:NO];
 }
 
 - (BOOL) isInfectedAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this
-    return NO;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    return cell.isInfected;
 }
 
 - (BOOL) isVisibleAtRow:(NSInteger)row col:(NSInteger)col {
@@ -342,5 +344,49 @@
     }
 }
 
+/*
+ * From a given cell's coordinates, sets all cells connected to it to either all be infected, or all
+ * be not infected.
+ */
+- (void)setInfectedFromCellAtRow:(NSInteger)row col:(NSInteger)col infected:(BOOL)isInfected {
+    NSMutableArray *cells = [self getConnectedCellsFromCellAtRow:row col:col];
+    for (int i = 0; i < [cells count]; i++) {
+        PDCellModel *cell = [cells objectAtIndex:i];
+        cell.isInfected = isInfected;
+    }
+}
+
+/*
+ * For an initial grid, searches for infected cells and spreads infection from them.
+ */
+- (void)spreadInitialInfection {
+    NSMutableArray *infectedCells = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [self numRows]; i++) {
+        for (int j = 0; j < [self numCols]; j++) {
+            PDCellModel *cell = [self getCellAtRow:i col:j];
+            if (cell.isInfected) {
+                [infectedCells addObject:cell];
+            }
+        }
+    }
+    
+    for (int i = 0; i < [infectedCells count]; i++) {
+        PDCellModel *cell = [infectedCells objectAtIndex:i];
+        [self setInfectedFromCellAtRow:[cell row] col:[cell col] infected:YES];
+    }
+}
+
+/*
+ */
+- (void)checkRotationInfectionSpreadFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    NSMutableArray *connectedNeighbors = [self getConnectedNeighborsOfCellAtRow:row col:col];
+    for (int i = 0; i < [connectedNeighbors count]; i++) {
+        PDCellModel *cell = [connectedNeighbors objectAtIndex:i];
+        if (cell.isInfected) {
+            [self setInfectedFromCellAtRow:[cell row] col:[cell col] infected:YES];
+        }
+    }
+}
 
 @end

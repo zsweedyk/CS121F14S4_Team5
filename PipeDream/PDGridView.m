@@ -106,13 +106,13 @@ static float BORDER_RATIO = 0.03;
 }
 
 - (void)setCellVisibility:(BOOL)visible atRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: implement this
     PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
     [currentCell setVisiblity:visible];
 }
 
 - (void)setCellInfected:(BOOL)infected atRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: implement this
+    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
+    [currentCell setInfected:infected];
 }
 
 #pragma mark Private methods

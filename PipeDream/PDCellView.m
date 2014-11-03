@@ -8,6 +8,12 @@
 
 #import "PDCellView.h"
 
+@interface PDCellView()
+
+@property NSString *filename;
+
+@end
+
 @implementation PDCellView
 
 NSString* OPEN_NORTH_ENCODING = @"N";
@@ -19,6 +25,7 @@ NSString* CLOSE_DIRECTION_ENCODING = @"x";
 NSString* START_IMAGE_NAME = @"computerHealthy";
 NSString* GOAL_IMAGE_NAME = @"goal";
 NSString* NOT_VISIBLE_IMAGE_NAME = @"NESWi";
+NSString* START_INFECTED_IMAGE_NAME = @"computerSick";
 
 #pragma mark Public methods
 
@@ -74,7 +81,8 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"NESWi";
     }
     
     [self setImage:[UIImage imageNamed:filename] forState:UIControlStateNormal];
-
+    
+    self.filename = filename;
 }
 
 /*
@@ -83,6 +91,7 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"NESWi";
 - (void)setStart:(BOOL)start {
     if (start) {
         [self setImage:[UIImage imageNamed:START_IMAGE_NAME] forState:UIControlStateNormal];
+        self.filename = START_IMAGE_NAME;
     }
 }
 
@@ -92,12 +101,27 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"NESWi";
 - (void)setGoal:(BOOL)goal {
     if (goal) {
         [self setImage:[UIImage imageNamed:GOAL_IMAGE_NAME] forState:UIControlStateNormal];
+        self.filename = GOAL_IMAGE_NAME;
     }
 }
 
 - (void)setVisiblity:(BOOL)isVisible {
     if (!isVisible) {
         [self setImage:[UIImage imageNamed:NOT_VISIBLE_IMAGE_NAME] forState:UIControlStateNormal];
+    }
+}
+
+- (void)setInfected:(BOOL)isInfected {
+    if (isInfected) {
+        if ([self.filename isEqualToString:START_IMAGE_NAME]) {
+            [self setImage:[UIImage imageNamed:START_INFECTED_IMAGE_NAME]
+                  forState:UIControlStateNormal];
+        } else if ([self.filename isEqualToString:GOAL_IMAGE_NAME]) {
+            return;
+        } else {
+            NSString *filename = [[NSString alloc] initWithFormat:@"%@i", self.filename];
+            [self setImage:[UIImage imageNamed:filename] forState:UIControlStateNormal];
+        }
     }
 }
 
