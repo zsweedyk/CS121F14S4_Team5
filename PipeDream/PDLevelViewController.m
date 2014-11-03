@@ -47,7 +47,7 @@
         return;
     }
     
-    if (![self.gridModel isGoalAtRow:row col:col] && ![self.gridModel isStartAtRow:row col:col]) {
+    if (![self.gridModel isGoalAtRow:row col:col] && ![self.gridModel isStartAtRow:row col:col] && [self.gridModel isVisibleAtRow:row col:col]) {
         [self.gridModel rotateClockwiseCellAtRow:row col:col];
     }
     

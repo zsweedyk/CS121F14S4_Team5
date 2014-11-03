@@ -19,5 +19,6 @@
 - (void)setCellIsOpenNorth:(BOOL)north south:(BOOL)south east:(BOOL)east west:(BOOL)west;
 - (void)setStart:(BOOL)start;
 - (void)setGoal:(BOOL)goal;
+- (void)setVisiblity:(BOOL)isVisible;
 
 @end

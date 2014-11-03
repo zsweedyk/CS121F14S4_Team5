@@ -94,6 +94,12 @@ NSString* GOAL_IMAGE_NAME = @"goal";
     }
 }
 
+- (void)setVisiblity:(BOOL)isVisible {
+    if (!isVisible) {
+        [self setImage:[UIImage imageNamed:@"NESWi"] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark Private methods
 
 - (void)cellPressed {
