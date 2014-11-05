@@ -29,46 +29,15 @@
  * Creates the array of cells corresponding to the level.
  */
 - (id)initWithLevelNumber:(NSInteger)number {
-    self = [super init];
-    if (self) {
-        _cells = [PDGridGenerator generateGridForLevelNumber:number];
-        NSUInteger numRows = [_cells count];
-        for (int row = 0; row < numRows ; row++) {
-            NSUInteger numCols = [[_cells objectAtIndex:row] count];
-            for (int col = 0; col < numCols; col++) {
-                PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
-                if ([current isStart]) {
-                    _startCell = current;
-                }
-                
-                if ([current isGoal]) {
-                    _goalCell = current;
-                }
-            }
-        }
-    }
-    return self;
+    NSMutableArray *generatedCells = [PDGridGenerator generateGridForLevelNumber:number];
+    return [[PDGridModel alloc] initWithGrid:generatedCells];
 }
 
 - (id)initWithGrid:(NSMutableArray *)grid {
     self = [super init];
     if (self) {
-        _cells = grid;
-        NSUInteger numRows = [_cells count];
-        for (int row = 0; row < numRows; row++) {
-            NSUInteger numCols = [[_cells objectAtIndex:row] count];
-            for (int col = 0; col < numCols; col++) {
-                PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
-                if ([current isStart]) {
-                    _startCell = current;
-                }
-                
-                if ([current isGoal]) {
-                    _goalCell = current;
-                }
-            }
-        }
-        
+        [self setGrid:grid];
+        [self spreadVisiblityFromStart];
     }
     return self;
 }
@@ -101,6 +70,7 @@
     }
     
     [cell rotateClockwise];
+    [self spreadVisiblityFromStart];
 }
 
 - (BOOL)isStartConnectedToGoal {
@@ -118,8 +88,8 @@
 }
 
 - (BOOL) isVisibleAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this
-    return YES;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    return cell.isVisible;
 }
 
 /* Output: YES if there exists a path of connections from the cell at the first 
@@ -305,5 +275,72 @@
     
     return neighbors;
 }
+
+/*
+ * Spreads visibility from a given cell by making visible all cells connected to it, or adjacent to
+ * cells connected to it.
+ */
+- (void)spreadVisibilityFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    NSMutableArray *connectedCells = [self getConnectedCellsFromCellAtRow:row col:col];
+    for (int i = 0; i < [connectedCells count]; i++) {
+        PDCellModel *currentCell = [connectedCells objectAtIndex:i];
+        currentCell.isVisible = YES;
+        NSMutableArray* neighbors = [self getNeighborsOfCellAtRow:[currentCell row]
+            col:[currentCell col]];
+        for (int j = 0; j < [neighbors count]; j++) {
+            PDCellModel *neighCell = [neighbors objectAtIndex:j];
+            neighCell.isVisible = YES;
+        }
+    }
+}
+
+- (void)spreadVisiblityFromStart {
+    [self spreadVisibilityFromCellAtRow:[self.startCell row] col:[self.startCell col]];
+}
+
+/* Returns all neighbors of a cell regardless of connectivity, given coordinates of a cell.
+ */
+- (NSMutableArray *)getNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {
+    NSMutableArray *neighbors = [[NSMutableArray alloc] init];
+    if (row > 0) {
+        PDCellModel *northNeighbor = [self getCellAtRow:row - 1 col:col];
+        [neighbors addObject:northNeighbor];
+    }
+    
+    if (col < [self numCols] - 1) {
+        PDCellModel *eastNeighbor = [self getCellAtRow:row col:col + 1];
+        [neighbors addObject:eastNeighbor];
+    }
+    
+    if (row < [self numRows] - 1) {
+        PDCellModel *southNeighbor = [self getCellAtRow:row + 1 col:col];
+        [neighbors addObject:southNeighbor];
+    }
+    
+    if (col > 0) {
+        PDCellModel *westNeighbor = [self getCellAtRow:row col:col - 1];
+        [neighbors addObject:westNeighbor];
+    }
+    return neighbors;
+}
+
+- (void)setGrid:(NSMutableArray *)grid {
+    _cells = grid;
+    NSUInteger numRows = [_cells count];
+    for (int row = 0; row < numRows; row++) {
+        NSUInteger numCols = [[_cells objectAtIndex:row] count];
+        for (int col = 0; col < numCols; col++) {
+            PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
+            if ([current isStart]) {
+                _startCell = current;
+            }
+            
+            if ([current isGoal]) {
+                _goalCell = current;
+            }
+        }
+    }
+}
+
 
 @end
