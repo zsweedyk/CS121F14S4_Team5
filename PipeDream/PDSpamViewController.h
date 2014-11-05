@@ -17,4 +17,9 @@
 - (IBAction)notSpamButtonPressed;
 - (IBAction)cancelButtonPressed;
 
+#pragma mark Private methods (only exposed for unit testing)
+
++ (NSArray *)spamTextArrayFromString:(NSString *)readString;
++ (NSArray *)spamBoolArrayFromString:(NSString *)readString;
+
 @end
