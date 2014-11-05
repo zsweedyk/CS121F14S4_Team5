@@ -87,6 +87,7 @@ static float BORDER_RATIO = 0.03;
 
 - (void)setCellAtRow:(NSInteger)row col:(NSInteger)col cell:(PDCellModel *)model {
     PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
+    [currentCell setCell:model];
 }
 
 #pragma mark Private methods

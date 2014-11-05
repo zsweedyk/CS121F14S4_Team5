@@ -49,7 +49,11 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
     }
     
     if (model.isStart) {
-        [self setImage:[UIImage imageNamed:START_IMAGE_NAME] forState:UIControlStateNormal];
+        if (model.isInfected) {
+            [self setImage:[UIImage imageNamed:START_INFECTED_IMAGE_NAME] forState:UIControlStateNormal];
+        } else {
+            [self setImage:[UIImage imageNamed:START_IMAGE_NAME] forState:UIControlStateNormal];
+        }
         return;
     }
     
@@ -94,8 +98,6 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
     }
     
     [self setImage:[UIImage imageNamed:filename] forState:UIControlStateNormal];
-    
-    
 }
 
 #pragma mark Private methods
