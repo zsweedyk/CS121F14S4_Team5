@@ -8,19 +8,13 @@
 
 #import "PDCellView.h"
 
-@interface PDCellView()
-
-@property NSString *filename;
-
-@end
-
 @implementation PDCellView
 
 NSString* OPEN_NORTH_ENCODING = @"N";
 NSString* OPEN_EAST_ENCODING = @"E";
 NSString* OPEN_SOUTH_ENCODING = @"S";
 NSString* OPEN_WEST_ENCODING = @"W";
-NSString* INFECTED_ENCODING = @"*";
+NSString* INFECTED_ENCODING = @"i";
 NSString* CLOSE_DIRECTION_ENCODING = @"x";
 NSString* START_IMAGE_NAME = @"computerHealthy";
 NSString* GOAL_IMAGE_NAME = @"goal";
@@ -48,12 +42,27 @@ NSString* START_INFECTED_IMAGE_NAME = @"computerSick";
     // instead of changing existing image.
 }
 
-/* 
- * Sets the openings by finding the correct corresponding image.
- * Files for cell images have the format NESW if all directions are open. Expect to see an x for a 
- * direction that is not open.
- */
-- (void)setCellIsOpenNorth:(BOOL)north south:(BOOL)south east:(BOOL)east west:(BOOL)west {
+- (void)setCell:(PDCellModel *)model {
+    if (model.isGoal) {
+        [self setImage:[UIImage imageNamed:GOAL_IMAGE_NAME] forState:UIControlStateNormal];
+        return;
+    }
+    
+    if (model.isStart) {
+        [self setImage:[UIImage imageNamed:START_IMAGE_NAME] forState:UIControlStateNormal];
+        return;
+    }
+    
+    if (!model.isVisible) {
+        [self setImage:[UIImage imageNamed:NOT_VISIBLE_IMAGE_NAME] forState:UIControlStateNormal];
+        return;
+    }
+    
+    BOOL north = model.isOpenNorth;
+    BOOL east = model.isOpenEast;
+    BOOL south = model.isOpenSouth;
+    BOOL west = model.isOpenWest;
+    
     NSString *filename = @"";
     
     if (north) {
@@ -80,49 +89,13 @@ NSString* START_INFECTED_IMAGE_NAME = @"computerSick";
         filename  = [filename stringByAppendingString:CLOSE_DIRECTION_ENCODING];
     }
     
+    if (model.isInfected) {
+        filename = [filename stringByAppendingString:INFECTED_ENCODING];
+    }
+    
     [self setImage:[UIImage imageNamed:filename] forState:UIControlStateNormal];
     
-    self.filename = filename;
-}
-
-/*
- * Sets the image for a start cell.
- */
-- (void)setStart:(BOOL)start {
-    if (start) {
-        [self setImage:[UIImage imageNamed:START_IMAGE_NAME] forState:UIControlStateNormal];
-        self.filename = START_IMAGE_NAME;
-    }
-}
-
-/*
- * Sets the image for a goal cell.
- */
-- (void)setGoal:(BOOL)goal {
-    if (goal) {
-        [self setImage:[UIImage imageNamed:GOAL_IMAGE_NAME] forState:UIControlStateNormal];
-        self.filename = GOAL_IMAGE_NAME;
-    }
-}
-
-- (void)setVisiblity:(BOOL)isVisible {
-    if (!isVisible) {
-        [self setImage:[UIImage imageNamed:NOT_VISIBLE_IMAGE_NAME] forState:UIControlStateNormal];
-    }
-}
-
-- (void)setInfected:(BOOL)isInfected {
-    if (isInfected) {
-        if ([self.filename isEqualToString:START_IMAGE_NAME]) {
-            [self setImage:[UIImage imageNamed:START_INFECTED_IMAGE_NAME]
-                  forState:UIControlStateNormal];
-        } else if ([self.filename isEqualToString:GOAL_IMAGE_NAME]) {
-            return;
-        } else {
-            NSString *filename = [[NSString alloc] initWithFormat:@"%@i", self.filename];
-            [self setImage:[UIImage imageNamed:filename] forState:UIControlStateNormal];
-        }
-    }
+    
 }
 
 #pragma mark Private methods

@@ -140,6 +140,23 @@
     return [cell isGoal];
 }
 
+- (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
+    if (_cells == nil) {
+        return nil;
+    }
+    
+    if ([_cells count] <= row) {
+        return nil;
+    }
+    
+    if ([[_cells objectAtIndex:row] count] <= col) {
+        return nil;
+    }
+    
+    PDCellModel *cell = [[_cells objectAtIndex:row] objectAtIndex:col];
+    return cell;
+}
+
 #pragma mark Private methods
 /* Executes a breadth-first-search from a cell, returning the cell and anything that is connected to
  * it in the order visited.
@@ -188,23 +205,6 @@
     }
     
     return vistedArray;
-}
-
-- (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
-    if (_cells == nil) {
-        return nil;
-    }
-    
-    if ([_cells count] <= row) {
-        return nil;
-    }
-    
-    if ([[_cells objectAtIndex:row] count] <= col) {
-        return nil;
-    }
-    
-    PDCellModel *cell = [[_cells objectAtIndex:row] objectAtIndex:col];
-    return cell;
 }
 
 - (NSMutableArray *)getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {

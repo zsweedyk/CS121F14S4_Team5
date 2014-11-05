@@ -85,34 +85,9 @@ static float BORDER_RATIO = 0.03;
     [currentCell rotateClockwise];
 }
 
-/*
- * Given the coordinates of a cell, sets the openings of that cell.
- */
-- (void)setCellAtRow:(NSInteger)row col:(NSInteger)col
-          isOpenNorth:(BOOL)north east:(BOOL)east south:(BOOL)south west:(BOOL)west {
+- (void)setCellAtRow:(NSInteger)row col:(NSInteger)col cell:(PDCellModel *)model {
     PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
-    [currentCell setCellIsOpenNorth:north south:south east:east west:west];
-   
-}
-
-- (void)setStart:(BOOL)start atRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
-    [currentCell setStart:start];
-}
-
-- (void)setGoal:(BOOL)goal atRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
-    [currentCell setGoal:goal];
-}
-
-- (void)setCellVisibility:(BOOL)visible atRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
-    [currentCell setVisiblity:visible];
-}
-
-- (void)setCellInfected:(BOOL)infected atRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
-    [currentCell setInfected:infected];
+    [currentCell setCell:model];
 }
 
 #pragma mark Private methods
