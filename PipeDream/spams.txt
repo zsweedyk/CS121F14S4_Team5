@@ -1,0 +1,37 @@
+[spam]0
+From <support@Microsoft.com>
+
+Hi Sample Person,
+
+We just received a request to authorize your account for payment. Please log into your Windows Live account and navigate to payments to confirm. Please email us at support@microsoft.com if you need assistance.
+
+Sincerely,
+Microsoft Support
+[spam]1
+Hi valuEd customeR,
+We hope you have enjoyed our product and we ant to show you more of what we have to ofer. Plaese email us back at <290urjfsm2r3f0@domain.com>
+[spam]1
+From <suport@appple.com>
+
+Hello Sample Person,
+
+We have just received notification that you logged in to your iCloud account today at 2:35pm PST.
+
+Please click here to confirm that was you.
+
+<verification.support.apple.com/verify/user/19r4tnsdklr3iefwokdlns2r3>
+[spam]0
+From <support@chase.com>
+
+Hi Sample Person,
+We have noticed an unusually large purchase being authorized to your account. As a precaution, we have temporarily frozen access to the account. To confirm that you have made this charge, please come into your local Chase Branch or call our customer support line to confirm.
+
+Remember, we will never ask you to give out passwords over the phones or ask you to click on links in emails.
+[spam]1
+From <supporrt@chase.com>
+
+Hi Sample Person,
+We have noticed an unusually large purchase being authorized to your account. As a precaution, we have temporarily frozen access to the account. You must act quickly to reconfirm your account or we will close it!!
+
+Please hurry!!
+<tiny.cc/chaseverifyyouraccount>

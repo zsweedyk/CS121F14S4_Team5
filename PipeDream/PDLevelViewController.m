@@ -12,6 +12,7 @@
 #import "PDCellPressedDelegate.h"
 #import "PDOpenings.h"
 #import "PDLevelSelectionViewController.h"
+#import "PDMiniGameProtocol.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
@@ -109,8 +110,7 @@
 
 // startMiniGame starts a randomly selected mini game.
 - (void)startMiniGame {
-    const NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToPassword", @"LevelToSpam",
-                                     nil];
+    NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToSpam", nil];
     int randomIndex = arc4random() % [allSeguesToMiniGames count];
     [self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
 }
@@ -122,6 +122,14 @@
         (PDLevelSelectionViewController *) self.presentingViewController;
     [levelSelectionViewController updateLevelSelectButtonsEnabled];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.destinationViewController conformsToProtocol:@protocol(PDMiniGameProtocol)]) {
+        [segue.destinationViewController startMiniGame];
+    }
 }
 
 @end

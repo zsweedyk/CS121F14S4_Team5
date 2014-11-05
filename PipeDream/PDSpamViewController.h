@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PDSpamViewController : UIViewController
+@interface PDSpamViewController : UIViewController <UIAlertViewDelegate>
 
--(void)startMiniGame;
-- (IBAction)correctButtonPressed;
+@property (nonatomic, retain) IBOutlet UITextView *spamTextView;
+
+- (void)startMiniGame;
+- (IBAction)spamButtonPressed;
+- (IBAction)notSpamButtonPressed;
 - (IBAction)cancelButtonPressed;
 
 @end
