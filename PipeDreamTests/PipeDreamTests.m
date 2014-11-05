@@ -22,6 +22,7 @@
 NSString *TEST_GRID_ENCODING = @"4 4 3 0 0 3 1 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
 NSString *TEST_NO_FOG = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
 NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW NxSx NxxW NxxW NxxW NxxW NExx xExW xESW xxSW NxxW NxxW NxxW NxxW NxSx xExx NExW xExW xExW NxxW";
+NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW* xExW NxxW xxSW xExx xESx xESW NExW";
 
 - (void)setUp {
     [super setUp];
@@ -242,6 +243,28 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
     [model rotateClockwiseCellAtRow:3 col:1];
     XCTAssert([model isVisibleAtRow:2 col:1], @"Cell previously unconnected to start or path is \
               visible");
+}
+
+/*
+ */
+//@"4 4 3 0 0 3 0
+// NExx* NxSx xESx xxSW
+// xxSW NESx xESW xExW
+// NESW* xExW NxxW xxSW
+// xExx xESx xESW NExW";
+- (void) testInfectionInitial {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:0], @"");
+}
+
+- (void) testInfectionSpreadFromRotate {
+    
+}
+
+- (void) testInfectionClear {
+    
 }
 
 @end
