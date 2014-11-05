@@ -18,8 +18,8 @@ NSString* INFECTED_ENCODING = @"i";
 NSString* CLOSE_DIRECTION_ENCODING = @"x";
 NSString* START_IMAGE_NAME = @"computerHealthy";
 NSString* GOAL_IMAGE_NAME = @"goal";
-NSString* NOT_VISIBLE_IMAGE_NAME = @"NESWi";
 NSString* START_INFECTED_IMAGE_NAME = @"computerSick";
+NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
 
 #pragma mark Public methods
 
