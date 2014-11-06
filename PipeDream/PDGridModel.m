@@ -29,46 +29,16 @@
  * Creates the array of cells corresponding to the level.
  */
 - (id)initWithLevelNumber:(NSInteger)number {
-    self = [super init];
-    if (self) {
-        _cells = [PDGridGenerator generateGridForLevelNumber:number];
-        NSUInteger numRows = [_cells count];
-        for (int row = 0; row < numRows ; row++) {
-            NSUInteger numCols = [[_cells objectAtIndex:row] count];
-            for (int col = 0; col < numCols; col++) {
-                PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
-                if ([current isStart]) {
-                    _startCell = current;
-                }
-                
-                if ([current isGoal]) {
-                    _goalCell = current;
-                }
-            }
-        }
-    }
-    return self;
+    NSMutableArray *generatedCells = [PDGridGenerator generateGridForLevelNumber:number];
+    return [[PDGridModel alloc] initWithGrid:generatedCells];
 }
 
 - (id)initWithGrid:(NSMutableArray *)grid {
     self = [super init];
     if (self) {
-        _cells = grid;
-        NSUInteger numRows = [_cells count];
-        for (int row = 0; row < numRows; row++) {
-            NSUInteger numCols = [[_cells objectAtIndex:row] count];
-            for (int col = 0; col < numCols; col++) {
-                PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
-                if ([current isStart]) {
-                    _startCell = current;
-                }
-                
-                if ([current isGoal]) {
-                    _goalCell = current;
-                }
-            }
-        }
-        
+        [self setGrid:grid];
+        [self spreadVisiblityFromStart];
+        [self spreadInitialInfection];
     }
     return self;
 }
@@ -101,6 +71,8 @@
     }
     
     [cell rotateClockwise];
+    [self spreadVisiblityFromStart];
+    [self checkRotationInfectionSpreadFromCellAtRow:row col:col];
 }
 
 - (BOOL)isStartConnectedToGoal {
@@ -109,17 +81,17 @@
 }
 
 - (void) clearInfectionFromRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this
+    [self setInfectedFromCellAtRow:row col:col infected:NO];
 }
 
 - (BOOL) isInfectedAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this
-    return NO;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    return cell.isInfected;
 }
 
 - (BOOL) isVisibleAtRow:(NSInteger)row col:(NSInteger)col {
-    // TODO: Implement this
-    return YES;
+    PDCellModel *cell = [self getCellAtRow:row col:col];
+    return cell.isVisible;
 }
 
 /* Output: YES if there exists a path of connections from the cell at the first 
@@ -166,6 +138,23 @@
     }
     
     return [cell isGoal];
+}
+
+- (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
+    if (_cells == nil) {
+        return nil;
+    }
+    
+    if ([_cells count] <= row) {
+        return nil;
+    }
+    
+    if ([[_cells objectAtIndex:row] count] <= col) {
+        return nil;
+    }
+    
+    PDCellModel *cell = [[_cells objectAtIndex:row] objectAtIndex:col];
+    return cell;
 }
 
 #pragma mark Private methods
@@ -216,23 +205,6 @@
     }
     
     return vistedArray;
-}
-
-- (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
-    if (_cells == nil) {
-        return nil;
-    }
-    
-    if ([_cells count] <= row) {
-        return nil;
-    }
-    
-    if ([[_cells objectAtIndex:row] count] <= col) {
-        return nil;
-    }
-    
-    PDCellModel *cell = [[_cells objectAtIndex:row] objectAtIndex:col];
-    return cell;
 }
 
 - (NSMutableArray *)getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {
@@ -304,6 +276,117 @@
     }
     
     return neighbors;
+}
+
+/*
+ * Spreads visibility from a given cell by making visible all cells connected to it, or adjacent to
+ * cells connected to it.
+ */
+- (void)spreadVisibilityFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    NSMutableArray *connectedCells = [self getConnectedCellsFromCellAtRow:row col:col];
+    for (int i = 0; i < [connectedCells count]; i++) {
+        PDCellModel *currentCell = [connectedCells objectAtIndex:i];
+        currentCell.isVisible = YES;
+        NSMutableArray* neighbors = [self getNeighborsOfCellAtRow:[currentCell row]
+            col:[currentCell col]];
+        for (int j = 0; j < [neighbors count]; j++) {
+            PDCellModel *neighCell = [neighbors objectAtIndex:j];
+            neighCell.isVisible = YES;
+        }
+    }
+}
+
+- (void)spreadVisiblityFromStart {
+    [self spreadVisibilityFromCellAtRow:[self.startCell row] col:[self.startCell col]];
+}
+
+/* Returns all neighbors of a cell regardless of connectivity, given coordinates of a cell.
+ */
+- (NSMutableArray *)getNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {
+    NSMutableArray *neighbors = [[NSMutableArray alloc] init];
+    if (row > 0) {
+        PDCellModel *northNeighbor = [self getCellAtRow:row - 1 col:col];
+        [neighbors addObject:northNeighbor];
+    }
+    
+    if (col < [self numCols] - 1) {
+        PDCellModel *eastNeighbor = [self getCellAtRow:row col:col + 1];
+        [neighbors addObject:eastNeighbor];
+    }
+    
+    if (row < [self numRows] - 1) {
+        PDCellModel *southNeighbor = [self getCellAtRow:row + 1 col:col];
+        [neighbors addObject:southNeighbor];
+    }
+    
+    if (col > 0) {
+        PDCellModel *westNeighbor = [self getCellAtRow:row col:col - 1];
+        [neighbors addObject:westNeighbor];
+    }
+    return neighbors;
+}
+
+- (void)setGrid:(NSMutableArray *)grid {
+    _cells = grid;
+    NSUInteger numRows = [_cells count];
+    for (int row = 0; row < numRows; row++) {
+        NSUInteger numCols = [[_cells objectAtIndex:row] count];
+        for (int col = 0; col < numCols; col++) {
+            PDCellModel *current = [[_cells objectAtIndex:row] objectAtIndex:col];
+            if ([current isStart]) {
+                _startCell = current;
+            }
+            
+            if ([current isGoal]) {
+                _goalCell = current;
+            }
+        }
+    }
+}
+
+/*
+ * From a given cell's coordinates, sets all cells connected to it to either all be infected, or all
+ * be not infected.
+ */
+- (void)setInfectedFromCellAtRow:(NSInteger)row col:(NSInteger)col infected:(BOOL)isInfected {
+    NSMutableArray *cells = [self getConnectedCellsFromCellAtRow:row col:col];
+    for (int i = 0; i < [cells count]; i++) {
+        PDCellModel *cell = [cells objectAtIndex:i];
+        cell.isInfected = isInfected;
+    }
+}
+
+/*
+ * For an initial grid, searches for infected cells and spreads infection from them.
+ */
+- (void)spreadInitialInfection {
+    NSMutableArray *infectedCells = [[NSMutableArray alloc] init];
+    
+    for (int row = 0; row < [self numRows]; row++) {
+        for (int col = 0; col < [self numCols]; col++) {
+            PDCellModel *cell = [self getCellAtRow:row col:col];
+            if (cell.isInfected) {
+                [infectedCells addObject:cell];
+            }
+        }
+    }
+    
+    for (int i = 0; i < [infectedCells count]; i++) {
+        PDCellModel *cell = [infectedCells objectAtIndex:i];
+        [self setInfectedFromCellAtRow:[cell row] col:[cell col] infected:YES];
+    }
+}
+
+/*
+ */
+- (void)checkRotationInfectionSpreadFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    NSMutableArray *connectedNeighbors = [self getConnectedNeighborsOfCellAtRow:row col:col];
+    for (int i = 0; i < [connectedNeighbors count]; i++) {
+        PDCellModel *cell = [connectedNeighbors objectAtIndex:i];
+        if (cell.isInfected) {
+            [self setInfectedFromCellAtRow:[cell row] col:[cell col] infected:YES];
+        }
+    }
 }
 
 @end
