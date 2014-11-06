@@ -36,7 +36,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 
 /* Test the creation of cells, and their clockwise rotation.
  */
-- (void) testCellRotateClockwise {
+- (void)testCellRotateClockwise {
     
     // Rotate a horizontal pipe, expect a vertical pipe
     PDCellModel *straightPipe = [[PDCellModel alloc] init];
@@ -64,7 +64,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /* Tests the generation of a grid of cells, and the correct setting of the start and goal. Also tests
  * that a pipe is correctly read, thus implicitly testing the openings methods.
  */
-- (void) testGridGenerator {
+- (void)testGridGenerator {
 
     NSMutableArray *gridArray = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -84,7 +84,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 
 /* Tests that the GridGenerator properly sets infection and fog
  */
-- (void) testGridGeneratorFogInfection {
+- (void)testGridGeneratorFogInfection {
     
     NSMutableArray *fogGridArray = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     NSMutableArray *noFogGridArray = [PDGridGenerator generateGridFromString:TEST_NO_FOG];
@@ -106,7 +106,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
  * grid size, and for testing if cells are the start or goal. Implicitly tests initWithGrid for
  * GridModel.
  */
-- (void) testGridModelInitialization {
+- (void)testGridModelInitialization {
 
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -121,7 +121,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /* Tests the access of openings via a GridModel, and directly from a CellModel. Also tests the
  * interface for querying a CellModel, rather than the openings directly.
  */
-- (void) testOpenings {
+- (void)testOpenings {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -150,7 +150,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 
 /* Tests connections of an intial grid.
  */
-- (void) testConnectionPath {
+- (void)testConnectionPath {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -168,7 +168,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /*
  * Tests rotation of openings as accessed from model.
  */
-- (void) testGridModelRotateClockwise {
+- (void)testGridModelRotateClockwise {
 
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -194,7 +194,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /*
  * Tests connection of cells before and after rotations that lead to new connections.
  */
-- (void) testRotateConnection {
+- (void)testRotateConnection {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -219,7 +219,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /*
  * Tests connection from start to goal given an initial grid with path already completed.
  */
-- (void) testStartGoalConnection {
+- (void)testStartGoalConnection {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GAME_COMPLETED];
     
@@ -231,7 +231,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /*
  * Tests the spread of visibility for an initial grid and for after a rotation.
  */
-- (void) testVisibilitySpread {
+- (void)testVisibilitySpread {
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -249,7 +249,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
  * Tests the initial infected and uninfected status of a grid, including cells that are infected
  * only by being connected to marked infected cells.
  */
-- (void) testInfectionInitial {
+- (void)testInfectionInitial {
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -263,7 +263,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /*
  * Tests that infection spreads after rotation when cells become connected to infected cells.
  */
-- (void) testInfectionSpreadFromRotate {
+- (void)testInfectionSpreadFromRotate {
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -280,7 +280,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
 /*
  * Tests that an infection clears throughout the infection.
  */
-- (void) testInfectionClear {
+- (void)testInfectionClear {
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
