@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PDCellModel.h"
 
 @class PDOpenings;
 
@@ -26,5 +27,6 @@
 - (PDOpenings *)openingsAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL)isStartAtRow:(NSInteger)row col:(NSInteger)col;
 - (BOOL)isGoalAtRow:(NSInteger)row col:(NSInteger)col;
+- (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col;
 
 @end

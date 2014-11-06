@@ -92,18 +92,8 @@
     [self.gridView drawGridFromDimension:numRows];
     for (int row = 0; row < numRows; row++) {
         for (int col = 0; col < numCols; col++) {
-            PDOpenings *openings = [self.gridModel openingsAtRow:row col:col];
-            BOOL isStart = [self.gridModel isStartAtRow:row col:col];
-            BOOL isGoal = [self.gridModel isGoalAtRow:row col:col];
-            BOOL isVisible = [self.gridModel isVisibleAtRow:row col:col];
-            BOOL isInfected = [self.gridModel isInfectedAtRow:row col:col];
-
-            [self.gridView setCellAtRow:row col:col isOpenNorth:[openings isOpenNorth] east:[openings isOpenEast]
-                                  south:[openings isOpenSouth] west:[openings isOpenWest]];
-            [self.gridView setStart:isStart atRow:row col:col];
-            [self.gridView setGoal:isGoal atRow:row col:col];
-            [self.gridView setCellVisibility:isVisible atRow:row col:col];
-            [self.gridView setCellInfected:isInfected atRow:row col:col];
+            PDCellModel *model = [self.gridModel getCellAtRow:row col:col];
+            [self.gridView setCellAtRow:row col:col cell:model];
         }
     }
 }

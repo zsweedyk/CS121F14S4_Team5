@@ -22,6 +22,7 @@
 NSString *TEST_GRID_ENCODING = @"4 4 3 0 0 3 1 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
 NSString *TEST_NO_FOG = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW xExW NxxW xxSW xExx xESx xESW NExW";
 NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW NxSx NxxW NxxW NxxW NxxW NExx xExW xESW xxSW NxxW NxxW NxxW NxxW NxSx xExx NExW xExW xExW NxxW";
+NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xExW NESW* xExW NxxW xxSW xExx xESx xESW NExW";
 
 - (void)setUp {
     [super setUp];
@@ -35,7 +36,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 
 /* Test the creation of cells, and their clockwise rotation.
  */
-- (void) testCellRotateClockwise {
+- (void)testCellRotateClockwise {
     
     // Rotate a horizontal pipe, expect a vertical pipe
     PDCellModel *straightPipe = [[PDCellModel alloc] init];
@@ -63,7 +64,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 /* Tests the generation of a grid of cells, and the correct setting of the start and goal. Also tests
  * that a pipe is correctly read, thus implicitly testing the openings methods.
  */
-- (void) testGridGenerator {
+- (void)testGridGenerator {
 
     NSMutableArray *gridArray = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -83,7 +84,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 
 /* Tests that the GridGenerator properly sets infection and fog
  */
-- (void) testGridGeneratorFogInfection {
+- (void)testGridGeneratorFogInfection {
     
     NSMutableArray *fogGridArray = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     NSMutableArray *noFogGridArray = [PDGridGenerator generateGridFromString:TEST_NO_FOG];
@@ -105,7 +106,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
  * grid size, and for testing if cells are the start or goal. Implicitly tests initWithGrid for
  * GridModel.
  */
-- (void) testGridModelInitialization {
+- (void)testGridModelInitialization {
 
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -120,7 +121,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 /* Tests the access of openings via a GridModel, and directly from a CellModel. Also tests the
  * interface for querying a CellModel, rather than the openings directly.
  */
-- (void) testOpenings {
+- (void)testOpenings {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -149,7 +150,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 
 /* Tests connections of an intial grid.
  */
-- (void) testConnectionPath {
+- (void)testConnectionPath {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -167,7 +168,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 /*
  * Tests rotation of openings as accessed from model.
  */
-- (void) testGridModelRotateClockwise {
+- (void)testGridModelRotateClockwise {
 
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -193,7 +194,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 /*
  * Tests connection of cells before and after rotations that lead to new connections.
  */
-- (void) testRotateConnection {
+- (void)testRotateConnection {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     
@@ -218,7 +219,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 /*
  * Tests connection from start to goal given an initial grid with path already completed.
  */
-- (void) testStartGoalConnection {
+- (void)testStartGoalConnection {
     
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GAME_COMPLETED];
     
@@ -230,7 +231,7 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
 /*
  * Tests the spread of visibility for an initial grid and for after a rotation.
  */
-- (void) testVisibilitySpread {
+- (void)testVisibilitySpread {
     NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
     PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
     
@@ -242,6 +243,54 @@ NSString *TEST_GAME_COMPLETED = @"5 5 4 0 0 1 0 NxxW NESW NxxW NxxW NxxW NxxW Nx
     [model rotateClockwiseCellAtRow:3 col:1];
     XCTAssert([model isVisibleAtRow:2 col:1], @"Cell previously unconnected to start or path is \
               visible");
+}
+
+/*
+ * Tests the initial infected and uninfected status of a grid, including cells that are infected
+ * only by being connected to marked infected cells.
+ */
+- (void)testInfectionInitial {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:0], @"Initial marked infected cell is infected.");
+    XCTAssert([model isInfectedAtRow:2 col:1], @"Initial unmarked but connected infected cell is \
+              connected");
+    XCTAssertFalse([model isInfectedAtRow:0 col:2], @"Initial unmakred, uninfected cell is not \
+                   infected.");
+}
+
+/*
+ * Tests that infection spreads after rotation when cells become connected to infected cells.
+ */
+- (void)testInfectionSpreadFromRotate {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:0], @"Initially infected cell is infected.");
+    XCTAssertFalse([model isInfectedAtRow:0 col:1], @"Initially uninfected cell is uninfected.");
+    XCTAssertFalse([model isConnectedFromRow:0 col:0 toRow:0 col:1], @"Infected cell is not \
+                   connected to adjacent uninfected cell.");
+    [model rotateClockwiseCellAtRow:0 col:1];
+    XCTAssert([model isConnectedFromRow:0 col:0 toRow:0 col:1], @"After rotate, cells are \
+              connected.");
+    XCTAssert([model isInfectedAtRow:0 col:1], @"After rotate, cell is infected.");
+}
+
+/*
+ * Tests that an infection clears throughout the infection.
+ */
+- (void)testInfectionClear {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:1],@"Initially infected cell is infected.");
+    XCTAssert([model isInfectedAtRow:1 col:1], @"Additional infected cell of initial infection is \
+              infected.");
+    [model clearInfectionFromRow:0 col:1];
+    XCTAssertFalse([model isInfectedAtRow:0 col:1], @"Cleared cell is not infected.");
+    XCTAssertFalse([model isInfectedAtRow:1 col:1], @"Previously infected cell in initial \
+                   infection is also cleared.");
 }
 
 @end
