@@ -60,7 +60,7 @@ NSString *SPAM_TEXT_HEADER = @"[spam]";
              (int) spamBoolArray.count);
     int randomIndex = arc4random() % [spamTextArray count];
     self.spamText = spamTextArray[randomIndex];
-    self.isSpamTextSpam = spamBoolArray[randomIndex];
+    self.isSpamTextSpam = [(NSNumber *) spamBoolArray[randomIndex] boolValue];
 }
 
 /* Returns an array of each spam text from the given string */
