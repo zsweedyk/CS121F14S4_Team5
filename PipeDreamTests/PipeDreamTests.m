@@ -12,6 +12,7 @@
 #import "PDGridGenerator.h"
 #import "PDOpenings.h"
 #import "PDGridModel.h"
+#import "PDSpamViewController.h"
 
 @interface PipeDreamTests : XCTestCase
 
@@ -228,6 +229,21 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
     XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
 }
 
+/* Tests the SpamViewController's spamTextArrayFromString: method */
+- (void) testSpamTextFromString {
+    NSArray *spamTextArraySource = [NSArray arrayWithObjects:@"Abc\nDef\n", @"Ghi\n\n", @"Jkl", nil];
+    NSString *spamSourceText = [NSString stringWithFormat:@"[spam]0\n%@[spam]1\n%@[spam]0\n%@",
+        spamTextArraySource[0], spamTextArraySource[1], spamTextArraySource[2]];
+    NSArray *spamTextArray = [PDSpamViewController spamTextArrayFromString:spamSourceText];
+    XCTAssert(spamTextArray.count == spamTextArraySource.count,
+              @"Spam text array has correct count.");
+    for (int i = 0; i < spamTextArray.count; i++) {
+        NSString *spamText = spamTextArray[i];
+        NSString *spamTextSource = spamTextArraySource[i];
+        XCTAssert([spamText isEqualToString:spamTextSource], @"Spam text is correct.");
+    }
+}
+
 /*
  * Tests the spread of visibility for an initial grid and for after a rotation.
  */
@@ -243,6 +259,28 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
     [model rotateClockwiseCellAtRow:3 col:1];
     XCTAssert([model isVisibleAtRow:2 col:1], @"Cell previously unconnected to start or path is \
               visible");
+}
+
+/* Tests the SpamViewController's spamBoolArrayFromString: method */
+- (void) testSpamBoolFromString {
+    NSArray *spamTextArraySource = [NSArray arrayWithObjects:@"Abc\nDef\n", @"Ghi\n\n", @"Jkl", nil];
+    NSArray *spamBoolArrayNumbers = [NSArray arrayWithObjects:[NSNumber numberWithBool:NO],
+                                     [NSNumber numberWithBool:YES],
+                                     [NSNumber numberWithBool:NO],
+                                     nil];
+    NSArray *spamBoolArraySource = [NSArray arrayWithObjects:@"0", @"1", @"0", nil];
+    NSString *spamSourceText = [NSString stringWithFormat:@"[spam]%@\n%@[spam]%@\n%@[spam]%@\n%@",
+                                spamBoolArraySource[0], spamTextArraySource[0],
+                                spamBoolArraySource[1], spamTextArraySource[1],
+                                spamBoolArraySource[2], spamTextArraySource[2]];
+    NSArray *spamBoolArray = [PDSpamViewController spamBoolArrayFromString:spamSourceText];
+    XCTAssert(spamBoolArray.count == spamTextArraySource.count,
+              @"Spam bool array has correct count.");
+    for (int i = 0; i < spamBoolArray.count; i++) {
+        NSNumber *spamBool = spamBoolArray[i];
+        NSNumber *spamBoolSource = spamBoolArrayNumbers[i];
+        XCTAssert([spamBool boolValue] == [spamBoolSource boolValue], @"Spam bool is correct.");
+    }
 }
 
 /*
