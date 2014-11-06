@@ -362,9 +362,9 @@
 - (void)spreadInitialInfection {
     NSMutableArray *infectedCells = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < [self numRows]; i++) {
-        for (int j = 0; j < [self numCols]; j++) {
-            PDCellModel *cell = [self getCellAtRow:i col:j];
+    for (int row = 0; row < [self numRows]; row++) {
+        for (int col = 0; col < [self numCols]; col++) {
+            PDCellModel *cell = [self getCellAtRow:row col:col];
             if (cell.isInfected) {
                 [infectedCells addObject:cell];
             }
