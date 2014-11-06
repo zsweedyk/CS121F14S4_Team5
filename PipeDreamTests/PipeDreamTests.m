@@ -229,6 +229,7 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
     XCTAssert([model isStartConnectedToGoal], @"Correctly finds path between start and goal.");
 }
 
+/* Tests the SpamViewController's spamTextArrayFromString: method */
 - (void) testSpamTextFromString {
     NSArray *spamTextArraySource = [NSArray arrayWithObjects:@"Abc\nDef\n", @"Ghi\n\n", @"Jkl", nil];
     NSString *spamSourceText = [NSString stringWithFormat:@"[spam]0\n%@[spam]1\n%@[spam]0\n%@",
@@ -243,6 +244,24 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
     }
 }
 
+/*
+ * Tests the spread of visibility for an initial grid and for after a rotation.
+ */
+- (void)testVisibilitySpread {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isVisibleAtRow:3 col:0], @"Start cell is correctly visible.");
+    XCTAssertFalse([model isVisibleAtRow:2 col:1],
+                   @"Cell not connected to start or path is not visible.");
+    XCTAssert([model isVisibleAtRow:3 col:1], @"Cell connected to start or path is visible.");
+    
+    [model rotateClockwiseCellAtRow:3 col:1];
+    XCTAssert([model isVisibleAtRow:2 col:1], @"Cell previously unconnected to start or path is \
+              visible");
+}
+
+/* Tests the SpamViewController's spamBoolArrayFromString: method */
 - (void) testSpamBoolFromString {
     NSArray *spamTextArraySource = [NSArray arrayWithObjects:@"Abc\nDef\n", @"Ghi\n\n", @"Jkl", nil];
     NSArray *spamBoolArrayNumbers = [NSArray arrayWithObjects:[NSNumber numberWithBool:NO],
@@ -262,6 +281,54 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
         NSNumber *spamBoolSource = spamBoolArrayNumbers[i];
         XCTAssert([spamBool boolValue] == [spamBoolSource boolValue], @"Spam bool is correct.");
     }
+}
+
+/*
+ * Tests the initial infected and uninfected status of a grid, including cells that are infected
+ * only by being connected to marked infected cells.
+ */
+- (void)testInfectionInitial {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:0], @"Initial marked infected cell is infected.");
+    XCTAssert([model isInfectedAtRow:2 col:1], @"Initial unmarked but connected infected cell is \
+              connected");
+    XCTAssertFalse([model isInfectedAtRow:0 col:2], @"Initial unmakred, uninfected cell is not \
+                   infected.");
+}
+
+/*
+ * Tests that infection spreads after rotation when cells become connected to infected cells.
+ */
+- (void)testInfectionSpreadFromRotate {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:0], @"Initially infected cell is infected.");
+    XCTAssertFalse([model isInfectedAtRow:0 col:1], @"Initially uninfected cell is uninfected.");
+    XCTAssertFalse([model isConnectedFromRow:0 col:0 toRow:0 col:1], @"Infected cell is not \
+                   connected to adjacent uninfected cell.");
+    [model rotateClockwiseCellAtRow:0 col:1];
+    XCTAssert([model isConnectedFromRow:0 col:0 toRow:0 col:1], @"After rotate, cells are \
+              connected.");
+    XCTAssert([model isInfectedAtRow:0 col:1], @"After rotate, cell is infected.");
+}
+
+/*
+ * Tests that an infection clears throughout the infection.
+ */
+- (void)testInfectionClear {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_INFECTED];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+    
+    XCTAssert([model isInfectedAtRow:0 col:1],@"Initially infected cell is infected.");
+    XCTAssert([model isInfectedAtRow:1 col:1], @"Additional infected cell of initial infection is \
+              infected.");
+    [model clearInfectionFromRow:0 col:1];
+    XCTAssertFalse([model isInfectedAtRow:0 col:1], @"Cleared cell is not infected.");
+    XCTAssertFalse([model isInfectedAtRow:1 col:1], @"Previously infected cell in initial \
+                   infection is also cleared.");
 }
 
 @end
