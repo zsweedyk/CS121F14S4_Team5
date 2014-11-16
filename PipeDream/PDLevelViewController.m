@@ -24,6 +24,11 @@
 
 @implementation PDLevelViewController
 
+// We identify the various alert views with these tags.
+NSInteger LEVEL_COMPLETE_TAG = 0;
+NSInteger RETURN_TO_SELECT_TAG = 1;
+NSInteger RESTART_LEVEL_TAG = 2;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -66,6 +71,7 @@
                                   delegate:self
                                   cancelButtonTitle:cancelButtonTitle
                                   otherButtonTitles:nil];
+        alertView.tag = LEVEL_COMPLETE_TAG;
         [alertView show];
     }
 }
@@ -77,6 +83,36 @@
     }
     [self.gridModel clearInfectionFromRow:self.selectedInfectedRow col:self.selectedInfectedCol];
     [self setGridViewToMatchModel];
+}
+
+// Return to the level select view controller without unlocking any levels.
+- (void)returnToLevelSelectButtonPressed:(id)sender {
+    NSString *returnToLevelSelectTitle = @"Return to level select? Your progress on this level will not be saved.";
+    NSString *cancelButtonTitle = @"Cancel";
+    NSString *continueButtonTitle = @"Ok";
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:returnToLevelSelectTitle
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:cancelButtonTitle
+                              otherButtonTitles:continueButtonTitle, nil];
+    alertView.tag = RETURN_TO_SELECT_TAG;
+    [alertView show];
+}
+
+// Restart the level
+- (void)restartLevelButtonPressed:(id)sender {
+    NSString *returnToLevelSelectTitle = @"Are you sure you want to restart the current level?";
+    NSString *cancelButtonTitle = @"Cancel";
+    NSString *continueButtonTitle = @"Ok";
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:returnToLevelSelectTitle
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:cancelButtonTitle
+                              otherButtonTitles:continueButtonTitle, nil];
+    alertView.tag = RESTART_LEVEL_TAG;
+    [alertView show];
 }
 
 #pragma mark Private methods
@@ -109,12 +145,28 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // When the "level complete" alert is clicked, return to level select and unlock the next level.
-    [PDLevelSelectionViewController unlockLevelNumber:self.levelNumber + 1];
-    PDLevelSelectionViewController *levelSelectionViewController =
-        (PDLevelSelectionViewController *) self.presentingViewController;
-    [levelSelectionViewController updateLevelSelectButtonsEnabled];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if (alertView.tag == LEVEL_COMPLETE_TAG) {
+        // When the "level complete" alert is clicked, return to level select and unlock the next level.
+        [PDLevelSelectionViewController unlockLevelNumber:self.levelNumber + 1];
+        PDLevelSelectionViewController *levelSelectionViewController =
+            (PDLevelSelectionViewController *) self.presentingViewController;
+        [levelSelectionViewController updateLevelSelectButtonsEnabled];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    } else if (alertView.tag == RETURN_TO_SELECT_TAG) {
+        // When the "return to level select" alert is clicked, return to level select.
+        NSInteger continueButtonIndex = 1;
+        // buttonIndex 0 is the cancel button, buttonIndex 1 is the continue button.
+        if (buttonIndex == continueButtonIndex) {
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+    } else if (alertView.tag == RESTART_LEVEL_TAG) {
+        // When the "restart level" alert is clicked, start the current level (again).
+        NSInteger continueButtonIndex = 1;
+        // buttonIndex 0 is the cancel button, buttonIndex 1 is the continue button.
+        if (buttonIndex == continueButtonIndex) {
+            [self startLevelNumber:self.levelNumber];
+        }
+    }
 }
 
 #pragma mark - Navigation

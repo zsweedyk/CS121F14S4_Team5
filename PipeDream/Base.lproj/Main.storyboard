@@ -21,6 +21,24 @@
                                 <rect key="frame" x="34" y="162" width="700" height="700"/>
                                 <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5w-RH-Y8V">
+                                <rect key="frame" x="34" y="57" width="152" height="30"/>
+                                <state key="normal" title="Return to Level Select">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToLevelSelectButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZEe-1t-cig"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Im0-fl-SY1">
+                                <rect key="frame" x="250" y="57" width="90" height="30"/>
+                                <state key="normal" title="Restart Level">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hIN-3o-R0w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -201,7 +219,7 @@
                         <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="modal" identifier="LevelSelectionToLevel" modalTransitionStyle="partialCurl" id="XQI-Ni-hgx"/>
+                        <segue destination="BYZ-38-t0r" kind="modal" identifier="LevelSelectionToLevel" id="XQI-Ni-hgx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sN-gf-lIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
