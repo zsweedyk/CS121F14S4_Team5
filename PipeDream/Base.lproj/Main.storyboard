@@ -26,7 +26,7 @@
                     </view>
                     <connections>
                         <outlet property="gridView" destination="Ktb-G3-Z6l" id="8jB-mX-5md"/>
-                        <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" id="D8v-im-2e9"/>
+                        <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" modalTransitionStyle="crossDissolve" id="D8v-im-2e9"/>
                         <segue destination="w18-Aj-Bl7" kind="modal" identifier="LevelToPassword" id="lcb-cr-W84"/>
                     </connections>
                 </viewController>
@@ -47,52 +47,78 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="of2-2a-8fa">
-                                <rect key="frame" x="134" y="160" width="500" height="703"/>
+                                <rect key="frame" x="126" y="157" width="516" height="712"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Identify the spam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrQ-ak-dIH">
-                                        <rect key="frame" x="176" y="60" width="148" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xExWi" translatesAutoresizingMaskIntoConstraints="NO" id="SS3-ML-QTA">
+                                        <rect key="frame" x="68" y="581" width="140" height="100"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You've received an email!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrQ-ak-dIH">
+                                        <rect key="frame" x="49" y="37" width="418" height="56"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="30"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNY-a8-ge3">
-                                        <rect key="frame" x="168" y="493" width="41" height="30"/>
+                                        <rect key="frame" x="98" y="615" width="80" height="31"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
+                                        <size key="titleShadowOffset" width="2" height="2"/>
                                         <state key="normal" title="Spam">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="spamButtonPressed" destination="0NJ-WS-785" eventType="touchUpInside" id="fvo-Qc-vuI"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Spam message" translatesAutoresizingMaskIntoConstraints="NO" id="BqL-DZ-tUD">
-                                        <rect key="frame" x="75" y="130" width="350" height="319"/>
+                                    <textView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Spam message" translatesAutoresizingMaskIntoConstraints="NO" id="BqL-DZ-tUD">
+                                        <rect key="frame" x="68" y="180" width="380" height="400"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This email might be a phishing attack. Can you tell whether it's spam or not?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jd-RJ-a1s">
+                                        <rect key="frame" x="42" y="85" width="433" height="87"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="22"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xExW" translatesAutoresizingMaskIntoConstraints="NO" id="Rju-d4-zGP">
+                                        <rect key="frame" x="238" y="581" width="210" height="100"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxP-zk-5Vt">
-                                        <rect key="frame" x="291" y="493" width="69" height="30"/>
+                                        <rect key="frame" x="280" y="616" width="127" height="30"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
+                                        <size key="titleShadowOffset" width="2" height="2"/>
                                         <state key="normal" title="Not Spam">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="notSpamButtonPressed" destination="0NJ-WS-785" eventType="touchUpInside" id="Joj-Lm-p8K"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZM-43-q4P">
-                                        <rect key="frame" x="445" y="0.0" width="55" height="30"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelButtonPressed" destination="0NJ-WS-785" eventType="touchUpInside" id="MR8-S9-3l2"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="3Cf-ry-cy8">
+                                <rect key="frame" x="84" y="112" width="600" height="800"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZM-43-q4P">
+                                <rect key="frame" x="620" y="154" width="18" height="27"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed" destination="0NJ-WS-785" eventType="touchUpInside" id="MR8-S9-3l2"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="spamTextView" destination="BqL-DZ-tUD" id="2fb-gp-YTd"/>
@@ -248,8 +274,10 @@
     <resources>
         <image name="computerMascot" width="323" height="318"/>
         <image name="goal" width="400" height="400"/>
+        <image name="rectFrame" width="1200" height="1600"/>
         <image name="rectFrameWide" width="1500" height="700"/>
         <image name="xExW" width="400" height="400"/>
+        <image name="xExWi" width="400" height="400"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
