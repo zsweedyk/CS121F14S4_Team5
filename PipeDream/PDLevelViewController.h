@@ -17,5 +17,7 @@
 
 - (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
 - (void) completeMiniGameWithSuccess:(BOOL)success;
+- (IBAction)returnToLevelSelectButtonPressed:(id)sender;
+- (IBAction)restartLevelButtonPressed:(id)sender;
 
 @end

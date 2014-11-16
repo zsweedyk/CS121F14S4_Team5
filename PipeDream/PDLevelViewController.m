@@ -77,6 +77,16 @@
     [self setGridViewToMatchModel];
 }
 
+// Return to the level select view controller without unlocking any levels.
+- (void)returnToLevelSelectButtonPressed:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Restart the level
+- (void)restartLevelButtonPressed:(id)sender {
+    [self startLevelNumber:self.levelNumber];
+}
+
 #pragma mark Private methods
 
 - (void) startLevelNumber:(NSInteger)levelNumber {
