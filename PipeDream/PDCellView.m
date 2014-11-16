@@ -33,6 +33,8 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
     CGFloat backgroundOpacity = 1;
     self.backgroundColor = [UIColor colorWithRed:backgroundDarkness green:backgroundDarkness
                                             blue:backgroundDarkness alpha:backgroundOpacity];
+    
+    
     return self;
 }
 
@@ -42,9 +44,12 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
     // instead of changing existing image.
 }
 
+// Note: Start (computer) and End (star) images are disabled for user interaction with every
+// update 
 - (void)setCell:(PDCellModel *)model {
     if (model.isGoal) {
         [self setImage:[UIImage imageNamed:GOAL_IMAGE_NAME] forState:UIControlStateNormal];
+        [self setUserInteractionEnabled:NO];
         return;
     }
     
@@ -54,6 +59,7 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
         } else {
             [self setImage:[UIImage imageNamed:START_IMAGE_NAME] forState:UIControlStateNormal];
         }
+        [self setUserInteractionEnabled:NO];
         return;
     }
     
