@@ -15,7 +15,8 @@
 @property (nonatomic, weak) IBOutlet PDGridView *gridView;
 @property (nonatomic) NSInteger levelNumber;
 
-- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
-- (void) completeMiniGameWithSuccess:(BOOL)success;
+- (void)cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
+- (void)completeMiniGameWithSuccess:(BOOL)success;
+- (void)startNextLevel;
 
 @end

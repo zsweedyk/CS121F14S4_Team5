@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="-233" y="698"/>
         </scene>
-        <!--View Controller-->
+        <!--End Of Level View Controller-->
         <scene sceneID="HZJ-1S-ah9">
             <objects>
-                <viewController id="Fov-iH-Bxi" sceneMemberID="viewController">
+                <viewController id="Fov-iH-Bxi" customClass="PDEndOfLevelViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sAZ-5f-Xna"/>
                         <viewControllerLayoutGuide type="bottom" id="GOg-2s-tUw"/>
@@ -155,6 +155,9 @@
                                                     <color key="titleColor" red="0.0016288081589556631" green="0.7875279017857143" blue="0.0025271277846233148" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed" destination="Fov-iH-Bxi" eventType="touchUpInside" id="qag-ph-2mA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-er-dxc">
                                                 <rect key="frame" x="161" y="423" width="178" height="41"/>
@@ -164,6 +167,9 @@
                                                     <color key="titleColor" red="0.0016288081590000001" green="0.78752790179999999" blue="0.002527127785" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="nextLevelButtonPressed" destination="Fov-iH-Bxi" eventType="touchUpInside" id="Z0V-OS-dcV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -174,6 +180,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="5Re-Io-Hdl" kind="modal" identifier="LevelCompletionToLevelSelection" id="P1r-EH-T3c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyB-W6-0pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -317,4 +326,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="P1r-EH-T3c"/>
+    </inferredMetricsTieBreakers>
 </document>
