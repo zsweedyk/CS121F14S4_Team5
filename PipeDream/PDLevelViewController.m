@@ -85,7 +85,8 @@ NSInteger RESTART_LEVEL_TAG = 2;
 
 // Return to the level select view controller without unlocking any levels.
 - (void)returnToLevelSelectButtonPressed:(id)sender {
-    NSString *returnToLevelSelectTitle = @"Return to level select? Your progress on this level will not be saved.";
+    NSString *returnToLevelSelectTitle =
+        @"Return to level select? Your progress on this level will not be saved.";
     NSString *cancelButtonTitle = @"Cancel";
     NSString *continueButtonTitle = @"Ok";
     UIAlertView *alertView = [[UIAlertView alloc]
@@ -143,27 +144,34 @@ NSInteger RESTART_LEVEL_TAG = 2;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // Based on the alert view's tag, we can tell which alert view it is and respond accordingly.
     if (alertView.tag == LEVEL_COMPLETE_TAG) {
-        // When the "level complete" alert is clicked, return to level select and unlock the next level.
+        
+        // When the "level complete" alert is clicked, return to level select and unlock next level.
         [PDLevelSelectionViewController unlockLevelNumber:self.levelNumber + 1];
         PDLevelSelectionViewController *levelSelectionViewController =
             (PDLevelSelectionViewController *) self.presentingViewController;
         [levelSelectionViewController updateLevelSelectButtonsEnabled];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        
     } else if (alertView.tag == RETURN_TO_SELECT_TAG) {
+        
         // When the "return to level select" alert is clicked, return to level select.
         NSInteger continueButtonIndex = 1;
         // buttonIndex 0 is the cancel button, buttonIndex 1 is the continue button.
         if (buttonIndex == continueButtonIndex) {
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
+        
     } else if (alertView.tag == RESTART_LEVEL_TAG) {
+        
         // When the "restart level" alert is clicked, start the current level (again).
         NSInteger continueButtonIndex = 1;
         // buttonIndex 0 is the cancel button, buttonIndex 1 is the continue button.
         if (buttonIndex == continueButtonIndex) {
             [self startLevelNumber:self.levelNumber];
         }
+        
     }
 }
 
