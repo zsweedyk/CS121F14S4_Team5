@@ -19,10 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    PDLevelViewController *levelViewController =
-        (PDLevelViewController *) self.presentingViewController;
     [self.levelCompletedLabel setText:[NSString stringWithFormat:@"You completed level %ld!",
-                                       (long)levelViewController.levelNumber]];
+                                       (long)self.levelNumberCompleted]];
 }
 
 - (void)didReceiveMemoryWarning
