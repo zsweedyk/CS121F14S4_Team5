@@ -88,7 +88,7 @@ static const float SLIDER_WIDTH_FACTOR = 0.5;
 static const float SLIDER_Y_POSITION_FACTOR = 0.85;
 static const float SLIDER_HEIGHT_FACTOR = 0.1;
 // General label.
-static NSString *LABEL_FONT_NAME = @"Arial";
+static NSString *LABEL_FONT_NAME = @"Heiti SC";
 static const int LABEL_FONT_SIZE = 40;
 // Score label.
 static const float SCORE_LABEL_Y_POSITION_FACTOR = 0.1;
@@ -100,7 +100,7 @@ static const int TIMER_LABEL_X_POSITION = 0;
 static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.1;
 static const float TIMER_LABEL_WIDTH_FACTOR = 0.5;
 static const float TIMER_LABEL_HEIGHT_FACTOR = 0.1;
-static NSString *TIMER_LABEL_FORMAT_STRING = @"   Time: %d";
+static NSString *TIMER_LABEL_FORMAT_STRING = @"     Time: %d";
 // Background.
 static const float RED_BACKGROUND = 0.5;
 static const float GREEN_BACKGROUND = 0.5;
