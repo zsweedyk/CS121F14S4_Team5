@@ -21,8 +21,8 @@
     [super viewDidLoad];
     PDLevelViewController *levelViewController =
         (PDLevelViewController *) self.presentingViewController;
-    self.levelCompletedLabel.text = [NSString stringWithFormat:@"You completed level %d!",
-                                     levelViewController.levelNumber];
+    [self.levelCompletedLabel setText:[NSString stringWithFormat:@"You completed level %ld!",
+                                       (long)levelViewController.levelNumber]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,14 +38,17 @@
 
 /* Dismisses the level completion box and segues to the next level. */
 - (void)nextLevelButtonPressed {
+    
     // Segue to next level if there are more levels
     PDLevelViewController *levelViewController =
         (PDLevelViewController *) self.presentingViewController;
+    
     if (levelViewController.levelNumber < [PDGridGenerator numberOfLevels]) {
         [levelViewController startNextLevel];
         // Dismiss level completion dialog
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     } else {
+        
         NSString *cancelButtonTitle = @"Okay";
         NSString *alertTitle = @"Congratulations!";
         NSString *messageTitle = @"You have completed all the levels!";
@@ -62,7 +65,10 @@
 
 /* This method assumes the only alert view created is the "mini game complete" alert. */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [self performSegueWithIdentifier:@"LevelCompletionToLevelSelection" sender:self];
+    PDLevelViewController *levelViewController =
+        (PDLevelViewController *) self.presentingViewController;
+    levelViewController.shouldDismissSelf = YES;
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

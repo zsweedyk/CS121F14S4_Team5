@@ -36,7 +36,7 @@
                         <outlet property="gridView" destination="Ktb-G3-Z6l" id="8jB-mX-5md"/>
                         <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" id="D8v-im-2e9"/>
                         <segue destination="w18-Aj-Bl7" kind="modal" identifier="LevelToPassword" id="lcb-cr-W84"/>
-                        <segue destination="Fov-iH-Bxi" kind="modal" identifier="LevelToCompletion" id="Hdu-aI-l4L"/>
+                        <segue destination="Fov-iH-Bxi" kind="modal" identifier="LevelToCompletion" modalTransitionStyle="crossDissolve" id="Hdu-aI-l4L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -181,7 +181,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <segue destination="5Re-Io-Hdl" kind="modal" identifier="LevelCompletionToLevelSelection" id="P1r-EH-T3c"/>
+                        <outlet property="levelCompletedLabel" destination="dox-Q1-Ewn" id="cor-bS-Vae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyB-W6-0pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -326,7 +326,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="P1r-EH-T3c"/>
-    </inferredMetricsTieBreakers>
 </document>

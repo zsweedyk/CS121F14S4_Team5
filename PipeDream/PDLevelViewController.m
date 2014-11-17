@@ -34,6 +34,16 @@
     [self startLevelNumber:self.levelNumber];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // This is in place so that at the end of the levels available, the game can go from the end-
+    // of-game dialog to the level selection screen.
+    if (self.shouldDismissSelf) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 #pragma mark Public methods
 
 - (void)cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
