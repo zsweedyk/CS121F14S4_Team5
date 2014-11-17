@@ -47,6 +47,11 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
 // Note: Start (computer) and End (star) images are disabled for user interaction with every
 // update 
 - (void)setCell:(PDCellModel *)model {
+    if (!model.isVisible) {
+        [self setImage:[UIImage imageNamed:NOT_VISIBLE_IMAGE_NAME] forState:UIControlStateNormal];
+        [self setUserInteractionEnabled:NO];
+        return;
+    }
     if (model.isGoal) {
         [self setImage:[UIImage imageNamed:GOAL_IMAGE_NAME] forState:UIControlStateNormal];
         [self setUserInteractionEnabled:NO];
@@ -63,10 +68,8 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
         return;
     }
     
-    if (!model.isVisible) {
-        [self setImage:[UIImage imageNamed:NOT_VISIBLE_IMAGE_NAME] forState:UIControlStateNormal];
-        return;
-    }
+    // Normal cells have button enabled
+    [self setUserInteractionEnabled:YES];
     
     BOOL north = model.isOpenNorth;
     BOOL east = model.isOpenEast;
