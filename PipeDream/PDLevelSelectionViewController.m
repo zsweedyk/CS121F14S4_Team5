@@ -10,7 +10,8 @@
 #import "PDLevelViewController.h"
 
 NSString *UNLOCKED_LEVEL_KEY = @"levelUnlocked";
-NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
+NSInteger NUM_LEVEL_BUTTONS = 32; // the number of levels buttons to display
+NSInteger NUM_BUTTONS_PER_ROW = 4;
 
 @interface PDLevelSelectionViewController ()
 
@@ -66,35 +67,43 @@ NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
 /* Creates and stores levelSelectButtons
  */
 - (void)createLevelSelectButtons {
-    const NSInteger buttonWidth = 100;
-    const NSInteger buttonHeight = 100;
+    const NSInteger buttonWidth = 75;
+    const NSInteger buttonHeight = 75;
     const NSInteger buttonXPadding = 30;
-    const NSInteger buttonRowYPos = 525; // the vertical position of the row of buttons
+    const NSInteger buttonYPadding = 30;
+    const NSInteger numRows =NUM_LEVEL_BUTTONS / NUM_BUTTONS_PER_ROW;
     UIColor *buttonTitleColor = [UIColor blackColor];
     UIColor *buttonBackgroundColor = [UIColor whiteColor];
     
     float frameCenter = CGRectGetWidth(self.view.frame) / 2;
-    float buttonRowWidth = NUM_LEVEL_BUTTONS * buttonWidth + (NUM_LEVEL_BUTTONS - 1) * buttonXPadding;
+    float buttonRowWidth = NUM_BUTTONS_PER_ROW * buttonWidth + (NUM_BUTTONS_PER_ROW - 1) * buttonXPadding;
     float leftmostButtonXPos = frameCenter - (buttonRowWidth / 2.0);
+    float topmostButtonYPos = (buttonHeight * 1.75);
+    
     
     NSMutableArray *newLevelSelectButtons = [[NSMutableArray alloc] init];
-    for (int i = 0; i < NUM_LEVEL_BUTTONS; i++) {
-        NSInteger levelNumber = i + 1;
-        
-        float buttonRowXPos = leftmostButtonXPos + (buttonWidth + buttonXPadding) * i;
-        CGRect buttonFrame = CGRectMake(buttonRowXPos, buttonRowYPos, buttonWidth, buttonHeight);
-        UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
-        button.tag = levelNumber;
-        NSString *buttonTitle = [NSString stringWithFormat:@"%li", levelNumber];
-        [button setBackgroundColor:buttonBackgroundColor];
-        [button setTitleColor:buttonTitleColor forState:UIControlStateNormal];
-        [button setTitle:buttonTitle forState:UIControlStateNormal];
-        
-        [button addTarget:self action:@selector(levelButtonPressed:)
-            forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
-        [newLevelSelectButtons addObject:button];
+    NSInteger levelNumber = 1;
+    for (int row = 0; row < numRows; row++) {
+        float buttonRowYPos = topmostButtonYPos + (buttonHeight + buttonYPadding) * row;
+        for (int col = 0; col < NUM_BUTTONS_PER_ROW; col++) {
+            
+            float buttonRowXPos = leftmostButtonXPos + (buttonWidth + buttonXPadding) * col;
+            CGRect buttonFrame = CGRectMake(buttonRowXPos, buttonRowYPos, buttonWidth, buttonHeight);
+            UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
+            button.tag = levelNumber;
+            NSString *buttonTitle = [NSString stringWithFormat:@"%li", levelNumber];
+            [button setBackgroundColor:buttonBackgroundColor];
+            [button setTitleColor:buttonTitleColor forState:UIControlStateNormal];
+            [button setTitle:buttonTitle forState:UIControlStateNormal];
+            
+            [button addTarget:self action:@selector(levelButtonPressed:)
+             forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:button];
+            [newLevelSelectButtons addObject:button];
+            levelNumber++;
+        }
     }
+
     
     self.levelSelectButtons = newLevelSelectButtons;
 }
