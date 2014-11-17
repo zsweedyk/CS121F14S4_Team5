@@ -11,7 +11,6 @@
 @interface PDBounceAndSortScene()
 
 @property (nonatomic) int score;
-@property (nonatomic) int misses;
 @property (nonatomic) int numBalls;
 @property (nonatomic) CFTimeInterval lastBallRelease;
 @property (nonatomic) BOOL hasGameStartBeenRecorded;
@@ -26,8 +25,10 @@
 // Game parameters.
 static const int MAX_NUM_BALLS = 3;
 static const CFTimeInterval MIN_TIME_BETWEEN_BALL_RELEASES = 2.0;
-static const CFTimeInterval TOTAL_GAME_LENGTH = 45.0;
-static const int MIN_SUCCESSFUL_SCORE = 1;
+static const CFTimeInterval TOTAL_GAME_LENGTH = 30;
+static const int MIN_SUCCESSFUL_SCORE = 500;
+static const int SUCCESSFUL_BUCKET_SCORE_INCREASE = 100;
+static const int UNSUCCESSFUL_BUCKET_SCORE_DECREASE = -50;
 
 // Sprite image names.
 static NSString* GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESW"};
@@ -62,17 +63,49 @@ static const float BALL_LINEAR_DAMPING = 0.5f;
 static const float BALL_ANGULAR_DAMPING = 0.0f;
 
 // Layout parameters.
+// Bad bucket.
 static const float BAD_BUCKET_ROTATE = M_PI / 4.0;
+static const float BAD_BUCKET_X_SCALE = 0.75;
+static const float BAD_BUCKET_Y_SCALE = 0.75;
+static const float BAD_BUCKET_X_POSITION_FACTOR = 1.0 / 8.0;
+static const float BAD_BUCKET_Y_POSITION_FACTOR = 0;
+// Good bucket.
 static const float GOOD_BUCKET_ROTATE = -1.0 * M_PI / 4.0;
 static const float GOOD_BUCKET_X_SCALE = 0.75;
 static const float GOOD_BUCKET_Y_SCALE = 0.75;
-static const float BAD_BUCKET_X_SCALE = 0.75;
-static const float BAD_BUCKET_Y_SCALE = 0.75;
+static const float GOOD_BUCKET_X_POSITION_FACTOR = - 1.0 / 8.0;
+static const float GOOD_BUCKET_Y_POSITION_FACTOR = 0;
+// Bar.
 static const float BAR_X_SCALE = 0.8;
 static const float BAR_Y_SCLAE = 0.4;
+static const float MAX_BAR_ROTATE = M_PI / 2.0;
+static const float BAR_Y_POSITION_FACTOR = 1.0 / 5.0;
+// Ball.
 static const float BALL_X_SCALE = 0.25;
 static const float BALL_Y_SCALE = 0.25;
-static const float MAX_BAR_ROTATE = M_PI / 2.0;
+// Slider.
+static const float SLIDER_WIDTH_FACTOR = 0.5;
+static const float SLIDER_Y_POSITION_FACTOR = 0.9;
+static const float SLIDER_HEIGHT_FACTOR = 0.1;
+// General label.
+static NSString *LABEL_FONT_NAME = @"Arial";
+static const int LABEL_FONT_SIZE = 40;
+// Score label.
+static const float SCORE_LABEL_Y_POSITION = 0;
+static const float SCORE_LABEL_WIDTH_FACTOR = 0.5;
+static const float SCORE_LABEL_HEIGHT_FACTOR = 0.1;
+static NSString *SCORE_LABEL_FORMAT_STRING = @"Score: %d";
+// Timer label.
+static const int TIMER_LABEL_X_POSITION = 0;
+static const int TIMER_LABEL_Y_POSITION = 0;
+static const float TIMER_LABEL_WIDTH_FACTOR = 0.5;
+static const float TIMER_LABEL_HEIGHT_FACTOR = 0.1;
+static NSString *TIMER_LABEL_FORMAT_STRING = @"Time Left: %d";
+// Background.
+static const float RED_BACKGROUND = 0.5;
+static const float GREEN_BACKGROUND = 0.5;
+static const float BLUE_BACKGROUND = 0.5;
+static const float ALPHA_BACKGROUND = 1.0;
 
 static NSString *BAR_CATEGORY_NAME = @"bar";
 
@@ -81,7 +114,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
-        self.backgroundColor = [SKColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+        self.backgroundColor = [SKColor colorWithRed:RED_BACKGROUND green:GREEN_BACKGROUND blue:BLUE_BACKGROUND alpha:ALPHA_BACKGROUND];
         [self createBuckets];
         [self createBar];
         [self createEdges];
@@ -98,8 +131,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void) didMoveToView:(SKView *)view
 {
     UISlider *slider = [[UISlider alloc] initWithFrame:
-        CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width/ 4.0 ,
-        self.frame.size.height * 0.9f, self.frame.size.width / 2.0, self.frame.size.height / 10.0)];
+        CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width * SLIDER_WIDTH_FACTOR / 2,
+        self.frame.size.height * SLIDER_Y_POSITION_FACTOR, self.frame.size.width * SLIDER_WIDTH_FACTOR, self.frame.size.height * SLIDER_HEIGHT_FACTOR)];
     slider.minimumValue = MIN_SLIDER_VALUE;
     slider.maximumValue = MAX_SLIDER_VALUE;
     slider.value = DEFAULT_SLIDER_VALUE;
@@ -110,13 +143,13 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     [view addSubview:slider];
     
     self.timerLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.width / 10.0)];
-    self.timerLabel.font = [UIFont fontWithName:@"Arial" size:40];
+        initWithFrame:CGRectMake(TIMER_LABEL_X_POSITION, TIMER_LABEL_Y_POSITION, self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR, self.frame.size.height * TIMER_LABEL_HEIGHT_FACTOR)];
+    self.timerLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
     [view addSubview:self.timerLabel];
     self.scoreLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(self.frame.size.width / 2, 0, self.frame.size.width / 2,
-        self.frame.size.width / 10)];
-    self.scoreLabel.font = [UIFont fontWithName:@"Arial" size:40];
+        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR, SCORE_LABEL_Y_POSITION, self.frame.size.width * SCORE_LABEL_WIDTH_FACTOR,
+        self.frame.size.height * SCORE_LABEL_HEIGHT_FACTOR)];
+    self.scoreLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
     [view addSubview:self.scoreLabel];
     
 }
@@ -157,9 +190,9 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
             }
             
             if (matchesBlock) {
-                self.score += 1;
+                self.score += SUCCESSFUL_BUCKET_SCORE_INCREASE;
             } else {
-                self.misses += 1;
+                self.score += UNSUCCESSFUL_BUCKET_SCORE_DECREASE;
             }
             
             [firstBody.node removeFromParent];
@@ -186,8 +219,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         [self endGame];
     }
     
-    self.timerLabel.text = [NSString stringWithFormat:@"Time Left: %d",(int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.score];
+    self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING, (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
+    self.scoreLabel.text = [NSString stringWithFormat:SCORE_LABEL_FORMAT_STRING, self.score];
 }
 
 #pragma private methods
@@ -201,7 +234,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)createGoodBucket
 {
     SKSpriteNode* gblock = [SKSpriteNode spriteNodeWithImageNamed:GOOD_BLOCK_SPRITE_IMAGE_NAME];
-    gblock.position = CGPointMake(- 1 * gblock.frame.size.width / 8, self.frame.size.height * 0);
+    gblock.position = CGPointMake(gblock.frame.size.width * GOOD_BUCKET_X_POSITION_FACTOR, self.frame.size.height * GOOD_BUCKET_Y_POSITION_FACTOR);
     gblock.zRotation = GOOD_BUCKET_ROTATE;
     
     gblock.physicsBody = [self createBlockBody:gblock.frame.size];
@@ -216,8 +249,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)createBadBucket
 {
     SKSpriteNode* bblock = [SKSpriteNode spriteNodeWithImageNamed:BAD_BLOCK_SPRITE_IMAGE_NAME];
-    bblock.position = CGPointMake(self.frame.size.width + bblock.frame.size.width / 8,
-                                  self.frame.size.height * 0);
+    bblock.position = CGPointMake(self.frame.size.width + bblock.frame.size.width * BAD_BUCKET_X_POSITION_FACTOR,
+                                  self.frame.size.height * BAD_BUCKET_Y_POSITION_FACTOR);
     bblock.zRotation = BAD_BUCKET_ROTATE;
     
     bblock.physicsBody = [self createBlockBody:bblock.frame.size];
@@ -241,7 +274,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)createBar
 {
     SKSpriteNode* bar = [[SKSpriteNode alloc] initWithImageNamed:BAR_SPRITE_IMAGE_NAME];
-    bar.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height * 0.2);
+    bar.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height * BAR_Y_POSITION_FACTOR);
     bar.physicsBody = [self createBarBody:bar.frame.size];
     bar.name = BAR_CATEGORY_NAME;
     bar.xScale = BAR_X_SCALE;
@@ -348,7 +381,6 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)startGame
 {
     self.score = 0;
-    self.misses = 0;
     self.numBalls = 0;
     self.lastBallRelease = 0;
     self.hasGameStartBeenRecorded = NO;
