@@ -13,6 +13,7 @@
 #import "PDOpenings.h"
 #import "PDLevelSelectionViewController.h"
 #import "PDMiniGameProtocol.h"
+#import "PDEndOfLevelViewController.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
@@ -27,6 +28,8 @@
 // We identify the various alert views with these tags.
 NSInteger RETURN_TO_SELECT_TAG = 0;
 NSInteger RESTART_LEVEL_TAG = 1;
+
+NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -184,7 +187,7 @@ NSInteger RESTART_LEVEL_TAG = 1;
     [levelSelectionViewController updateLevelSelectButtonsEnabled];
     
     // Perform segue to level completion dialog
-    [self performSegueWithIdentifier:@"LevelToCompletion" sender:self];
+    [self performSegueWithIdentifier:LEVEL_TO_COMPLETION_SEGUE sender:self];
 }
 
 #pragma mark - Navigation
@@ -192,6 +195,11 @@ NSInteger RESTART_LEVEL_TAG = 1;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController conformsToProtocol:@protocol(PDMiniGameProtocol)]) {
         [segue.destinationViewController startMiniGame];
+    }
+    if ([segue.identifier isEqualToString:LEVEL_TO_COMPLETION_SEGUE]) {
+        PDEndOfLevelViewController *endOfLevelViewController =
+            (PDEndOfLevelViewController *) segue.destinationViewController;
+        endOfLevelViewController.levelNumberCompleted = self.levelNumber;
     }
 }
 

@@ -11,6 +11,7 @@
 @interface PDEndOfLevelViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *levelCompletedLabel;
+@property (nonatomic) NSInteger levelNumberCompleted;
 
 - (IBAction)nextLevelButtonPressed;
 - (IBAction)cancelButtonPressed;
