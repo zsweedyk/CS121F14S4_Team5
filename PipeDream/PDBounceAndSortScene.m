@@ -47,6 +47,32 @@ static const uint32_t BAD_BLOCK_CATEGORY = 0x1 << 3;
 // Slider parameters.
 static const int MIN_SLIDER_VALUE = 0;
 static const int MAX_SLIDER_VALUE = 100;
+static const int DEFAULT_SLIDER_VALUE = (MAX_SLIDER_VALUE - MIN_SLIDER_VALUE) / 2;
+
+// Physics parameters.
+static const float Y_GRAVITY = -5.0f;
+static const float X_GRAVITY = 0.0f;
+static const float BALL_RESTITUTION = 0.9f;
+static const float BAR_RESTITUTION = 0.1f;
+static const float BLOCK_FRICTION = 0.0f;
+static const float BALL_FRICTION = 0.0f;
+static const float BAR_FRICTION = 0.4f;
+static const float EDGE_FRICTION = 0.0f;
+static const float BALL_LINEAR_DAMPING = 0.5f;
+static const float BALL_ANGULAR_DAMPING = 0.0f;
+
+// Layout parameters.
+static const float BAD_BUCKET_ROTATE = M_PI / 4.0;
+static const float GOOD_BUCKET_ROTATE = -1.0 * M_PI / 4.0;
+static const float GOOD_BUCKET_X_SCALE = 0.75;
+static const float GOOD_BUCKET_Y_SCALE = 0.75;
+static const float BAD_BUCKET_X_SCALE = 0.75;
+static const float BAD_BUCKET_Y_SCALE = 0.75;
+static const float BAR_X_SCALE = 0.8;
+static const float BAR_Y_SCLAE = 0.4;
+static const float BALL_X_SCALE = 0.25;
+static const float BALL_Y_SCALE = 0.25;
+static const float MAX_BAR_ROTATE = M_PI / 2.0;
 
 static NSString *BAR_CATEGORY_NAME = @"bar";
 
@@ -61,7 +87,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         [self createEdges];
         [self startGame];
         self.physicsWorld.contactDelegate = self;
-        self.physicsWorld.gravity = CGVectorMake(0.0f, -5.0f);
+        self.physicsWorld.gravity = CGVectorMake(X_GRAVITY, Y_GRAVITY);
     }
     return self;
 }
@@ -72,21 +98,24 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void) didMoveToView:(SKView *)view
 {
     UISlider *slider = [[UISlider alloc] initWithFrame:
-                        CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width/ 4.0 ,
-                                   self.frame.size.height * 0.9f, self.frame.size.width / 2.0, self.frame.size.height / 10.0)];
+        CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width/ 4.0 ,
+        self.frame.size.height * 0.9f, self.frame.size.width / 2.0, self.frame.size.height / 10.0)];
     slider.minimumValue = MIN_SLIDER_VALUE;
     slider.maximumValue = MAX_SLIDER_VALUE;
-    slider.value = (MAX_SLIDER_VALUE - MIN_SLIDER_VALUE) / 2;
+    slider.value = DEFAULT_SLIDER_VALUE;
     [slider addTarget:self action:@selector(sliderMoved:)
      forControlEvents:UIControlEventTouchDragInside];
     [slider addTarget:self action:@selector(sliderMoved:)
      forControlEvents:UIControlEventTouchDragOutside];
     [view addSubview:slider];
     
-    self.timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.width / 10)];
+    self.timerLabel = [[UILabel alloc]
+        initWithFrame:CGRectMake(0, 0, self.frame.size.width / 2, self.frame.size.width / 10.0)];
     self.timerLabel.font = [UIFont fontWithName:@"Arial" size:40];
     [view addSubview:self.timerLabel];
-    self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width / 2, 0, self.frame.size.width / 2, self.frame.size.width / 10)];
+    self.scoreLabel = [[UILabel alloc]
+        initWithFrame:CGRectMake(self.frame.size.width / 2, 0, self.frame.size.width / 2,
+        self.frame.size.width / 10)];
     self.scoreLabel.font = [UIFont fontWithName:@"Arial" size:40];
     [view addSubview:self.scoreLabel];
     
@@ -173,13 +202,13 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 {
     SKSpriteNode* gblock = [SKSpriteNode spriteNodeWithImageNamed:GOOD_BLOCK_SPRITE_IMAGE_NAME];
     gblock.position = CGPointMake(- 1 * gblock.frame.size.width / 8, self.frame.size.height * 0);
-    gblock.zRotation = -1.0 * M_PI / 4.0;
+    gblock.zRotation = GOOD_BUCKET_ROTATE;
     
     gblock.physicsBody = [self createBlockBody:gblock.frame.size];
     gblock.physicsBody.categoryBitMask = GOOD_BLOCK_CATEGORY;
     
-    gblock.xScale = 0.75;
-    gblock.yScale = 0.75;
+    gblock.xScale = GOOD_BUCKET_X_SCALE;
+    gblock.yScale = GOOD_BUCKET_Y_SCALE;
     
     [self addChild:gblock];
 }
@@ -189,13 +218,13 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     SKSpriteNode* bblock = [SKSpriteNode spriteNodeWithImageNamed:BAD_BLOCK_SPRITE_IMAGE_NAME];
     bblock.position = CGPointMake(self.frame.size.width + bblock.frame.size.width / 8,
                                   self.frame.size.height * 0);
-    bblock.zRotation = M_PI / 4.0;
+    bblock.zRotation = BAD_BUCKET_ROTATE;
     
     bblock.physicsBody = [self createBlockBody:bblock.frame.size];
     bblock.physicsBody.categoryBitMask = BAD_BLOCK_CATEGORY;
     
-    bblock.xScale = 0.75;
-    bblock.yScale = 0.75;
+    bblock.xScale = BAD_BUCKET_X_SCALE;
+    bblock.yScale = BAD_BUCKET_Y_SCALE;
     
     [self addChild:bblock];
 }
@@ -204,7 +233,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 {
     SKPhysicsBody *body = [SKPhysicsBody bodyWithRectangleOfSize:size];
     body.allowsRotation = NO;
-    body.friction = 0.0f;
+    body.friction = BLOCK_FRICTION;
     body.dynamic = NO;
     return body;
 }
@@ -215,16 +244,16 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     bar.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height * 0.2);
     bar.physicsBody = [self createBarBody:bar.frame.size];
     bar.name = BAR_CATEGORY_NAME;
-    bar.xScale = 0.8;
-    bar.yScale = 0.4;
+    bar.xScale = BAR_X_SCALE;
+    bar.yScale = BAR_Y_SCLAE;
     [self addChild:bar];
 }
 
 - (SKPhysicsBody *)createBarBody:(CGSize)size
 {
     SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
-    physicsBody.restitution = 0.1f;
-    physicsBody.friction = 0.4f;
+    physicsBody.restitution = BAR_RESTITUTION;
+    physicsBody.friction = BAR_FRICTION;
     physicsBody.dynamic = NO;
     return physicsBody;
 }
@@ -245,8 +274,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     ball.physicsBody = [self createBallBody:ball.frame.size.width / 2];
     ball.physicsBody.categoryBitMask = categoryBitMask;
     
-    ball.xScale = 0.25;
-    ball.yScale = 0.25;
+    ball.xScale = BALL_X_SCALE;
+    ball.yScale = BALL_Y_SCALE;
     
     [self addChild:ball];
     self.numBalls += 1;
@@ -261,10 +290,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
     physicsBody.dynamic = YES;
     physicsBody.allowsRotation = YES;
-    physicsBody.restitution = 0.9f;
-    physicsBody.friction = 0.0f;
-    physicsBody.angularDamping = 0.0f;
-    physicsBody.linearDamping = 0.5f;
+    physicsBody.restitution = BALL_RESTITUTION;
+    physicsBody.friction = BALL_FRICTION;
+    physicsBody.angularDamping = BALL_ANGULAR_DAMPING;
+    physicsBody.linearDamping = BALL_LINEAR_DAMPING;
     physicsBody.contactTestBitMask = GOOD_BLOCK_CATEGORY | BAD_BLOCK_CATEGORY;
     return physicsBody;
 }
@@ -296,7 +325,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 {
     SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     self.physicsBody = borderBody;
-    self.physicsBody.friction = 0.0f;
+    self.physicsBody.friction = EDGE_FRICTION;
 }
 
 /*
@@ -309,7 +338,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     
     SKSpriteNode *bar = (SKSpriteNode*)[self childNodeWithName: BAR_CATEGORY_NAME];
     
-    bar.zRotation = -1.0 * (value - ((MAX_SLIDER_VALUE - MIN_SLIDER_VALUE) / 2.0)) * (M_PI / 2.0)
+    bar.zRotation = -1.0 * (value - DEFAULT_SLIDER_VALUE) * MAX_BAR_ROTATE
     / 100.0;
 }
 
