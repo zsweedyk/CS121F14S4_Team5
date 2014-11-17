@@ -25,9 +25,8 @@
 @implementation PDLevelViewController
 
 // We identify the various alert views with these tags.
-NSInteger LEVEL_COMPLETE_TAG = 0;
-NSInteger RETURN_TO_SELECT_TAG = 1;
-NSInteger RESTART_LEVEL_TAG = 2;
+NSInteger RETURN_TO_SELECT_TAG = 0;
+NSInteger RESTART_LEVEL_TAG = 1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,6 +90,37 @@ NSInteger RESTART_LEVEL_TAG = 2;
     self.levelNumber++;
 }
 
+// Return to the level select view controller without unlocking any levels.
+- (void)returnToLevelSelectButtonPressed:(id)sender {
+    NSString *returnToLevelSelectTitle =
+        @"Return to level select? Your progress on this level will not be saved.";
+    NSString *cancelButtonTitle = @"Cancel";
+    NSString *continueButtonTitle = @"Ok";
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:returnToLevelSelectTitle
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:cancelButtonTitle
+                              otherButtonTitles:continueButtonTitle, nil];
+    alertView.tag = RETURN_TO_SELECT_TAG;
+    [alertView show];
+}
+
+// Restart the level
+- (void)restartLevelButtonPressed:(id)sender {
+    NSString *returnToLevelSelectTitle = @"Are you sure you want to restart the current level?";
+    NSString *cancelButtonTitle = @"Cancel";
+    NSString *continueButtonTitle = @"Ok";
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:returnToLevelSelectTitle
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:cancelButtonTitle
+                              otherButtonTitles:continueButtonTitle, nil];
+    alertView.tag = RESTART_LEVEL_TAG;
+    [alertView show];
+}
+
 #pragma mark Private methods
 
 // startLevelNumber starts the level it is given.
@@ -119,6 +149,30 @@ NSInteger RESTART_LEVEL_TAG = 2;
     NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToSpam", nil];
     int randomIndex = arc4random() % [allSeguesToMiniGames count];
     [self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // Based on the alert view's tag, we can tell which alert view it is and respond accordingly.
+        
+    if (alertView.tag == RETURN_TO_SELECT_TAG) {
+        
+        // When the "return to level select" alert is clicked, return to level select.
+        NSInteger continueButtonIndex = 1;
+        // buttonIndex 0 is the cancel button, buttonIndex 1 is the continue button.
+        if (buttonIndex == continueButtonIndex) {
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    } else if (alertView.tag == RESTART_LEVEL_TAG) {
+        
+        // When the "restart level" alert is clicked, start the current level (again).
+        NSInteger continueButtonIndex = 1;
+        // buttonIndex 0 is the cancel button, buttonIndex 1 is the continue button.
+        if (buttonIndex == continueButtonIndex) {
+            [self startLevelNumber:self.levelNumber];
+        }
+        
+    }
 }
 
 // completeLevel unlocks the next level and performs a segue to the level completion dialog.
