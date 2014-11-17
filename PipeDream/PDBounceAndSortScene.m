@@ -94,7 +94,7 @@ static const int LABEL_FONT_SIZE = 40;
 static const float SCORE_LABEL_Y_POSITION_FACTOR = 0.1;
 static const float SCORE_LABEL_WIDTH_FACTOR = 0.5;
 static const float SCORE_LABEL_HEIGHT_FACTOR = 0.1;
-static NSString *SCORE_LABEL_FORMAT_STRING = @"   Score: %d";
+static NSString *SCORE_LABEL_FORMAT_STRING = @" Score: %d";
 // Timer label.
 static const int TIMER_LABEL_X_POSITION = 0;
 static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.1;

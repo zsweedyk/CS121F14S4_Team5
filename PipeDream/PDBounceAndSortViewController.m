@@ -12,8 +12,9 @@
 #import "PDBounceAndSortScene.h"
 #import "PDMiniGameSceneEndDelegate.h"
 
-@interface PDBounceAndSortViewController () <PDMiniGameProtocol, PDMiniGameSceneEndDelegate>
+@interface PDBounceAndSortViewController () <PDMiniGameProtocol, PDMiniGameSceneEndDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong) UIViewController *presentingController;
+@property (nonatomic) BOOL completedSuccessfully;
 @end
 
 @implementation PDBounceAndSortViewController
@@ -48,11 +49,33 @@
 
 - (void)miniGameEndWithSuccess:(BOOL)success
 {
-    [self dismissViewControllerWithSuccess:success];
+    // Make a UIAlertview thing
+    self.completedSuccessfully = success;
+    [self.skView presentScene:nil];
+    NSString *correctTitle = @"You got at least 500 points! Good job.";
+    NSString *incorrectTitle = @"You lost. You didn't score 500 points.";
+    NSString *cancelButtonTitle = @"Okay";
+    NSString *alertTitle;
+    if (self.completedSuccessfully) {
+        alertTitle = correctTitle;
+    } else {
+        alertTitle = incorrectTitle;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:alertTitle
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:cancelButtonTitle
+                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+/* This method assumes the only alert view created is the "mini game complete" alert. */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self dismissViewControllerWithSuccess:self.completedSuccessfully];
 }
 
 - (void)dismissViewControllerWithSuccess:(BOOL)success {
-    [self.skView presentScene:nil];
     PDLevelViewController *levelViewController = (PDLevelViewController *)
     self.presentingViewController;
     [levelViewController completeMiniGameWithSuccess:success];
