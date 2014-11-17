@@ -13,21 +13,24 @@
 #import "PDOpenings.h"
 #import "PDLevelSelectionViewController.h"
 #import "PDMiniGameProtocol.h"
+#import "PDEndOfLevelViewController.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
 @property (nonatomic, strong) PDGridModel *gridModel;
 @property (nonatomic) NSInteger selectedInfectedRow;
 @property (nonatomic) NSInteger selectedInfectedCol;
+@property (nonatomic) BOOL hasCompletedLevel;
 
 @end
 
 @implementation PDLevelViewController
 
 // We identify the various alert views with these tags.
-NSInteger LEVEL_COMPLETE_TAG = 0;
-NSInteger RETURN_TO_SELECT_TAG = 1;
-NSInteger RESTART_LEVEL_TAG = 2;
+NSInteger RETURN_TO_SELECT_TAG = 0;
+NSInteger RESTART_LEVEL_TAG = 1;
+
+NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,9 +44,19 @@ NSInteger RESTART_LEVEL_TAG = 2;
     [self startLevelNumber:self.levelNumber];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // This is in place so that at the end of the levels available, the game can go from the end-
+    // of-game dialog to the level selection screen.
+    if (self.shouldDismissSelf) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 #pragma mark Public methods
 
-- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
+- (void)cellPressedAtRow:(NSInteger)row col:(NSInteger)col {
     if (![self.gridModel isVisibleAtRow:row col:col]) {
         return;
     }
@@ -63,21 +76,12 @@ NSInteger RESTART_LEVEL_TAG = 2;
     [self setGridViewToMatchModel];
     
     if ([self.gridModel isStartConnectedToGoal]) {
-        NSString *levelCompletedTitle = @"Level completed!";
-        NSString *cancelButtonTitle = @"Ok!";
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:levelCompletedTitle
-                                  message:nil
-                                  delegate:self
-                                  cancelButtonTitle:cancelButtonTitle
-                                  otherButtonTitles:nil];
-        alertView.tag = LEVEL_COMPLETE_TAG;
-        [alertView show];
+        [self completeLevel];
     }
 }
 
 // completeMiniGameWithSuccess clears the selected infection if success is YES.
-- (void) completeMiniGameWithSuccess:(BOOL)success {
+- (void)completeMiniGameWithSuccess:(BOOL)success {
     if (!success) {
         return;
     }
@@ -85,8 +89,18 @@ NSInteger RESTART_LEVEL_TAG = 2;
     [self setGridViewToMatchModel];
 }
 
+- (void)startNextLevel {
+    [self startLevelNumber:self.levelNumber + 1];
+    self.levelNumber++;
+}
+
 // Return to the level select view controller without unlocking any levels.
 - (void)returnToLevelSelectButtonPressed:(id)sender {
+    if (self.hasCompletedLevel) {
+        // If the level has been completed, do not present a confirmation dialog.
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
     NSString *returnToLevelSelectTitle =
         @"Return to level select? Your progress on this level will not be saved.";
     NSString *cancelButtonTitle = @"Cancel";
@@ -118,14 +132,15 @@ NSInteger RESTART_LEVEL_TAG = 2;
 
 #pragma mark Private methods
 
-- (void) startLevelNumber:(NSInteger)levelNumber {
+// startLevelNumber starts the level it is given.
+- (void)startLevelNumber:(NSInteger)levelNumber {
     NSInteger zeroIndexedLevelNumber = levelNumber - 1;
     self.gridModel = [[PDGridModel alloc] initWithLevelNumber:zeroIndexedLevelNumber];
     [self setGridViewToMatchModel];
 }
 
 // setGridViewToMatchModel sets every cell in the gridView to match the gridModel.
-- (void) setGridViewToMatchModel {
+- (void)setGridViewToMatchModel {
     
     NSInteger numRows = [self.gridModel numRows];
     NSInteger numCols = [self.gridModel numCols];
@@ -147,16 +162,8 @@ NSInteger RESTART_LEVEL_TAG = 2;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // Based on the alert view's tag, we can tell which alert view it is and respond accordingly.
-    if (alertView.tag == LEVEL_COMPLETE_TAG) {
         
-        // When the "level complete" alert is clicked, return to level select and unlock next level.
-        [PDLevelSelectionViewController unlockLevelNumber:self.levelNumber + 1];
-        PDLevelSelectionViewController *levelSelectionViewController =
-            (PDLevelSelectionViewController *) self.presentingViewController;
-        [levelSelectionViewController updateLevelSelectButtonsEnabled];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        
-    } else if (alertView.tag == RETURN_TO_SELECT_TAG) {
+    if (alertView.tag == RETURN_TO_SELECT_TAG) {
         
         // When the "return to level select" alert is clicked, return to level select.
         NSInteger continueButtonIndex = 1;
@@ -177,11 +184,30 @@ NSInteger RESTART_LEVEL_TAG = 2;
     }
 }
 
+// completeLevel unlocks the next level and performs a segue to the level completion dialog.
+- (void)completeLevel {
+    // Unlock the next level
+    [PDLevelSelectionViewController unlockLevelNumber:self.levelNumber + 1];
+    PDLevelSelectionViewController *levelSelectionViewController =
+    (PDLevelSelectionViewController *) self.presentingViewController;
+    [levelSelectionViewController updateLevelSelectButtonsEnabled];
+    
+    self.hasCompletedLevel = YES;
+    
+    // Perform segue to level completion dialog
+    [self performSegueWithIdentifier:LEVEL_TO_COMPLETION_SEGUE sender:self];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController conformsToProtocol:@protocol(PDMiniGameProtocol)]) {
         [segue.destinationViewController startMiniGame];
+    }
+    if ([segue.identifier isEqualToString:LEVEL_TO_COMPLETION_SEGUE]) {
+        PDEndOfLevelViewController *endOfLevelViewController =
+            (PDEndOfLevelViewController *) segue.destinationViewController;
+        endOfLevelViewController.levelNumberCompleted = self.levelNumber;
     }
 }
 

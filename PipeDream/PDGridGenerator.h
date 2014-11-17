@@ -14,5 +14,6 @@
 
 + (NSMutableArray *)generateGridForLevelNumber:(NSInteger)levelNumber;
 + (NSMutableArray *)generateGridFromString:(NSString*)string;
++ (NSInteger) numberOfLevels;
 
 @end
