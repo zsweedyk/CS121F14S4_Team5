@@ -8,6 +8,7 @@
 
 #import "PDLevelSelectionViewController.h"
 #import "PDLevelViewController.h"
+#import "PDAudioManager.h"
 
 NSString *UNLOCKED_LEVEL_KEY = @"levelUnlocked";
 NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
@@ -112,6 +113,7 @@ NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
     // The level button's tag is the human-readable level (indexing from 1).
     self.levelToPlay = [sender tag];
     [self performSegueWithIdentifier:@"LevelSelectionToLevel" sender:self];
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
 #pragma mark - Navigation

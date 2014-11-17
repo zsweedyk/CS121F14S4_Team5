@@ -13,6 +13,7 @@
 #import "PDOpenings.h"
 #import "PDLevelSelectionViewController.h"
 #import "PDMiniGameProtocol.h"
+#import "PDAudioManager.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
@@ -74,6 +75,7 @@ NSInteger RESTART_LEVEL_TAG = 2;
         alertView.tag = LEVEL_COMPLETE_TAG;
         [alertView show];
     }
+    [[PDAudioManager sharedInstance] playCellPressed];
 }
 
 // completeMiniGameWithSuccess clears the selected infection if success is YES.
