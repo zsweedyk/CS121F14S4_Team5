@@ -32,6 +32,8 @@ NSInteger RESTART_LEVEL_TAG = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    
     self.gridView.delegate = self;
     // To show a minigame view controller on top of this one, we set self.modalPresentationStyle.
     self.modalPresentationStyle = UIModalPresentationCurrentContext;

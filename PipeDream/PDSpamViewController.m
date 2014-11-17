@@ -143,8 +143,9 @@ NSString *SPAM_TEXT_HEADER = @"[spam]";
 - (void)dismissViewControllerWithSuccess:(BOOL)success {
     PDLevelViewController *levelViewController = (PDLevelViewController *)
     self.presentingViewController;
-    [levelViewController completeMiniGameWithSuccess:success];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        [levelViewController completeMiniGameWithSuccess:success];
+    }];
 }
 
 @end
