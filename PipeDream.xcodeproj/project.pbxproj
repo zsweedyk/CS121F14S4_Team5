@@ -10,6 +10,9 @@
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
+		AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */; };
+		AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB232621A1974CB00EEC23E /* SpriteKit.framework */; };
+		AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */; };
 		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
@@ -44,6 +47,12 @@
 		2994C49019F45C6F00A11183 /* PDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDQueue.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
+		AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortViewController.h; sourceTree = "<group>"; };
+		AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortViewController.m; sourceTree = "<group>"; };
+		AFB232621A1974CB00EEC23E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortScene.h; sourceTree = "<group>"; };
+		AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortScene.m; sourceTree = "<group>"; };
+		AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameSceneEndDelegate.h; sourceTree = "<group>"; };
 		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
 		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +112,7 @@
 		BF62561219EC93F0008175CC = {
 			isa = PBXGroup;
 			children = (
+				AFB232621A1974CB00EEC23E /* SpriteKit.framework */,
 				BF62561D19EC93F0008175CC /* PipeDream */,
 				BF62563719EC93F0008175CC /* PipeDreamTests */,
 				BF62561C19EC93F0008175CC /* Products */,
@@ -132,6 +143,12 @@
 				93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */,
 				BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */,
 				BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */,
+				AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */,
+				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
+				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
+				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
+				BFF9430D1A0376CA009FF758 /* PDPasswordViewController.h */,
+				BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
@@ -147,6 +164,7 @@
 				93A3904019F0E44A00D93EB1 /* grids.txt */,
 				BF6C66C11A08B821004C2D2E /* spams.txt */,
 				BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */,
+				AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */,
 				BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */,
 				BF62562819EC93F0008175CC /* Main.storyboard */,
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
@@ -297,8 +315,10 @@
 				BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */,
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
 				BF62562119EC93F0008175CC /* main.m in Sources */,
+				AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */,
 				BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */,
 				BF62564C19EC957F008175CC /* PDGridModel.m in Sources */,
+				AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */,
 				BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

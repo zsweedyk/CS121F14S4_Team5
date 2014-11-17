@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="MAa-ly-FZL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="MAa-ly-FZL">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Level View Controller-->
@@ -21,7 +22,7 @@
                                 <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5w-RH-Y8V">
-                                <rect key="frame" x="34" y="51" width="148" height="64.5"/>
+                                <rect key="frame" x="34" y="51" width="148" height="65"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
                                 <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" title="Menu" backgroundImage="pipeButton">
@@ -49,6 +50,7 @@
                     </view>
                     <connections>
                         <outlet property="gridView" destination="Ktb-G3-Z6l" id="8jB-mX-5md"/>
+                        <segue destination="DPd-fR-7wj" kind="modal" identifier="LevelToBounceAndSort" modalTransitionStyle="crossDissolve" id="bWZ-ej-RF9"/>
                         <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" modalTransitionStyle="crossDissolve" id="D8v-im-2e9"/>
                         <segue destination="Fov-iH-Bxi" kind="modal" identifier="LevelToCompletion" modalTransitionStyle="crossDissolve" id="Hdu-aI-l4L"/>
                     </connections>
@@ -143,6 +145,48 @@
             </objects>
             <point key="canvasLocation" x="-233" y="760"/>
         </scene>
+        <!--Bounce And Sort View Controller-->
+        <scene sceneID="ad4-Eo-yu9">
+            <objects>
+                <viewController id="DPd-fR-7wj" customClass="PDBounceAndSortViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7DY-uk-vEa"/>
+                        <viewControllerLayoutGuide type="bottom" id="gz6-CB-ugP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oj4-9h-WDQ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Nj-Of-jpS" customClass="SKView">
+                                <rect key="frame" x="126" y="157" width="516" height="712"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="S89-S7-qx3">
+                                <rect key="frame" x="84" y="112" width="600" height="800"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okU-9z-p1c">
+                                <rect key="frame" x="620" y="154" width="18" height="27"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed" destination="DPd-fR-7wj" eventType="touchUpInside" id="9uy-GN-3bx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="skView" destination="2Nj-Of-jpS" id="ig0-ON-1Np"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNB-Qa-1Mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-211" y="-538"/>
+        </scene>
         <!--End Of Level View Controller-->
         <scene sceneID="HZJ-1S-ah9">
             <objects>
@@ -157,15 +201,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccX-jN-kZL">
                                 <rect key="frame" x="0.0" y="-9" width="768" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tjH-iF-6oC">
                                         <rect key="frame" x="134" y="262" width="500" height="500"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Congratulations!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WuA-dd-8iq">
                                                 <rect key="frame" x="46" y="32" width="409" height="79"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="56"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -177,11 +218,9 @@
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="goal" translatesAutoresizingMaskIntoConstraints="NO" id="WMn-3r-2aq">
                                                 <rect key="frame" x="150" y="189" width="200" height="200"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-er-dxc">
                                                 <rect key="frame" x="161" y="423" width="178" height="41"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                 <state key="normal" title="Next Level">
                                                     <color key="titleColor" red="0.0016288081590000001" green="0.78752790179999999" blue="0.002527127785" alpha="1" colorSpace="calibratedRGB"/>
@@ -196,11 +235,9 @@
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="squareFrame" translatesAutoresizingMaskIntoConstraints="NO" id="nVS-cf-bMU">
                                         <rect key="frame" x="84" y="212" width="600" height="600"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvJ-no-lfc">
                                         <rect key="frame" x="617" y="250" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="x">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -282,7 +319,7 @@
             </objects>
             <point key="canvasLocation" x="-3097" y="168"/>
         </scene>
-        <!--Level Selection View Controller - Level Selection View Controller-->
+        <!--Level Selection View Controller-->
         <scene sceneID="ers-UB-kRC">
             <objects>
                 <viewController title="Level Selection View Controller" id="5Re-Io-Hdl" customClass="PDLevelSelectionViewController" sceneMemberID="viewController">
