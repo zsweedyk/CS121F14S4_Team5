@@ -2,7 +2,7 @@
 //  PDBounceAndSortScene.m
 //  PipeDream
 //
-//  Created by cs121F14 on 11/16/14.
+//  Created by Kate Aplin on 11/16/14.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
@@ -85,22 +85,22 @@ static const float BALL_X_SCALE = 0.25;
 static const float BALL_Y_SCALE = 0.25;
 // Slider.
 static const float SLIDER_WIDTH_FACTOR = 0.5;
-static const float SLIDER_Y_POSITION_FACTOR = 0.9;
+static const float SLIDER_Y_POSITION_FACTOR = 0.85;
 static const float SLIDER_HEIGHT_FACTOR = 0.1;
 // General label.
 static NSString *LABEL_FONT_NAME = @"Arial";
 static const int LABEL_FONT_SIZE = 40;
 // Score label.
-static const float SCORE_LABEL_Y_POSITION = 0;
+static const float SCORE_LABEL_Y_POSITION_FACTOR = 0.1;
 static const float SCORE_LABEL_WIDTH_FACTOR = 0.5;
 static const float SCORE_LABEL_HEIGHT_FACTOR = 0.1;
-static NSString *SCORE_LABEL_FORMAT_STRING = @"Score: %d";
+static NSString *SCORE_LABEL_FORMAT_STRING = @"   Score: %d";
 // Timer label.
 static const int TIMER_LABEL_X_POSITION = 0;
-static const int TIMER_LABEL_Y_POSITION = 0;
+static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.1;
 static const float TIMER_LABEL_WIDTH_FACTOR = 0.5;
 static const float TIMER_LABEL_HEIGHT_FACTOR = 0.1;
-static NSString *TIMER_LABEL_FORMAT_STRING = @"Time Left: %d";
+static NSString *TIMER_LABEL_FORMAT_STRING = @"   Time: %d";
 // Background.
 static const float RED_BACKGROUND = 0.5;
 static const float GREEN_BACKGROUND = 0.5;
@@ -132,7 +132,9 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 {
     UISlider *slider = [[UISlider alloc] initWithFrame:
         CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width * SLIDER_WIDTH_FACTOR / 2,
-        self.frame.size.height * SLIDER_Y_POSITION_FACTOR, self.frame.size.width * SLIDER_WIDTH_FACTOR, self.frame.size.height * SLIDER_HEIGHT_FACTOR)];
+        self.frame.size.height * SLIDER_Y_POSITION_FACTOR,
+        self.frame.size.width * SLIDER_WIDTH_FACTOR,
+        self.frame.size.height * SLIDER_HEIGHT_FACTOR)];
     slider.minimumValue = MIN_SLIDER_VALUE;
     slider.maximumValue = MAX_SLIDER_VALUE;
     slider.value = DEFAULT_SLIDER_VALUE;
@@ -143,11 +145,16 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     [view addSubview:slider];
     
     self.timerLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(TIMER_LABEL_X_POSITION, TIMER_LABEL_Y_POSITION, self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR, self.frame.size.height * TIMER_LABEL_HEIGHT_FACTOR)];
+        initWithFrame:CGRectMake(TIMER_LABEL_X_POSITION,
+        self.frame.size.height * TIMER_LABEL_Y_POSITION_FACTOR,
+        self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR,
+        self.frame.size.height * TIMER_LABEL_HEIGHT_FACTOR)];
     self.timerLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
     [view addSubview:self.timerLabel];
     self.scoreLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR, SCORE_LABEL_Y_POSITION, self.frame.size.width * SCORE_LABEL_WIDTH_FACTOR,
+        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR,
+        self.frame.size.height * SCORE_LABEL_Y_POSITION_FACTOR,
+        self.frame.size.width * SCORE_LABEL_WIDTH_FACTOR,
         self.frame.size.height * SCORE_LABEL_HEIGHT_FACTOR)];
     self.scoreLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
     [view addSubview:self.scoreLabel];
@@ -219,7 +226,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         [self endGame];
     }
     
-    self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING, (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
+    self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING,
+        (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
     self.scoreLabel.text = [NSString stringWithFormat:SCORE_LABEL_FORMAT_STRING, self.score];
 }
 
@@ -234,7 +242,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)createGoodBucket
 {
     SKSpriteNode* gblock = [SKSpriteNode spriteNodeWithImageNamed:GOOD_BLOCK_SPRITE_IMAGE_NAME];
-    gblock.position = CGPointMake(gblock.frame.size.width * GOOD_BUCKET_X_POSITION_FACTOR, self.frame.size.height * GOOD_BUCKET_Y_POSITION_FACTOR);
+    gblock.position = CGPointMake(gblock.frame.size.width * GOOD_BUCKET_X_POSITION_FACTOR,
+    self.frame.size.height * GOOD_BUCKET_Y_POSITION_FACTOR);
     gblock.zRotation = GOOD_BUCKET_ROTATE;
     
     gblock.physicsBody = [self createBlockBody:gblock.frame.size];
@@ -249,8 +258,9 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)createBadBucket
 {
     SKSpriteNode* bblock = [SKSpriteNode spriteNodeWithImageNamed:BAD_BLOCK_SPRITE_IMAGE_NAME];
-    bblock.position = CGPointMake(self.frame.size.width + bblock.frame.size.width * BAD_BUCKET_X_POSITION_FACTOR,
-                                  self.frame.size.height * BAD_BUCKET_Y_POSITION_FACTOR);
+    bblock.position = CGPointMake(self.frame.size.width +
+        bblock.frame.size.width * BAD_BUCKET_X_POSITION_FACTOR,
+        self.frame.size.height * BAD_BUCKET_Y_POSITION_FACTOR);
     bblock.zRotation = BAD_BUCKET_ROTATE;
     
     bblock.physicsBody = [self createBlockBody:bblock.frame.size];
@@ -274,7 +284,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 - (void)createBar
 {
     SKSpriteNode* bar = [[SKSpriteNode alloc] initWithImageNamed:BAR_SPRITE_IMAGE_NAME];
-    bar.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height * BAR_Y_POSITION_FACTOR);
+    bar.position = CGPointMake(CGRectGetMidX(self.frame),
+        self.frame.size.height * BAR_Y_POSITION_FACTOR);
     bar.physicsBody = [self createBarBody:bar.frame.size];
     bar.name = BAR_CATEGORY_NAME;
     bar.xScale = BAR_X_SCALE;

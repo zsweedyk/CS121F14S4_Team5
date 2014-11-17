@@ -50,7 +50,7 @@
                     </view>
                     <connections>
                         <outlet property="gridView" destination="Ktb-G3-Z6l" id="8jB-mX-5md"/>
-                        <segue destination="DPd-fR-7wj" kind="modal" identifier="LevelToBounceAndSort" id="bWZ-ej-RF9"/>
+                        <segue destination="DPd-fR-7wj" kind="modal" identifier="LevelToBounceAndSort" modalTransitionStyle="crossDissolve" id="bWZ-ej-RF9"/>
                         <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" modalTransitionStyle="crossDissolve" id="D8v-im-2e9"/>
                         <segue destination="Fov-iH-Bxi" kind="modal" identifier="LevelToCompletion" modalTransitionStyle="crossDissolve" id="Hdu-aI-l4L"/>
                     </connections>
@@ -158,11 +158,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Nj-Of-jpS" customClass="SKView">
-                                <rect key="frame" x="134" y="160" width="500" height="703"/>
+                                <rect key="frame" x="126" y="157" width="516" height="712"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="S89-S7-qx3">
+                                <rect key="frame" x="84" y="112" width="600" height="800"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okU-9z-p1c">
+                                <rect key="frame" x="620" y="154" width="18" height="27"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed" destination="DPd-fR-7wj" eventType="touchUpInside" id="9uy-GN-3bx"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="skView" destination="2Nj-Of-jpS" id="ig0-ON-1Np"/>
@@ -170,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNB-Qa-1Mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1197" y="-1602"/>
+            <point key="canvasLocation" x="-211" y="-538"/>
         </scene>
         <!--End Of Level View Controller-->
         <scene sceneID="HZJ-1S-ah9">

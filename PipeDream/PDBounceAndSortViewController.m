@@ -2,7 +2,7 @@
 //  PDBounceAndSortViewController.m
 //  PipeDream
 //
-//  Created by cs121F14 on 11/16/14.
+//  Created by Kate Aplin on 11/16/14.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
@@ -38,8 +38,12 @@
     [self.skView presentScene:scene];
 }
 
+-(void)cancelButtonPressed {
+    [self dismissViewControllerWithSuccess:NO];
+}
+
 - (void)startMiniGame {
-    // TODO like...start the scene and stuff I guess?
+    // Not used.
 }
 
 - (void)miniGameEndWithSuccess:(BOOL)success
