@@ -24,6 +24,8 @@ NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    
     [self createLevelSelectButtons];
     [self updateLevelSelectButtonsEnabled];
 }

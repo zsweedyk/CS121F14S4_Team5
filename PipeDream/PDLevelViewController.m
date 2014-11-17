@@ -24,8 +24,15 @@
 
 @implementation PDLevelViewController
 
+// We identify the various alert views with these tags.
+NSInteger LEVEL_COMPLETE_TAG = 0;
+NSInteger RETURN_TO_SELECT_TAG = 1;
+NSInteger RESTART_LEVEL_TAG = 2;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     
     self.gridView.delegate = self;
     // To show a minigame view controller on top of this one, we set self.modalPresentationStyle.

@@ -26,7 +26,6 @@
 		BF6C66C31A08B821004C2D2E /* spams.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF6C66C11A08B821004C2D2E /* spams.txt */; };
 		BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */; };
 		BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */; };
-		BFF9430F1A0376CA009FF758 /* PDPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */; };
 		BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF943111A038271009FF758 /* PDMenuViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -78,8 +77,6 @@
 		BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameProtocol.h; sourceTree = "<group>"; };
 		BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSpamViewController.h; sourceTree = "<group>"; };
 		BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSpamViewController.m; sourceTree = "<group>"; };
-		BFF9430D1A0376CA009FF758 /* PDPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDPasswordViewController.h; sourceTree = "<group>"; };
-		BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDPasswordViewController.m; sourceTree = "<group>"; };
 		BFF943101A038271009FF758 /* PDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDMenuViewController.h; sourceTree = "<group>"; };
 		BFF943111A038271009FF758 /* PDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,8 +132,6 @@
 				93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */,
 				BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */,
 				BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */,
-				BFF9430D1A0376CA009FF758 /* PDPasswordViewController.h */,
-				BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
@@ -305,7 +300,6 @@
 				BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */,
 				BF62564C19EC957F008175CC /* PDGridModel.m in Sources */,
 				BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */,
-				BFF9430F1A0376CA009FF758 /* PDPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
