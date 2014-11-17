@@ -26,6 +26,13 @@
     return [PDGridGenerator parseLine:string];
 }
 
+/* Output: The number of levels in the current grids file */
++ (NSInteger) numberOfLevels {
+    NSString *readString = [PDGridGenerator readFromFile];
+    NSArray *allLines = [readString componentsSeparatedByString:@"\n"];
+    return [allLines count];
+}
+
 #pragma mark Private methods
 
 /* Returns the string of text from the grids file */

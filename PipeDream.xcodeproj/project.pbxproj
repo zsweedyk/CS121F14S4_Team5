@@ -10,6 +10,7 @@
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
+		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
@@ -43,6 +44,8 @@
 		2994C49019F45C6F00A11183 /* PDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDQueue.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
+		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
+		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +128,8 @@
 				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
 				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
 				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
+				93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */,
+				93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */,
 				BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */,
 				BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
@@ -281,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */,
 				BF62564919EC9571008175CC /* PDCellView.m in Sources */,
 				2994C49119F45C6F00A11183 /* PDQueue.m in Sources */,
 				BF62564F19EC9591008175CC /* PDCellModel.m in Sources */,

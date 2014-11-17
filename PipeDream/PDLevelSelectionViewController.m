@@ -85,7 +85,7 @@ NSInteger NUM_LEVEL_BUTTONS = 5; // the number of levels buttons to display
         CGRect buttonFrame = CGRectMake(buttonRowXPos, buttonRowYPos, buttonWidth, buttonHeight);
         UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
         button.tag = levelNumber;
-        NSString *buttonTitle = [NSString stringWithFormat:@"%li", levelNumber];
+        NSString *buttonTitle = [NSString stringWithFormat:@"%d", levelNumber];
         [button setBackgroundColor:buttonBackgroundColor];
         [button setTitleColor:buttonTitleColor forState:UIControlStateNormal];
         [button setTitle:buttonTitle forState:UIControlStateNormal];
