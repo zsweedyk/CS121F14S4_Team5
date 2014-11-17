@@ -20,6 +20,7 @@
 @property (nonatomic, strong) PDGridModel *gridModel;
 @property (nonatomic) NSInteger selectedInfectedRow;
 @property (nonatomic) NSInteger selectedInfectedCol;
+@property (nonatomic) BOOL hasCompletedLevel;
 
 @end
 
@@ -95,6 +96,11 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 // Return to the level select view controller without unlocking any levels.
 - (void)returnToLevelSelectButtonPressed:(id)sender {
+    if (self.hasCompletedLevel) {
+        // If the level has been completed, do not present a confirmation dialog.
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
     NSString *returnToLevelSelectTitle =
         @"Return to level select? Your progress on this level will not be saved.";
     NSString *cancelButtonTitle = @"Cancel";
@@ -185,6 +191,8 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     PDLevelSelectionViewController *levelSelectionViewController =
     (PDLevelSelectionViewController *) self.presentingViewController;
     [levelSelectionViewController updateLevelSelectButtonsEnabled];
+    
+    self.hasCompletedLevel = YES;
     
     // Perform segue to level completion dialog
     [self performSegueWithIdentifier:LEVEL_TO_COMPLETION_SEGUE sender:self];
