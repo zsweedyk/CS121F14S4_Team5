@@ -49,7 +49,7 @@
                     </view>
                     <connections>
                         <outlet property="gridView" destination="Ktb-G3-Z6l" id="8jB-mX-5md"/>
-                        <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" id="D8v-im-2e9"/>
+                        <segue destination="0NJ-WS-785" kind="modal" identifier="LevelToSpam" modalTransitionStyle="crossDissolve" id="D8v-im-2e9"/>
                         <segue destination="Fov-iH-Bxi" kind="modal" identifier="LevelToCompletion" modalTransitionStyle="crossDissolve" id="Hdu-aI-l4L"/>
                     </connections>
                 </viewController>
