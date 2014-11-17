@@ -101,7 +101,7 @@
 
 // startMiniGame starts a randomly selected mini game.
 - (void)startMiniGame {
-    NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToSpam", nil];
+    NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToBounceAndSort", nil];
     int randomIndex = arc4random() % [allSeguesToMiniGames count];
     [self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
 }
