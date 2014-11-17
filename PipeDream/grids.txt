@@ -4,15 +4,16 @@
 5 5 4 2 0 3 0 xxSW xESx xxSW NESW xExW NxSx xxSW xExW xESx xExW xExW xESx xESx xExW xExW xESx xxSW xExW xESx xExW NExx NxxW xExx xESx xxSW
 5 5 3 0 1 4 1 NExW xExW NxxW NExW NxxW NxxW NxxW NxxW xESx NESW NxSx xESx xxSW xESx xESx xExx NESW xExW NxSx xExW xExW NxxW NxxW NxSx NxSW
 5 5 0 0 1 4 1 xExx xxSW xESW NxxW NESW xESx xESx xExW xESx NESW NESW xExW xxSW NExx NxSW xxSW NxSW xExW NxSx xESx xxSW xESW NxxW xESW xxSW
+5 5 4 0 0 1 NESW NxSx xxSW NxxW NESx xESx xxSW NExx xxSW NxxW xxSW xxSW NExx NxSx xxSW NExx xxSW NxSx xxSW xxSW xExx xExW NxSx xExW NxSW
 5 5 0 0 2 3 1 xExx NxSW xxSW xESW NExx xxSW NESW xxSW xESx NESx xESW NxSW xExW NESW NxxW xExW NExx xxSW NxxW NExx NxSW NESW xExW NxSx NESW
 5 5 4 1 3 1 0 xESx NxSx NxSx xxSW NESW NExx* xExW xESx xESx xxSW NxxW NxSx NxxW NESW* xExW xESW NESW xExW NxSx NxSx NxxW xExx NxSx xExW xESx
-5 5 4 0 1 4 0 NExW* NExx NxxW NExx xESx NxxW* NxxW xExW xxSW NESW* NxSx xESx NxSx xESx* xESx xESx NExx* xESx* NExW NxxW xExx* NxSW xExW xESx xESW
-5 5 0 0 2 0 0 xExx* xExW* NxSx* xxSW* NESx xxSW xESx NExx xExW NESx* NESW NxSW xxSW NExW NESx xxSW* xxSW NExx NxSx NESx* xxSW NxSx NxSW NExx NxSx
-5 5 0 0 1 4 0 xExx* xESW xESx xESx xESx xESx xESx* xESx xESx NESW xESx xESW* xESx* xESx* xESx* xESW xESx xESx* xESW* xESx xESW* xESW xESx xESx xESW
-5 5 1 0 4 4 1 xESx NxxW NxSx* xExW NxxW xExx* NxxW xESx NxSx NxxW* NxxW xESx NESx xESx* xxSW NExx NExx NESW NExx NxxW NxxW* NExW NxSx xExW NESW
-5 5 4 0 1 2 1 NE*xx NExx NExx NExx* NExx NExx* NExx NESW* NExx NExx NExx NExx NExx* NExx* NExx NExx NExx* NExx NExx NExx* xExx NExx NExx NExx* NExx*
-5 5 4 0 1 2 1 xESW* xESW NxSx NxSx NxSx xxSW xExW* NESW xxSW* xESW xESW xESW* NxSx NxSx xESW* xxSW xxSW xxSW xxSW xxSW* xExx xESW* xxSW NxSx xxSW*
-5 5 4 0 1 1 1 xExW* xExW NExx xExW* NExx* NExx* NESW NExx NExx xExW* xExW* xExW NExx xExW* NExx NExx* xExW* xExW* NExx NExx xExx* xExW* NExx* xExW xExW*
+5 5 4 0 1 4 0 NExW NExx NxxW NExx xESx NxxW NxxW xExW xxSW NESW NxSx xESx NxSx xESx xESx xESx NExx* xESx* NExW NxxW xExx NxSW xExW xESx xESW
+5 5 0 0 2 0 0 xExx xExW NxSx xxSW* NESx xxSW xESx NExx xExW NESx NESW NxSW xxSW NExW NESx xxSW xxSW NExx NxSx NESx* xxSW NxSx NxSW NExx NxSx
+5 5 0 0 1 4 0 xExx xESW xESx xESx xESx xESx xESx* xESx xESx NESW xESx xESW xESx* xESx xESx* xESW xESx xESx* xESW* xESx xESW* xESW xESx xESx xESW
+5 5 1 0 4 4 1 xESx NxxW NxSx* xExW NxxW xExx* NxxW xESx NxSx NxxW* NxxW xESx NESx xESx xxSW NExx NExx NESW NExx NxxW NxxW* NExW NxSx xExW NESW
+5 5 4 0 1 2 1 NExx NExx NExx NExx* NExx NExx* NExx NESW* NExx NExx NExx NExx NExx NExx* NExx NExx NExx* NExx NExx NExx* xExx NExx NExx NExx NExx
+5 5 4 0 1 2 1 xESW* xESW NxSx NxSx NxSx xxSW xExW* NESW xxSW* xESW xESW xESW NxSx NxSx xESW xxSW xxSW xxSW xxSW xxSW* xExx xESW* xxSW NxSx xxSW
+5 5 4 0 1 1 1 xExW* xExW NExx xExW NExx NExx NESW NExx NExx xExW xExW* xExW NExx xExW NExx NExx xExW* xExW* NExx NExx xExx xExW NExx* xExW xExW
 6 6 5 0 0 5 0 NExx xxSW xESW xExW NExx NESW NxSW xxSW xESW NxSx xExW xExW NESW xxSW NESW xExW NxSx xESx xESx NxxW xxSW xxSW xESW NESW xExW NExW NxSx xExW NExx NxSx xExx NxSx xExW NxxW NxSx xESx
 6 6 0 0 5 0 0 xExx xxSW xESW NxSW NExx NxSW NxSW xExW xESW NxSx NxSW xExW NESW NExW NxSx xExW NESx xxSW xESx xxSW xxSW xxSW xESW xESW xESx NxSx NESW NESx NxSx xESx NESW xESx xESW xESx xExW xESx
 6 6 2 0 5 0 1 NESW xxSW xESW NESx xESx NxSW xESW xxSW xESW NExx NxSW xExW xExx NxSx xExW NxSx xESW xxSW xESx xESx NxxW NxSx xxSW xExW xESx xESx NESW NxxW NxxW NxSx NESW NxSx xESx NExx NxSx NxxW
