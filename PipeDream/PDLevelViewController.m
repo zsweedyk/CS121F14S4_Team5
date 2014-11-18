@@ -203,6 +203,9 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController conformsToProtocol:@protocol(PDMiniGameProtocol)]) {
+        // We have to set modal presentation style to show the level behind the mini game.
+        [segue.destinationViewController setModalPresentationStyle:
+            UIModalPresentationOverCurrentContext];
         [segue.destinationViewController startMiniGame];
     }
     if ([segue.identifier isEqualToString:LEVEL_TO_COMPLETION_SEGUE]) {
