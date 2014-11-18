@@ -11,6 +11,7 @@
 #import "PDLevelViewController.h"
 #import "PDBounceAndSortScene.h"
 #import "PDMiniGameSceneEndDelegate.h"
+#import "PDAudioManager.h"
 
 @interface PDBounceAndSortViewController () <PDMiniGameProtocol, PDMiniGameSceneEndDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong) UIViewController *presentingController;
@@ -40,6 +41,7 @@
 }
 
 -(void)cancelButtonPressed {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self dismissViewControllerWithSuccess:NO];
 }
 

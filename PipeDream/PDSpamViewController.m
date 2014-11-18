@@ -9,6 +9,7 @@
 #import "PDSpamViewController.h"
 #import "PDMiniGameProtocol.h"
 #import "PDLevelViewController.h"
+#import "PDAudioManager.h"
 
 @interface PDSpamViewController () <PDMiniGameProtocol>
 
@@ -35,16 +36,19 @@ NSString *SPAM_TEXT_HEADER = @"[spam]";
 }
 
 - (IBAction)spamButtonPressed {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     self.correctAnswerSelected = self.isSpamTextSpam;
     [self completeMiniGame];
 }
 
 - (IBAction)notSpamButtonPressed {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     self.correctAnswerSelected = !self.isSpamTextSpam;
     [self completeMiniGame];
 }
 
 -(void)cancelButtonPressed {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self dismissViewControllerWithSuccess:NO];
 }
 

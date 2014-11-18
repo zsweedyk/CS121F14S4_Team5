@@ -14,6 +14,7 @@
 #import "PDLevelSelectionViewController.h"
 #import "PDMiniGameProtocol.h"
 #import "PDEndOfLevelViewController.h"
+#import "PDAudioManager.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
@@ -62,6 +63,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     }
     
     if ([self.gridModel isInfectedAtRow:row col:col]) {
+        [[PDAudioManager sharedInstance] playInfectedCellPressed];
         self.selectedInfectedRow = row;
         self.selectedInfectedCol = col;
         [self startMiniGame];
@@ -78,6 +80,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     if ([self.gridModel isStartConnectedToGoal]) {
         [self completeLevel];
     }
+    [[PDAudioManager sharedInstance] playCellPressed];
 }
 
 // completeMiniGameWithSuccess clears the selected infection if success is YES.
@@ -86,6 +89,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
         return;
     }
     [self.gridModel clearInfectionFromRow:self.selectedInfectedRow col:self.selectedInfectedCol];
+    [[PDAudioManager sharedInstance] playInfectionCleared];
     [self setGridViewToMatchModel];
 }
 
@@ -96,6 +100,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 // Return to the level select view controller without unlocking any levels.
 - (void)returnToLevelSelectButtonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     if (self.hasCompletedLevel) {
         // If the level has been completed, do not present a confirmation dialog.
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -117,6 +122,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 // Restart the level
 - (void)restartLevelButtonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     NSString *returnToLevelSelectTitle = @"Are you sure you want to restart the current level?";
     NSString *cancelButtonTitle = @"Cancel";
     NSString *continueButtonTitle = @"Ok";
@@ -195,6 +201,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     
     self.hasCompletedLevel = YES;
     
+    [[PDAudioManager sharedInstance] playLevelComplete];
     // Perform segue to level completion dialog
     [self performSegueWithIdentifier:LEVEL_TO_COMPLETION_SEGUE sender:self];
 }
