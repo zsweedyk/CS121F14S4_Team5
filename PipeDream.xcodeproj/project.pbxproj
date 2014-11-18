@@ -109,6 +109,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF1B3DCA1A19DDFC002F62B6 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B3DCC1A19DE1F002F62B6 /* Music */,
+				AF1B3DCB1A19DE15002F62B6 /* Sound Effects */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		AF1B3DCB1A19DE15002F62B6 /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */,
+				AF1B3DCF1A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav */,
+				AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */,
+				AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */,
+				AF1B3DD51A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff */,
+				AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */,
+			);
+			name = "Sound Effects";
+			sourceTree = "<group>";
+		};
+		AF1B3DCC1A19DE1F002F62B6 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
 		BF62561219EC93F0008175CC = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +161,7 @@
 		BF62561D19EC93F0008175CC /* PipeDream */ = {
 			isa = PBXGroup;
 			children = (
+				AF1B3DCA1A19DDFC002F62B6 /* Sounds */,
 				BF62562219EC93F0008175CC /* PDAppDelegate.h */,
 				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
 				BFF943101A038271009FF758 /* PDMenuViewController.h */,
@@ -172,6 +203,8 @@
 				BF62561E19EC93F0008175CC /* Supporting Files */,
 				2994C48F19F45C6F00A11183 /* PDQueue.h */,
 				2994C49019F45C6F00A11183 /* PDQueue.m */,
+				AF412EED1A19CA6B00C34102 /* PDAudioManager.h */,
+				AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */,
 			);
 			path = PipeDream;
 			sourceTree = "<group>";
@@ -282,9 +315,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */,
 				93A3904119F0E44A00D93EB1 /* grids.txt in Resources */,
+				AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */,
+				AF1B3DD61A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff in Resources */,
+				AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */,
 				BF6C66C31A08B821004C2D2E /* spams.txt in Resources */,
+				AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */,
 				BF62562A19EC93F0008175CC /* Main.storyboard in Resources */,
+				AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */,
+				AF1B3DD01A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
 			);
@@ -313,6 +353,7 @@
 				93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */,
 				BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */,
 				BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */,
+				AF412EEF1A19CA6B00C34102 /* PDAudioManager.m in Sources */,
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
 				BF62562119EC93F0008175CC /* main.m in Sources */,
 				AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */,

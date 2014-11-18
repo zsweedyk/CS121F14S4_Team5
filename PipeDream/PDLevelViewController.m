@@ -78,6 +78,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     if ([self.gridModel isStartConnectedToGoal]) {
         [self completeLevel];
     }
+    [[PDAudioManager sharedInstance] playCellPressed];
 }
 
 // completeMiniGameWithSuccess clears the selected infection if success is YES.
