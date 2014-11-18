@@ -36,11 +36,13 @@ NSString *SPAM_TEXT_HEADER = @"[spam]";
 }
 
 - (IBAction)spamButtonPressed {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     self.correctAnswerSelected = self.isSpamTextSpam;
     [self completeMiniGame];
 }
 
 - (IBAction)notSpamButtonPressed {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     self.correctAnswerSelected = !self.isSpamTextSpam;
     [self completeMiniGame];
 }

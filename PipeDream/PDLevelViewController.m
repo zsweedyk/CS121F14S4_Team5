@@ -63,6 +63,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     }
     
     if ([self.gridModel isInfectedAtRow:row col:col]) {
+        [[PDAudioManager sharedInstance] playInfectedCellPressed];
         self.selectedInfectedRow = row;
         self.selectedInfectedCol = col;
         [self startMiniGame];

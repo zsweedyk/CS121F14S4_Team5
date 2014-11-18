@@ -14,6 +14,7 @@
 
 - (void)playMenuButtonPressed;
 - (void)playCellPressed;
+- (void)playInfectedCellPressed;
 - (void)playCellMadeVisible;
 - (void)playInfectionSpread;
 - (void)playInfectionCleared;

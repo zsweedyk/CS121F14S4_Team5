@@ -13,6 +13,7 @@
 @interface PDAudioManager ()
 @property AVAudioPlayer *menuButtonPressedPlayer;
 @property AVAudioPlayer *cellPressedPlayer;
+@property AVAudioPlayer *infectedCellPressedPlayer;
 @property AVAudioPlayer *cellMadeVisiblePlayer;
 @property AVAudioPlayer *infectionSpreadPlayer;
 @property AVAudioPlayer *infectionClearedPlayer;
@@ -49,6 +50,13 @@ static PDAudioManager *sharedAudioManager = nil;
 {
     if (self.cellPressedPlayer) {
         [self.cellPressedPlayer play];
+    }
+}
+
+- (void)playInfectedCellPressed
+{
+    if (self.infectedCellPressedPlayer) {
+        [self.infectedCellPressedPlayer play];
     }
 }
 
@@ -94,6 +102,7 @@ static PDAudioManager *sharedAudioManager = nil;
     if (self) {
         [self initializeMenuButtonPressedPlayer];
         [self initializeCellPressedPlayer];
+        [self initializeInfectedCellPressedPlayer];
         [self initializeCellMadeVisiblePlayer];
         [self initializeInfectionSpreadPlayer];
         [self initializeInfectionClearedPlayer];
@@ -134,6 +143,22 @@ static PDAudioManager *sharedAudioManager = nil;
     NSError *error = nil;
     self.cellPressedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.cellPressedPlayer.numberOfLoops = 0;
+}
+
+/*
+ * Audio source:
+ * https://www.freesound.org/people/annabloom/sounds/219068/
+ * This audio is liscenced under (CC BY-NC 3.0)
+ */
+- (void)initializeInfectedCellPressedPlayer
+{
+    NSString *fileName = @"219068__annabloom__click2";
+    NSString *fileExtension = @"wav";
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSError *error = nil;
+    self.infectedCellPressedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.infectedCellPressedPlayer.numberOfLoops = 0;
 }
 
 /*
