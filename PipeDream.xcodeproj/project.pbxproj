@@ -6,14 +6,28 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		938A080F1A1B40F7001E9C7A /* OCLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 938A08101A1B40F7001E9C7A /* Build configuration list for PBXAggregateTarget "OCLint" */;
+			buildPhases = (
+				938A08131A1B410A001E9C7A /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = OCLint;
+			productName = OCLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
+		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
 		AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */; };
 		AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB232621A1974CB00EEC23E /* SpriteKit.framework */; };
 		AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */; };
-		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
@@ -47,14 +61,14 @@
 		2994C49019F45C6F00A11183 /* PDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDQueue.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
+		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
+		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
 		AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortViewController.h; sourceTree = "<group>"; };
 		AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortViewController.m; sourceTree = "<group>"; };
 		AFB232621A1974CB00EEC23E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortScene.h; sourceTree = "<group>"; };
 		AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortScene.m; sourceTree = "<group>"; };
 		AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameSceneEndDelegate.h; sourceTree = "<group>"; };
-		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
-		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,8 +161,6 @@
 				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
 				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
 				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
-				BFF9430D1A0376CA009FF758 /* PDPasswordViewController.h */,
-				BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
@@ -212,6 +224,7 @@
 				BF62561719EC93F0008175CC /* Sources */,
 				BF62561819EC93F0008175CC /* Frameworks */,
 				BF62561919EC93F0008175CC /* Resources */,
+				938A080E1A1B3CA6001E9C7A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -249,6 +262,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Flapjack Stack Hack";
 				TargetAttributes = {
+					938A080F1A1B40F7001E9C7A = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					BF62561A19EC93F0008175CC = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -273,6 +289,7 @@
 			targets = (
 				BF62561A19EC93F0008175CC /* PipeDream */,
 				BF62563319EC93F0008175CC /* PipeDreamTests */,
+				938A080F1A1B40F7001E9C7A /* OCLint */,
 			);
 		};
 /* End PBXProject section */
@@ -298,6 +315,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		938A080E1A1B3CA6001E9C7A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+		938A08131A1B410A001E9C7A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source ~/.bashrc\n\nhash oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n\n\ncd ${TARGET_TEMP_DIR}\nif [ ! -f compile_commands.json ]; then\necho \"[*] compile_commands.json not found, possibly clean was performed\"\necho \"[*] starting xcodebuild to rebuild the project..\"\n# clean previous output\nif [ -f xcodebuild.log ]; then\nrm xcodebuild.log\nfi\n\ncd ${SRCROOT}\nxcodebuild clean\n\n#build xcodebuild.log\nxcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n#xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n\necho \"[*] transforming xcodebuild.log into compile_commands.json...\"\ncd ${TARGET_TEMP_DIR}\n#transform it into compile_commands.json\noclint-xcodebuild\n\necho \"[*] copy compile_commands.json to the project root...\"\ncp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\nfi\n\necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\noclint-json-compilation-database | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF62561719EC93F0008175CC /* Sources */ = {
@@ -361,6 +407,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		938A08111A1B40F7001E9C7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		938A08121A1B40F7001E9C7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		BF62563C19EC93F0008175CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -443,6 +503,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = PipeDream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -500,6 +562,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		938A08101A1B40F7001E9C7A /* Build configuration list for PBXAggregateTarget "OCLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				938A08111A1B40F7001E9C7A /* Debug */,
+				938A08121A1B40F7001E9C7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		BF62561619EC93F0008175CC /* Build configuration list for PBXProject "PipeDream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
