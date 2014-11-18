@@ -14,6 +14,7 @@
 #import "PDLevelSelectionViewController.h"
 #import "PDMiniGameProtocol.h"
 #import "PDEndOfLevelViewController.h"
+#import "PDAudioManager.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
 
