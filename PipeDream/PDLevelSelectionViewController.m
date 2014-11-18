@@ -37,18 +37,20 @@ NSInteger NUM_BUTTONS_PER_ROW = 4;
 /* Sets the appearance of the level select buttons to match whether they should be unlocked.
  */
 - (void)updateLevelSelectButtonsEnabled {
-    UIColor *enabledBackgroundColor = [UIColor whiteColor];
-    UIColor *disabledBackgroundColor = [UIColor grayColor];
+    NSString *enabledButtonBackgroundImageName = @"levelButtonUnlocked";
+    NSString *disabledButtonBackgroundImageName = @"levelButtonLocked";
     
     NSInteger unlockedLevelNumber = [PDLevelSelectionViewController unlockedLevelNumber];
     for (UIButton *button in self.levelSelectButtons) {
         NSInteger buttonLevelNumber = button.tag;
         if (buttonLevelNumber <= unlockedLevelNumber) {
             [button setEnabled:YES];
-            [button setBackgroundColor:enabledBackgroundColor];
+            [button setBackgroundImage:[UIImage imageNamed:enabledButtonBackgroundImageName]
+                              forState:UIControlStateNormal];
         } else {
             [button setEnabled:NO];
-            [button setBackgroundColor:disabledBackgroundColor];
+            [button setBackgroundImage:[UIImage imageNamed:disabledButtonBackgroundImageName]
+                              forState:UIControlStateNormal];
         }
     }
 }
@@ -72,9 +74,10 @@ NSInteger NUM_BUTTONS_PER_ROW = 4;
     const NSInteger buttonHeight = 75;
     const NSInteger buttonXPadding = 30;
     const NSInteger buttonYPadding = 30;
-    const NSInteger numRows =NUM_LEVEL_BUTTONS / NUM_BUTTONS_PER_ROW;
+    const NSInteger numRows = NUM_LEVEL_BUTTONS / NUM_BUTTONS_PER_ROW;
     UIColor *buttonTitleColor = [UIColor blackColor];
-    UIColor *buttonBackgroundColor = [UIColor whiteColor];
+    UIColor *buttonBackgroundColor = [UIColor clearColor];
+    NSString *buttonBackgroundImageName = @"levelButtonUnlocked";
     
     float frameCenter = CGRectGetWidth(self.view.frame) / 2;
     float buttonRowWidth = NUM_BUTTONS_PER_ROW * buttonWidth + (NUM_BUTTONS_PER_ROW - 1) * buttonXPadding;
@@ -92,8 +95,11 @@ NSInteger NUM_BUTTONS_PER_ROW = 4;
             CGRect buttonFrame = CGRectMake(buttonRowXPos, buttonRowYPos, buttonWidth, buttonHeight);
             UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
             button.tag = levelNumber;
-            NSString *buttonTitle = [NSString stringWithFormat:@"%li", levelNumber];
+            NSString *buttonTitle = [NSString stringWithFormat:@"%li", (long)levelNumber];
             [button setBackgroundColor:buttonBackgroundColor];
+            [button setBackgroundImage:[UIImage imageNamed:buttonBackgroundImageName]
+                              forState:UIControlStateNormal];
+            [button setAdjustsImageWhenDisabled:NO];
             [button setTitleColor:buttonTitleColor forState:UIControlStateNormal];
             [button setTitle:buttonTitle forState:UIControlStateNormal];
             
