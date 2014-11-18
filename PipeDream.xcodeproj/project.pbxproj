@@ -10,9 +10,6 @@
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
-		AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */; };
-		AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB232621A1974CB00EEC23E /* SpriteKit.framework */; };
-		AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */; };
 		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
 		AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */; };
 		AF1B3DD01A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DCF1A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav */; };
@@ -22,6 +19,11 @@
 		AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */; };
 		AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */; };
 		AF412EEF1A19CA6B00C34102 /* PDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */; };
+		AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */; };
+		AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB232621A1974CB00EEC23E /* SpriteKit.framework */; };
+		AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */; };
+		BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */; };
+		BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
@@ -55,12 +57,6 @@
 		2994C49019F45C6F00A11183 /* PDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDQueue.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
-		AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortViewController.h; sourceTree = "<group>"; };
-		AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortViewController.m; sourceTree = "<group>"; };
-		AFB232621A1974CB00EEC23E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortScene.h; sourceTree = "<group>"; };
-		AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortScene.m; sourceTree = "<group>"; };
-		AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameSceneEndDelegate.h; sourceTree = "<group>"; };
 		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
 		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
 		AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 219068__annabloom__click2.wav; sourceTree = "<group>"; };
@@ -72,7 +68,15 @@
 		AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "583897_JBroadway---Over-Th.mp3"; sourceTree = "<group>"; };
 		AF412EED1A19CA6B00C34102 /* PDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDAudioManager.h; sourceTree = "<group>"; };
 		AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDAudioManager.m; sourceTree = "<group>"; };
+		AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortViewController.h; sourceTree = "<group>"; };
+		AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortViewController.m; sourceTree = "<group>"; };
+		AFB232621A1974CB00EEC23E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortScene.h; sourceTree = "<group>"; };
+		AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortScene.m; sourceTree = "<group>"; };
+		AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameSceneEndDelegate.h; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
+		BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "240777__f4ngy__dealing-card-shortened.wav"; sourceTree = "<group>"; };
+		BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "157790__soundcollectah__airpipe-swoosh-01-shortened.wav"; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF62561F19EC93F0008175CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 		AF1B3DCB1A19DE15002F62B6 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */,
+				BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */,
 				AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */,
 				AF1B3DCF1A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav */,
 				AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */,
@@ -195,8 +201,6 @@
 				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
 				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
 				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
-				BFF9430D1A0376CA009FF758 /* PDPasswordViewController.h */,
-				BFF9430E1A0376CA009FF758 /* PDPasswordViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
@@ -335,6 +339,7 @@
 				AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */,
 				93A3904119F0E44A00D93EB1 /* grids.txt in Resources */,
 				AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */,
+				BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */,
 				AF1B3DD61A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff in Resources */,
 				AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */,
 				BF6C66C31A08B821004C2D2E /* spams.txt in Resources */,
@@ -344,6 +349,7 @@
 				AF1B3DD01A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
+				BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

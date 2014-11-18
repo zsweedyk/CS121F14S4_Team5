@@ -123,10 +123,11 @@ static PDAudioManager *sharedAudioManager = nil;
  * Audio source:
  * https://www.freesound.org/people/f4ngy/sounds/240777/
  * This audio is liscenced under (CC BY 3.0)
+ * Modified by Flapjack Stack Hack (shortened)
  */
 - (void)initializeCellPressedPlayer
 {
-    NSString *fileName = @"240777__f4ngy__dealing-card";
+    NSString *fileName = @"240777__f4ngy__dealing-card-shortened";
     NSString *fileExtension = @"wav";
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
@@ -171,11 +172,12 @@ static PDAudioManager *sharedAudioManager = nil;
  * Audio source:
  * https://www.freesound.org/people/SoundCollectah/sounds/157790/
  * This audio is liscenced under (CC BY-NC 3.0)
+ * Modified by Flapjack Stack Hack (shortened)
  */
 - (void)initializeInfectionClearedPlayer
 {
-    NSString *fileName = @"157790__soundcollectah__airpipe-swoosh-01";
-    NSString *fileExtension = @"aiff";
+    NSString *fileName = @"157790__soundcollectah__airpipe-swoosh-01-shortened";
+    NSString *fileExtension = @"wav";
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
