@@ -24,6 +24,7 @@
 
 @implementation PDAudioManager
 static PDAudioManager *sharedAudioManager = nil;
+static dispatch_once_t sharedAudioManagerDispatchToken;
 /*
  
  Music (one looping song)
@@ -34,10 +35,10 @@ static PDAudioManager *sharedAudioManager = nil;
 
 + (PDAudioManager *)sharedInstance
 {
-    if (sharedAudioManager == nil) {
+    dispatch_once(&sharedAudioManagerDispatchToken, ^{
         sharedAudioManager = [[PDAudioManager alloc] init];
         sharedAudioManager.soundEffectsEnabled = YES;
-    }
+    });
     return sharedAudioManager;
 }
 
