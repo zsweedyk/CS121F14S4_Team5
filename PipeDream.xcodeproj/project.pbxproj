@@ -10,6 +10,18 @@
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
+		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
+		AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */; };
+		AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */; };
+		AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */; };
+		AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */; };
+		AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */; };
+		AF412EEF1A19CA6B00C34102 /* PDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */; };
+		AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */; };
+		AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB232621A1974CB00EEC23E /* SpriteKit.framework */; };
+		AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */; };
+		BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */; };
+		BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
@@ -22,7 +34,10 @@
 		BF62564C19EC957F008175CC /* PDGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62564B19EC957F008175CC /* PDGridModel.m */; };
 		BF62564F19EC9591008175CC /* PDCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62564E19EC9591008175CC /* PDCellModel.m */; };
 		BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62565119EC95A0008175CC /* PDGridGenerator.m */; };
+		BF6C66C31A08B821004C2D2E /* spams.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF6C66C11A08B821004C2D2E /* spams.txt */; };
 		BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */; };
+		BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */; };
+		BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF943111A038271009FF758 /* PDMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +55,24 @@
 		2994C49019F45C6F00A11183 /* PDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDQueue.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
+		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
+		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
+		AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 219068__annabloom__click2.wav; sourceTree = "<group>"; };
+		AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 84322__splashdust__flipcard.wav; sourceTree = "<group>"; };
+		AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "157609__qubodup__hollow-bang.wav"; sourceTree = "<group>"; };
+		AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "140511__blackstalian__click-sfx7.wav"; sourceTree = "<group>"; };
+		AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "583897_JBroadway---Over-Th.mp3"; sourceTree = "<group>"; };
+		AF412EED1A19CA6B00C34102 /* PDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDAudioManager.h; sourceTree = "<group>"; };
+		AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDAudioManager.m; sourceTree = "<group>"; };
+		AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortViewController.h; sourceTree = "<group>"; };
+		AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortViewController.m; sourceTree = "<group>"; };
+		AFB232621A1974CB00EEC23E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDBounceAndSortScene.h; sourceTree = "<group>"; };
+		AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDBounceAndSortScene.m; sourceTree = "<group>"; };
+		AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameSceneEndDelegate.h; sourceTree = "<group>"; };
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
+		BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "240777__f4ngy__dealing-card-shortened.wav"; sourceTree = "<group>"; };
+		BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "157790__soundcollectah__airpipe-swoosh-01-shortened.wav"; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF62561F19EC93F0008175CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,8 +97,14 @@
 		BF62564E19EC9591008175CC /* PDCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCellModel.m; sourceTree = "<group>"; };
 		BF62565019EC95A0008175CC /* PDGridGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDGridGenerator.h; sourceTree = "<group>"; };
 		BF62565119EC95A0008175CC /* PDGridGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDGridGenerator.m; sourceTree = "<group>"; };
+		BF6C66C11A08B821004C2D2E /* spams.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spams.txt; sourceTree = "<group>"; };
 		BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLevelSelectionViewController.h; sourceTree = "<group>"; };
 		BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLevelSelectionViewController.m; sourceTree = "<group>"; };
+		BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameProtocol.h; sourceTree = "<group>"; };
+		BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSpamViewController.h; sourceTree = "<group>"; };
+		BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSpamViewController.m; sourceTree = "<group>"; };
+		BFF943101A038271009FF758 /* PDMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDMenuViewController.h; sourceTree = "<group>"; };
+		BFF943111A038271009FF758 /* PDMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFB232631A1974CB00EEC23E /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,9 +126,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF1B3DCA1A19DDFC002F62B6 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B3DCC1A19DE1F002F62B6 /* Music */,
+				AF1B3DCB1A19DE15002F62B6 /* Sound Effects */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		AF1B3DCB1A19DE15002F62B6 /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */,
+				BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */,
+				AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */,
+				AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */,
+				AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */,
+				AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */,
+			);
+			name = "Sound Effects";
+			sourceTree = "<group>";
+		};
+		AF1B3DCC1A19DE1F002F62B6 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
 		BF62561219EC93F0008175CC = {
 			isa = PBXGroup;
 			children = (
+				AFB232621A1974CB00EEC23E /* SpriteKit.framework */,
 				BF62561D19EC93F0008175CC /* PipeDream */,
 				BF62563719EC93F0008175CC /* PipeDreamTests */,
 				BF62561C19EC93F0008175CC /* Products */,
@@ -108,12 +178,23 @@
 		BF62561D19EC93F0008175CC /* PipeDream */ = {
 			isa = PBXGroup;
 			children = (
+				AF1B3DCA1A19DDFC002F62B6 /* Sounds */,
 				BF62562219EC93F0008175CC /* PDAppDelegate.h */,
 				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
-				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
-				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
+				BFF943101A038271009FF758 /* PDMenuViewController.h */,
+				BFF943111A038271009FF758 /* PDMenuViewController.m */,
 				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
 				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
+				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
+				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
+				93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */,
+				93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */,
+				BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */,
+				BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */,
+				AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */,
+				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
+				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
+				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
@@ -127,13 +208,18 @@
 				BF53EF4019F0A63A004BA422 /* PDOpenings.h */,
 				93A3903E19F0DBB600D93EB1 /* PDOpenings.m */,
 				93A3904019F0E44A00D93EB1 /* grids.txt */,
+				BF6C66C11A08B821004C2D2E /* spams.txt */,
 				BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */,
+				AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */,
+				BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */,
 				BF62562819EC93F0008175CC /* Main.storyboard */,
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
 				BF62562D19EC93F0008175CC /* LaunchScreen.xib */,
 				BF62561E19EC93F0008175CC /* Supporting Files */,
 				2994C48F19F45C6F00A11183 /* PDQueue.h */,
 				2994C49019F45C6F00A11183 /* PDQueue.m */,
+				AF412EED1A19CA6B00C34102 /* PDAudioManager.h */,
+				AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */,
 			);
 			path = PipeDream;
 			sourceTree = "<group>";
@@ -244,10 +330,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */,
 				93A3904119F0E44A00D93EB1 /* grids.txt in Resources */,
+				AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */,
+				BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */,
+				AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */,
+				BF6C66C31A08B821004C2D2E /* spams.txt in Resources */,
+				AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */,
 				BF62562A19EC93F0008175CC /* Main.storyboard in Resources */,
+				AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
+				BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,16 +359,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */,
 				BF62564919EC9571008175CC /* PDCellView.m in Sources */,
 				2994C49119F45C6F00A11183 /* PDQueue.m in Sources */,
 				BF62564F19EC9591008175CC /* PDCellModel.m in Sources */,
+				BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */,
 				BF62564619EC955B008175CC /* PDGridView.m in Sources */,
 				93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */,
 				BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */,
 				BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */,
+				AF412EEF1A19CA6B00C34102 /* PDAudioManager.m in Sources */,
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
 				BF62562119EC93F0008175CC /* main.m in Sources */,
+				AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */,
+				BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */,
 				BF62564C19EC957F008175CC /* PDGridModel.m in Sources */,
+				AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */,
 				BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = PipeDream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -410,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = PipeDream/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

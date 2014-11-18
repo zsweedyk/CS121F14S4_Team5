@@ -13,10 +13,13 @@
 @interface PDLevelViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet PDGridView *gridView;
-@property (nonatomic) NSInteger levelToPlay;
+@property (nonatomic) NSInteger levelNumber;
+@property (nonatomic) BOOL shouldDismissSelf;
 
-- (void) startLevelNumber:(NSInteger)levelNumber;
-- (void) cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
+- (void)cellPressedAtRow:(NSInteger)row col:(NSInteger)col;
+- (void)completeMiniGameWithSuccess:(BOOL)success;
+- (IBAction)returnToLevelSelectButtonPressed:(id)sender;
+- (IBAction)restartLevelButtonPressed:(id)sender;
+- (void)startNextLevel;
 
 @end
-

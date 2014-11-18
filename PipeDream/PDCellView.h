@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PDCellPressedDelegate.h"
+#import "PDCellModel.h"
 
 @interface PDCellView : UIButton
 
@@ -15,9 +16,7 @@
 @property (nonatomic) int row;
 @property (nonatomic) int col;
 
-- (void) rotateClockwise;
-- (void) setCellIsOpenNorth:(BOOL)north south:(BOOL)south east:(BOOL)east west:(BOOL)west;
-- (void) setStart:(BOOL)start;
-- (void) setGoal:(BOOL)goal;
+- (void)rotateClockwise;
+- (void)setCell:(PDCellModel *)model;
 
 @end
