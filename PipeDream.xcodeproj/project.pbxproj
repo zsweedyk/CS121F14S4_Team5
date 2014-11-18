@@ -12,10 +12,8 @@
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
 		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
 		AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */; };
-		AF1B3DD01A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DCF1A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav */; };
 		AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */; };
 		AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */; };
-		AF1B3DD61A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD51A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff */; };
 		AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */; };
 		AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */; };
 		AF412EEF1A19CA6B00C34102 /* PDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */; };
@@ -60,10 +58,8 @@
 		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
 		93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDEndOfLevelViewController.m; sourceTree = "<group>"; };
 		AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 219068__annabloom__click2.wav; sourceTree = "<group>"; };
-		AF1B3DCF1A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "240777__f4ngy__dealing-card.wav"; sourceTree = "<group>"; };
 		AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 84322__splashdust__flipcard.wav; sourceTree = "<group>"; };
 		AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "157609__qubodup__hollow-bang.wav"; sourceTree = "<group>"; };
-		AF1B3DD51A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "157790__soundcollectah__airpipe-swoosh-01.aiff"; sourceTree = "<group>"; };
 		AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "140511__blackstalian__click-sfx7.wav"; sourceTree = "<group>"; };
 		AF1B3DD91A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "583897_JBroadway---Over-Th.mp3"; sourceTree = "<group>"; };
 		AF412EED1A19CA6B00C34102 /* PDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDAudioManager.h; sourceTree = "<group>"; };
@@ -145,10 +141,8 @@
 				BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */,
 				BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */,
 				AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */,
-				AF1B3DCF1A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav */,
 				AF1B3DCD1A19DE30002F62B6 /* 219068__annabloom__click2.wav */,
 				AF1B3DD31A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav */,
-				AF1B3DD51A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff */,
 				AF1B3DD71A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav */,
 			);
 			name = "Sound Effects";
@@ -340,13 +334,11 @@
 				93A3904119F0E44A00D93EB1 /* grids.txt in Resources */,
 				AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */,
 				BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */,
-				AF1B3DD61A1B0DA7002F62B6 /* 157790__soundcollectah__airpipe-swoosh-01.aiff in Resources */,
 				AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */,
 				BF6C66C31A08B821004C2D2E /* spams.txt in Resources */,
 				AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */,
 				BF62562A19EC93F0008175CC /* Main.storyboard in Resources */,
 				AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */,
-				AF1B3DD01A1B0C21002F62B6 /* 240777__f4ngy__dealing-card.wav in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
 				BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */,
