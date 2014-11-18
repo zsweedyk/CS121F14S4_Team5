@@ -125,6 +125,17 @@ NSInteger NUM_BUTTONS_PER_ROW = 4;
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
+-(void)toggleMusicButtonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
+    [[PDAudioManager sharedInstance] toggleMusic];
+}
+
+-(void)toggleSoundEffectsButtonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] toggleSoundEffects];
+    // We play the sound after toggling to avoid playing when the user wants to disable sounds.
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

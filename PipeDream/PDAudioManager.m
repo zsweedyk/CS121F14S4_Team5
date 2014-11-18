@@ -19,6 +19,7 @@
 @property AVAudioPlayer *infectionClearedPlayer;
 @property AVAudioPlayer *levelCompletePlayer;
 @property AVAudioPlayer *backgroundMusicPlayer;
+@property (nonatomic) BOOL soundEffectsEnabled;
 @end
 
 @implementation PDAudioManager
@@ -35,55 +36,56 @@ static PDAudioManager *sharedAudioManager = nil;
 {
     if (sharedAudioManager == nil) {
         sharedAudioManager = [[PDAudioManager alloc] init];
+        sharedAudioManager.soundEffectsEnabled = YES;
     }
     return sharedAudioManager;
 }
 
 - (void)playMenuButtonPressed
 {
-    if (self.menuButtonPressedPlayer) {
+    if (self.menuButtonPressedPlayer && self.soundEffectsEnabled) {
         [self.menuButtonPressedPlayer play];
     }
 }
 
 - (void)playCellPressed
 {
-    if (self.cellPressedPlayer) {
+    if (self.cellPressedPlayer && self.soundEffectsEnabled) {
         [self.cellPressedPlayer play];
     }
 }
 
 - (void)playInfectedCellPressed
 {
-    if (self.infectedCellPressedPlayer) {
+    if (self.infectedCellPressedPlayer && self.soundEffectsEnabled) {
         [self.infectedCellPressedPlayer play];
     }
 }
 
 - (void)playCellMadeVisible
 {
-    if (self.cellMadeVisiblePlayer) {
+    if (self.cellMadeVisiblePlayer && self.soundEffectsEnabled) {
         [self.cellMadeVisiblePlayer play];
     }
 }
 
 - (void)playInfectionSpread
 {
-    if (self.infectionSpreadPlayer) {
+    if (self.infectionSpreadPlayer && self.soundEffectsEnabled) {
         [self.infectionSpreadPlayer play];
     }
 }
 
 - (void)playInfectionCleared
 {
-    if (self.infectionClearedPlayer) {
+    if (self.infectionClearedPlayer && self.soundEffectsEnabled) {
         [self.infectionClearedPlayer play];
     }
 }
 
 - (void)playLevelComplete
 {
-    if (self.levelCompletePlayer) {
+    if (self.levelCompletePlayer && self.soundEffectsEnabled) {
         [self.levelCompletePlayer play];
     }
 }
@@ -92,6 +94,13 @@ static PDAudioManager *sharedAudioManager = nil;
 {
     if (self.backgroundMusicPlayer) {
         [self.backgroundMusicPlayer play];
+    }
+}
+
+- (void)stopBackgroundMusic
+{
+    if (self.backgroundMusicPlayer) {
+        [self.backgroundMusicPlayer stop];
     }
 }
 
@@ -240,6 +249,22 @@ static PDAudioManager *sharedAudioManager = nil;
     NSError *error = nil;
     self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.backgroundMusicPlayer.numberOfLoops = -1;
+}
+
+// This method toggles whether or not the background music is playing.
+- (void)toggleMusic
+{
+    if (self.backgroundMusicPlayer.isPlaying) {
+        [self stopBackgroundMusic];
+    } else {
+        [self startBackgroundMusic];
+    }
+}
+
+// This method toggles whether or not sound effects will actually be played.
+- (void)toggleSoundEffects
+{
+    self.soundEffectsEnabled = !self.soundEffectsEnabled;
 }
 
 @end

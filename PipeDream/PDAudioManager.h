@@ -21,4 +21,7 @@
 - (void)playLevelComplete;
 - (void)startBackgroundMusic;
 
+- (void)toggleMusic;
+- (void)toggleSoundEffects;
+
 @end

@@ -13,5 +13,7 @@
 - (void)updateLevelSelectButtonsEnabled;
 + (void)unlockLevelNumber:(NSInteger)levelNumber;
 - (IBAction)levelButtonPressed:(id)sender;
+- (IBAction)toggleMusicButtonPressed:(id)sender;
+- (IBAction)toggleSoundEffectsButtonPressed:(id)sender;
 
 @end
