@@ -7,6 +7,7 @@
 //
 
 #import "PDMenuViewController.h"
+#import "PDAudioManager.h"
 
 @interface PDMenuViewController ()
 
@@ -18,12 +19,14 @@
     [super viewDidLoad];
     
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    [[PDAudioManager sharedInstance] startBackgroundMusic];
 }
 
 #pragma mark Public methods
 
 - (IBAction)levelSelectButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"MenuToLevelSelect" sender:self];
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
 - (IBAction)creditSelectButtonPressed:(id)sender {

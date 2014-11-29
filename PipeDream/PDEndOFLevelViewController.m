@@ -9,6 +9,7 @@
 #import "PDEndOfLevelViewController.h"
 #import "PDLevelViewController.h"
 #import "PDGridGenerator.h"
+#import "PDAudioManager.h"
 
 @interface PDEndOfLevelViewController ()
 
@@ -32,11 +33,12 @@
 /* Dismisses the level completion box and does nothing else. */
 - (void)cancelButtonPressed {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
 /* Dismisses the level completion box and segues to the next level. */
 - (void)nextLevelButtonPressed {
-    
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     // Segue to next level if there are more levels
     PDLevelViewController *levelViewController =
         (PDLevelViewController *) self.presentingViewController;
