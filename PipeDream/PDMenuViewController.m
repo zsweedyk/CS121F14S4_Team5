@@ -26,6 +26,10 @@
     [self performSegueWithIdentifier:@"MenuToLevelSelect" sender:self];
 }
 
+- (IBAction)creditSelectButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"MenuToCredits" sender:self];
+}
+
 #pragma mark Private methods
 
 @end
