@@ -38,6 +38,7 @@ static NSString *PID_IMAGE_NAME = @"levelButtonUnlocked";
 // Collision categories
 static const uint32_t GOOD_MONSTER_CATEGORY = 0x1 << 0;
 static const uint32_t BAD_MONSTER_CATEGORY = 0x1 << 1;
+static const uint32_t BULLET_CATEGORY = 0x1 << 2;
 
 // Layout parameters
 // Turrets
@@ -71,6 +72,8 @@ static const float ALPHA_BACKGROUND = 1.0;
         [self createTurrets];
         [self createPID];
         [self startGame];
+
+        self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
     }
     return self;
@@ -88,7 +91,7 @@ static const float ALPHA_BACKGROUND = 1.0;
         self.gameStartTime = currentTime;
     }
     
-    if (currentTime - self.gameStartTime > TOTAL_GAME_LENGTH) {
+    if (currentTime - self.gameStartTime > TOTAL_GAME_LENGTH || self.lives == 0) {
         [self endGame];
     }
     
@@ -131,7 +134,8 @@ static const float ALPHA_BACKGROUND = 1.0;
     
     // Create sprite
     int monsterID = arc4random() % NUM_MONSTER_IMAGE_NAMES;
-    SKSpriteNode *monster = [SKSpriteNode spriteNodeWithImageNamed:MONSTER_IMAGE_NAMES[monsterID]];
+    NSString *monsterType = MONSTER_IMAGE_NAMES[monsterID];
+    SKSpriteNode *monster = [SKSpriteNode spriteNodeWithImageNamed:monsterType];
     monster.xScale = MONSTER_SIZE_FACTOR;
     monster.yScale = MONSTER_SIZE_FACTOR;
     
@@ -150,6 +154,17 @@ static const float ALPHA_BACKGROUND = 1.0;
     int maxDuration = 5.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    
+    // Set up physics body of monster
+    monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
+    monster.physicsBody.dynamic = YES;
+    // Placeholder logic for good or bad monster category
+    if ([monsterType isEqualToString:@"NESW"])
+        monster.physicsBody.categoryBitMask = GOOD_MONSTER_CATEGORY;
+    else
+        monster.physicsBody.categoryBitMask = BAD_MONSTER_CATEGORY;
+    monster.physicsBody.contactTestBitMask = BULLET_CATEGORY;
+    monster.physicsBody.collisionBitMask = 0;
     
     // Create the actions
     SKAction *actionMove = [SKAction moveTo: CGPointMake(actualX, 0) duration: actualDuration];
@@ -183,11 +198,47 @@ static const float ALPHA_BACKGROUND = 1.0;
     CGPoint destination = CGPointMake(turretTouched.position.x,
                                       self.frame.size.height + bullet.size.height / 2);
     
+    // Set up physics body of bullet
+    bullet.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bullet.size];
+    bullet.physicsBody.dynamic = YES;
+    bullet.physicsBody.categoryBitMask = BULLET_CATEGORY;
+    bullet.physicsBody.contactTestBitMask = GOOD_MONSTER_CATEGORY | BAD_MONSTER_CATEGORY;
+    bullet.physicsBody.collisionBitMask = 0;
+    bullet.physicsBody.usesPreciseCollisionDetection = YES;
+    
     // Create the actions
     float duration = 1.0;
     SKAction *actionMove = [SKAction moveTo:destination duration:duration];
     SKAction *actionMoveDone = [SKAction removeFromParent];
     [bullet runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+}
+
+- (void)bullet:(SKSpriteNode *)bullet didCollideWithMonster:(SKSpriteNode *)monster {
+    NSLog([NSString stringWithFormat:@"Hit. Lives left: %d", self.lives]);
+    [bullet removeFromParent];
+    [monster removeFromParent];
+}
+
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    if ((firstBody.categoryBitMask & GOOD_MONSTER_CATEGORY) != 0 &&
+        (secondBody.categoryBitMask & BULLET_CATEGORY) != 0) {
+        self.lives--;
+    }
+    
+    [self bullet:(SKSpriteNode *)secondBody.node
+          didCollideWithMonster:(SKSpriteNode *)firstBody.node];
 }
 
 /* Initialize in-game variables
