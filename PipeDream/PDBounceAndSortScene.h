@@ -10,6 +10,7 @@
 #import "PDMiniGameSceneEndDelegate.h"
 
 @interface PDBounceAndSortScene : SKScene<SKPhysicsContactDelegate>
+
 @property (nonatomic, weak) id<PDMiniGameSceneEndDelegate> endDelegate;
 
 @end

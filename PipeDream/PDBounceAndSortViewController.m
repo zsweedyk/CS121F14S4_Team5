@@ -13,7 +13,7 @@
 #import "PDMiniGameSceneEndDelegate.h"
 #import "PDAudioManager.h"
 
-@interface PDBounceAndSortViewController () <PDMiniGameProtocol, PDMiniGameSceneEndDelegate,UIAlertViewDelegate>
+@interface PDBounceAndSortViewController () <PDMiniGameProtocol, PDMiniGameSceneEndDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UIViewController *presentingController;
 @property (nonatomic) BOOL completedSuccessfully;
 @end

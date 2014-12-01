@@ -10,6 +10,8 @@
 #import "PDMiniGameSceneEndDelegate.h"
 #import <Foundation/Foundation.h>
 
-@interface PDPIDdingMonstersScene : NSObject
+@interface PDPIDdingMonstersScene : SKScene<SKPhysicsContactDelegate>
+
+@property (nonatomic, weak) id<PDMiniGameSceneEndDelegate> endDelegate;
 
 @end
