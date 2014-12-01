@@ -159,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPl-ef-yhl" customClass="SKView">
-                                <rect key="frame" x="126" y="157" width="516" height="712"/>
+                                <rect key="frame" x="151" y="157" width="466" height="712"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Lkx-AJ-fyP">

@@ -210,7 +210,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically before each frame is rendered.
  */
--(void)update:(CFTimeInterval)currentTime
+- (void)update:(CFTimeInterval)currentTime
 {
     if (self.numBalls < MAX_NUM_BALLS && (currentTime - self.lastBallRelease) >= MIN_TIME_BETWEEN_BALL_RELEASES) {
         [self createBall];
