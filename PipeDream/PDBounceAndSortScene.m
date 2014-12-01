@@ -31,13 +31,13 @@ static const int SUCCESSFUL_BUCKET_SCORE_INCREASE = 100;
 static const int UNSUCCESSFUL_BUCKET_SCORE_DECREASE = -50;
 
 // Sprite image names.
-static NSString* GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESW"};
+static NSString *GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESW"};
 static const int NUM_GOOD_BALL_SPRITE_IMAGE_NAMES = 1;
-static NSString* BAD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESWi"};
+static NSString *BAD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESWi"};
 static const int NUM_BAD_BALL_SPRITE_IMAGE_NAMES = 1;
-static NSString* GOOD_BLOCK_SPRITE_IMAGE_NAME = @"goodBucket";
-static NSString* BAD_BLOCK_SPRITE_IMAGE_NAME = @"badBucket";
-static NSString* BAR_SPRITE_IMAGE_NAME = @"bar";
+static NSString *GOOD_BLOCK_SPRITE_IMAGE_NAME = @"goodBucket";
+static NSString *BAD_BLOCK_SPRITE_IMAGE_NAME = @"badBucket";
+static NSString *BAR_SPRITE_IMAGE_NAME = @"bar";
 
 // Collision categories.
 static const uint32_t GOOD_BALL_CATEGORY  = 0x1 << 0;
@@ -77,7 +77,7 @@ static const float GOOD_BUCKET_X_POSITION_FACTOR = - 1.0 / 8.0;
 static const float GOOD_BUCKET_Y_POSITION_FACTOR = 0;
 // Bar.
 static const float BAR_X_SCALE = 0.8;
-static const float BAR_Y_SCLAE = 0.4;
+static const float BAR_Y_SCALE = 0.4;
 static const float MAX_BAR_ROTATE = M_PI / 2.0;
 static const float BAR_Y_POSITION_FACTOR = 1.0 / 5.0;
 // Ball.
@@ -111,7 +111,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 
 #pragma public methods
 
--(id)initWithSize:(CGSize)size
+- (id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor colorWithRed:RED_BACKGROUND green:GREEN_BACKGROUND blue:BLUE_BACKGROUND alpha:ALPHA_BACKGROUND];
@@ -289,7 +289,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     bar.physicsBody = [self createBarBody:bar.frame.size];
     bar.name = BAR_CATEGORY_NAME;
     bar.xScale = BAR_X_SCALE;
-    bar.yScale = BAR_Y_SCLAE;
+    bar.yScale = BAR_Y_SCALE;
     [self addChild:bar];
 }
 
