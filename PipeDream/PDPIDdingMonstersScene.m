@@ -7,6 +7,7 @@
 //
 
 #import "PDPIDdingMonstersScene.h"
+#import "PDPIDScenario.h"
 
 @interface PDPIDdingMonstersScene()
 
@@ -15,9 +16,11 @@
 @property (nonatomic) CFTimeInterval lastMonsterRelease;
 @property (nonatomic) BOOL hasGameStartBeenRecorded;
 @property (nonatomic) CFTimeInterval gameStartTime;
-@property (nonatomic, strong) UILabel* timerLabel;
-@property (nonatomic, strong) UILabel* livesLabel;
+@property (nonatomic, strong) SKLabelNode* timerLabel;
+@property (nonatomic, strong) SKLabelNode* livesLabel;
+@property (nonatomic, strong) SKLabelNode* pidLabel;
 @property (nonatomic) NSMutableArray *turrets;
+@property (nonatomic) PDPIDScenario *scenario;
 
 @end
 
@@ -30,10 +33,13 @@ static const CFTimeInterval TOTAL_GAME_LENGTH = 20;
 
 // Sprite image names - most of these are to be changed
 static NSString *TURRET_IMAGE_NAME = @"NxSx";
-static NSString *MONSTER_IMAGE_NAMES[] = {@"NESW", @"NESWi"};
 static const int NUM_MONSTER_IMAGE_NAMES = 2;
 static NSString *BULLET_IMAGE_NAME = @"goal";
 static NSString *PID_IMAGE_NAME = @"levelButtonUnlocked";
+// Monsters
+static NSString *RED_MONSTER = @"NESWi";
+static NSString *GREEN_MONSTER = @"NESW";
+static NSString *MONSTER_IMAGE_NAMES[] = {@"NESW", @"NESWi"};
 
 // Collision categories
 static const uint32_t GOOD_MONSTER_CATEGORY = 0x1 << 0;
@@ -57,17 +63,16 @@ static const CGFloat PID_HEIGHT_FACTOR = 0.1;
 static NSString *LABEL_FONT_NAME = @"Heiti SC";
 static const int LABEL_FONT_SIZE = 30;
 // Score label
-static const float LIVES_LABEL_X_POSITION_FACTOR = 0.75;
-static const float LIVES_LABEL_Y_POSITION_FACTOR = 0.05;
-static const float LIVES_LABEL_WIDTH_FACTOR = 0.3;
-static const float LIVES_LABEL_HEIGHT_FACTOR = 0.05;
+static const float LIVES_LABEL_X_POSITION_FACTOR = 0.8;
+static const float LIVES_LABEL_Y_POSITION_FACTOR = 0.9;
 static NSString *LIVES_LABEL_FORMAT_STRING = @"Lives: %d";
 // Timer label
-static const float TIMER_LABEL_X_POSITION_FACTOR = 0.03;
-static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.05;
-static const float TIMER_LABEL_WIDTH_FACTOR = 0.3;
-static const float TIMER_LABEL_HEIGHT_FACTOR = 0.05;
+static const float TIMER_LABEL_X_POSITION_FACTOR = 0.2;
+static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.9;
 static NSString *TIMER_LABEL_FORMAT_STRING = @"Time: %d";
+// PID label
+static const float PID_LABEL_X_POSITION_FACTOR = 0.5;
+static const float PID_LABEL_Y_POSITION_FACTOR = 0.08;
 
 // Background
 static const float RED_BACKGROUND = 0.5;
@@ -82,8 +87,11 @@ static const float ALPHA_BACKGROUND = 1.0;
         
         self.backgroundColor = [SKColor colorWithRed:RED_BACKGROUND green:GREEN_BACKGROUND
                                                 blue:BLUE_BACKGROUND alpha:ALPHA_BACKGROUND];
+
+        [self chooseScenario];
         [self createTurrets];
         [self createPID];
+        [self createLabels];
         [self startGame];
 
         self.physicsWorld.gravity = CGVectorMake(0,0);
@@ -120,25 +128,52 @@ static const float ALPHA_BACKGROUND = 1.0;
 
 #pragma private methods
 
-- (void)didMoveToView:(SKView *)view {
+- (void)createLabels {
     
     // Timer label
-    self.timerLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_X_POSITION_FACTOR,
-        self.frame.size.height * TIMER_LABEL_Y_POSITION_FACTOR,
-        self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR,
-        self.frame.size.height * TIMER_LABEL_HEIGHT_FACTOR)];
-    self.timerLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
-    [view addSubview:self.timerLabel];
+    self.timerLabel = [SKLabelNode labelNodeWithFontNamed:LABEL_FONT_NAME];
+    self.timerLabel.fontSize = LABEL_FONT_SIZE;
+    self.timerLabel.position = CGPointMake(self.frame.size.width * TIMER_LABEL_X_POSITION_FACTOR,
+                                         self.frame.size.height * TIMER_LABEL_Y_POSITION_FACTOR);
+    [self addChild:self.timerLabel];
     
     // Lives label
-    self.livesLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(self.frame.size.width * LIVES_LABEL_X_POSITION_FACTOR,
-        self.frame.size.height * LIVES_LABEL_Y_POSITION_FACTOR,
-        self.frame.size.width * LIVES_LABEL_WIDTH_FACTOR,
-        self.frame.size.height * LIVES_LABEL_HEIGHT_FACTOR)];
-    self.livesLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
-    [view addSubview:self.livesLabel];
+    self.livesLabel = [SKLabelNode labelNodeWithFontNamed:LABEL_FONT_NAME];
+    self.livesLabel.fontSize = LABEL_FONT_SIZE;
+    self.livesLabel.position = CGPointMake(self.frame.size.width * LIVES_LABEL_X_POSITION_FACTOR,
+                                         self.frame.size.height * LIVES_LABEL_Y_POSITION_FACTOR);
+    [self addChild:self.livesLabel];
+    
+    // PID label
+    self.pidLabel = [SKLabelNode labelNodeWithFontNamed:LABEL_FONT_NAME];
+    self.pidLabel.fontSize = LABEL_FONT_SIZE;
+    self.pidLabel.fontColor = [SKColor whiteColor];
+    self.pidLabel.text = self.scenario.personalIdentifier;
+    self.pidLabel.position = CGPointMake(self.frame.size.width * PID_LABEL_X_POSITION_FACTOR,
+                                         self.frame.size.height * PID_LABEL_Y_POSITION_FACTOR);
+    [self addChild:self.pidLabel];
+
+}
+
+- (void)chooseScenario {
+    NSMutableArray *scenarios = [[NSMutableArray alloc] init];
+    
+    // Scenario: shoot the reds
+    NSString *redString = @"Shoot the reds";
+    NSArray *redMonsters = [NSArray arrayWithObjects: GREEN_MONSTER, nil];
+    PDPIDScenario *red = [[PDPIDScenario alloc] init];
+    [red initWithPID:redString andOkMonsters:redMonsters];
+    [scenarios addObject:red];
+    
+    // Scenario: shoot the greens
+    NSString *greenString = @"Shoot the greens";
+    NSArray *greenMonsters = [NSArray arrayWithObjects: RED_MONSTER, nil];
+    PDPIDScenario *green = [[PDPIDScenario alloc] init];
+    [green initWithPID:greenString andOkMonsters:greenMonsters];
+    [scenarios addObject:green];
+    
+    int scenarioIndex = arc4random() % [scenarios count];
+    self.scenario = [scenarios objectAtIndex:scenarioIndex];
 }
 
 - (void)createTurrets {
