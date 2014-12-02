@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #include <AudioToolbox/AudioToolbox.h>
 
+
+
 @interface PDAudioManager ()
 @property AVAudioPlayer *menuButtonPressedPlayer;
 @property AVAudioPlayer *cellPressedPlayer;
@@ -23,6 +25,19 @@
 @end
 
 @implementation PDAudioManager
+
+NSString* MENU_BUTTON_PRESSED_SOUND = @"219068__annabloom__click2";
+NSString* CELL_PRESSED_SOUND  = @"240777__f4ngy__dealing-card-shortened";
+NSString* INFECTED_CELL_PRESSED_SOUND = @"219068__annabloom__click2";
+NSString* CELL_MADE_VISIBLE_SOUND = @"84322__splashdust__flipcard";
+NSString* INFECTION_SPREAD_SOUND = @"157609__qubodup__hollow-bang";
+NSString* INFECTION_CLEARED_SOUND = @"157790__soundcollectah__airpipe-swoosh-01-shortened";
+NSString* LEVEL_COMPLETE_SOUND = @"140511__blackstalian__click-sfx7";
+NSString* BACKGROUND_MUSIC = @"583897_JBroadway---Over-Th";
+NSString* WAV_EXTENSION = @"wav";
+NSString* MP3_EXTENSION = @"mp3";
+
+
 static PDAudioManager *sharedAudioManager = nil;
 static dispatch_once_t sharedAudioManagerDispatchToken;
 /*
@@ -129,8 +144,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeMenuButtonPressedPlayer
 {
-    NSString *fileName = @"219068__annabloom__click2";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = MENU_BUTTON_PRESSED_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -146,8 +161,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeCellPressedPlayer
 {
-    NSString *fileName = @"240777__f4ngy__dealing-card-shortened";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = CELL_PRESSED_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -162,8 +177,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeInfectedCellPressedPlayer
 {
-    NSString *fileName = @"219068__annabloom__click2";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = INFECTED_CELL_PRESSED_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -178,8 +193,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeCellMadeVisiblePlayer
 {
-    NSString *fileName = @"84322__splashdust__flipcard";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = CELL_MADE_VISIBLE_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -194,8 +209,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeInfectionSpreadPlayer
 {
-    NSString *fileName = @"157609__qubodup__hollow-bang";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = INFECTION_SPREAD_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -211,8 +226,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeInfectionClearedPlayer
 {
-    NSString *fileName = @"157790__soundcollectah__airpipe-swoosh-01-shortened";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = INFECTION_CLEARED_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -227,8 +242,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeLevelCompletePlayer
 {
-    NSString *fileName = @"140511__blackstalian__click-sfx7";
-    NSString *fileExtension = @"wav";
+    NSString *fileName = LEVEL_COMPLETE_SOUND;
+    NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
@@ -243,8 +258,8 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeBackgroundMusicPlayer
 {
-    NSString *fileName = @"583897_JBroadway---Over-Th";
-    NSString *fileExtension = @"mp3";
+    NSString *fileName = BACKGROUND_MUSIC;
+    NSString *fileExtension = MP3_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
