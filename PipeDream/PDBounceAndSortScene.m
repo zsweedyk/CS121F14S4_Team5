@@ -7,6 +7,7 @@
 //
 
 #import "PDBounceAndSortScene.h"
+#import "PDAudioManager.h"
 
 @interface PDBounceAndSortScene()
 
@@ -203,8 +204,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
             }
             
             if (matchesBlock) {
+                [[PDAudioManager sharedInstance] playSortCorrect];
                 self.score += SUCCESSFUL_BUCKET_SCORE_INCREASE;
             } else {
+                [[PDAudioManager sharedInstance] playSortIncorrect];
                 self.score += UNSUCCESSFUL_BUCKET_SCORE_DECREASE;
             }
             
