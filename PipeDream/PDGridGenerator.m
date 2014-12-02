@@ -16,9 +16,9 @@
  * Output: An array of rows of CellModels corresponding to that level */
 + (NSMutableArray *)generateGridForLevelNumber:(NSInteger)levelNumber {
     // Check for valid levelNumber
-    if (!levelNumber) {
+    if (levelNumber < 0) {
         [[NSException exceptionWithName:@"InvalidLevelNumberException"
-                                 reason:@"Level Number is nil."
+                                 reason:@"Level Number is negative."
           userInfo:nil] raise ];
     }
     NSString *readString = [PDGridGenerator readFromFile];

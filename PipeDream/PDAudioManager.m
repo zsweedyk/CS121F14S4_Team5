@@ -148,6 +148,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.menuButtonPressedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.menuButtonPressedPlayer.numberOfLoops = 0;
@@ -165,6 +171,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.cellPressedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.cellPressedPlayer.numberOfLoops = 0;
@@ -181,6 +193,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.infectedCellPressedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.infectedCellPressedPlayer.numberOfLoops = 0;
@@ -197,6 +215,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.cellMadeVisiblePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.cellMadeVisiblePlayer.numberOfLoops = 0;
@@ -213,6 +237,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.infectionSpreadPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.infectionSpreadPlayer.numberOfLoops = 0;
@@ -230,6 +260,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.infectionClearedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.infectionClearedPlayer.numberOfLoops = 0;
@@ -246,6 +282,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = WAV_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.levelCompletePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.levelCompletePlayer.numberOfLoops = 0;
@@ -262,6 +304,12 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSString *fileExtension = MP3_EXTENSION;
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // Check for valid url
+    if (!url) {
+        [[NSException exceptionWithName:@"Invalid URL"
+                                 reason: @"URL is nil" userInfo:nil] raise ];
+    }
     NSError *error = nil;
     self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.backgroundMusicPlayer.numberOfLoops = -1;

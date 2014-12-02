@@ -331,4 +331,99 @@ NSString *TEST_INFECTED = @"4 4 3 0 0 3 0 NExx* NxSx xESx xxSW xxSW NESx xESW xE
                    infection is also cleared.");
 }
 
+/*
+ * Tests that methods in Grid Generator that check for valid input and will throw an exception if
+ * they are nil.
+ */
+-(void)testValidInputGridGenerator {
+    XCTAssertThrowsSpecificNamed([PDGridGenerator generateGridForLevelNumber:-5],
+                                 NSException, @"InvalidLevelNumberException");
+    XCTAssertThrowsSpecificNamed([PDGridGenerator generateGridFromString: nil],
+                                 NSException, @"InvalidLevelStringException");
+    XCTAssertThrowsSpecificNamed([PDGridGenerator getLineFromString:nil forLevel:0],
+                                 NSException, @"InvalidAllGridsException");
+    XCTAssertThrowsSpecificNamed([PDGridGenerator parseLine:nil],
+                                 NSException, @"InvalidGridLineException");
+    
+    
+    
+}
+
+/*
+ * Tests that mehtods in Grid Model thata call row/col throw an exception if a negative row/col is
+ * used.
+ */
+-(void)testValidInputGridModel {
+    NSMutableArray *cells = [PDGridGenerator generateGridFromString:TEST_GRID_ENCODING];
+    PDGridModel *model = [[PDGridModel alloc] initWithGrid:cells];
+
+    XCTAssertThrowsSpecificNamed([model initWithLevelNumber:-5],
+                                 NSException, @"NegativeLevelNumberException");
+    XCTAssertThrowsSpecificNamed([model initWithGrid:nil],
+                                 NSException, @"InvalidGridException");
+    
+    XCTAssertThrowsSpecificNamed([model rotateClockwiseCellAtRow:-5 col:1],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model rotateClockwiseCellAtRow:1 col:-3],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model rotateClockwiseCellAtRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    
+    XCTAssertThrowsSpecificNamed([model clearInfectionFromRow:-5 col:1],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model clearInfectionFromRow:1 col:-2],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model clearInfectionFromRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    
+    XCTAssertThrowsSpecificNamed([model isInfectedAtRow:-5 col:1],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isInfectedAtRow:1 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isInfectedAtRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    
+    XCTAssertThrowsSpecificNamed([model isVisibleAtRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isVisibleAtRow:1 col:-2 ],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isVisibleAtRow:-1 col:2],
+                                 NSException, @"NegativeCellLocation");
+    
+    XCTAssertThrowsSpecificNamed([model isConnectedFromRow:-5 col:2 toRow:2 col:2],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isConnectedFromRow:2 col:3 toRow:-5 col:2],
+                                 NSException, @"NegativeCellLocation");
+    
+    
+    XCTAssertThrowsSpecificNamed([model openingsAtRow:1 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model openingsAtRow:-1 col:2],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model openingsAtRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+
+    XCTAssertThrowsSpecificNamed([model isStartAtRow:1 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isStartAtRow:-1 col:2],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isStartAtRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    
+    XCTAssertThrowsSpecificNamed([model isGoalAtRow:1 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isGoalAtRow:-1 col:2],
+                                 NSException, @"NegativeCellLocation");
+    XCTAssertThrowsSpecificNamed([model isGoalAtRow:-5 col:-5],
+                                 NSException, @"NegativeCellLocation");
+    
+    XCTAssertThrowsSpecificNamed([model getCellAtRow:1 col:-5],
+                                 NSException, @"InvalidColException");
+    XCTAssertThrowsSpecificNamed([model getCellAtRow:-1 col:2],
+                                 NSException, @"InvalidRowException");
+    XCTAssertThrowsSpecificNamed([model getCellAtRow:-5 col:-5],
+                                 NSException, @"InvalidRowException");
+    
+}
+
 @end

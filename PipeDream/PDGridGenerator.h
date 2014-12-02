@@ -14,6 +14,12 @@
 
 + (NSMutableArray *)generateGridForLevelNumber:(NSInteger)levelNumber;
 + (NSMutableArray *)generateGridFromString:(NSString*)string;
+
+// Private methods in header file for testing
++ (NSString *)getLineFromString:(NSString *)allGrids forLevel:(NSInteger)levelNumber;
++ (NSMutableArray *)parseLine:(NSString *)gridLine;
+
+// Getter
 + (NSInteger) numberOfLevels;
 
 @end
