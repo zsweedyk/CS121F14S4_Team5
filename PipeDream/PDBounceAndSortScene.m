@@ -128,7 +128,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically while initializing the scene. Until this is called, no views exist.
  */
-- (void) didMoveToView:(SKView *)view
+- (void)didMoveToView:(SKView *)view
 {
     UISlider *slider = [[UISlider alloc] initWithFrame:
         CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width * SLIDER_WIDTH_FACTOR / 2,

@@ -25,7 +25,7 @@
 
 // Game parameters
 static const int MAX_NUM_MONSTERS = 4;
-static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 2.0;
+static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 1.0;
 static const CFTimeInterval TOTAL_GAME_LENGTH = 20;
 
 // Sprite image names - most of these are to be changed
@@ -39,24 +39,36 @@ static NSString *PID_IMAGE_NAME = @"levelButtonUnlocked";
 static const uint32_t GOOD_MONSTER_CATEGORY = 0x1 << 0;
 static const uint32_t BAD_MONSTER_CATEGORY = 0x1 << 1;
 static const uint32_t BULLET_CATEGORY = 0x1 << 2;
+static const uint32_t PID_CATEGORY = 0x1 << 3;
 
 // Layout parameters
 // Turrets
 static const int NUM_TURRETS = 4;
 static const CGFloat TURRET_Y_POSITION_FACTOR = 0.1;
-
 // Bullets
 static const CGFloat BULLET_SIZE_FACTOR = 0.125;
-
 // Monsters
 static const CGFloat MONSTER_SIZE_FACTOR = 0.25;
-
 // Personal identifier
 static const CGFloat PID_WIDTH_FACTOR = 0.9;
 static const CGFloat PID_HEIGHT_FACTOR = 0.1;
 
+// General label
+static NSString *LABEL_FONT_NAME = @"Heiti SC";
+static const int LABEL_FONT_SIZE = 30;
+// Score label
+static const float LIVES_LABEL_X_POSITION_FACTOR = 0.75;
+static const float LIVES_LABEL_Y_POSITION_FACTOR = 0.05;
+static const float LIVES_LABEL_WIDTH_FACTOR = 0.3;
+static const float LIVES_LABEL_HEIGHT_FACTOR = 0.05;
+static NSString *LIVES_LABEL_FORMAT_STRING = @"Lives: %d";
+// Timer label
+static const float TIMER_LABEL_X_POSITION_FACTOR = 0.03;
+static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.05;
+static const float TIMER_LABEL_WIDTH_FACTOR = 0.3;
+static const float TIMER_LABEL_HEIGHT_FACTOR = 0.05;
+static NSString *TIMER_LABEL_FORMAT_STRING = @"Time: %d";
 
-// Personal
 // Background
 static const float RED_BACKGROUND = 0.5;
 static const float GREEN_BACKGROUND = 0.5;
@@ -67,6 +79,7 @@ static const float ALPHA_BACKGROUND = 1.0;
 
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
+        
         self.backgroundColor = [SKColor colorWithRed:RED_BACKGROUND green:GREEN_BACKGROUND
                                                 blue:BLUE_BACKGROUND alpha:ALPHA_BACKGROUND];
         [self createTurrets];
@@ -80,33 +93,61 @@ static const float ALPHA_BACKGROUND = 1.0;
 }
 
 - (void)update:(NSTimeInterval)currentTime {
+    
+    // Release monsters
     if (self.numMonsters < MAX_NUM_MONSTERS && (currentTime - self.lastMonsterRelease) >=
         MIN_TIME_BETWEEN_MONSTER_RELEASES) {
         [self createMonster];
         self.lastMonsterRelease = currentTime;
     }
     
+    // Start game
     if (!self.hasGameStartBeenRecorded) {
         self.hasGameStartBeenRecorded = YES;
         self.gameStartTime = currentTime;
     }
     
+    // End game if time is up or lives are lost
     if (currentTime - self.gameStartTime > TOTAL_GAME_LENGTH || self.lives == 0) {
         [self endGame];
     }
     
-    /*self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING,
+    // Update timer and lives labels
+    self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING,
                             (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
-    self.livesLabel.text = [NSString stringWithFormat:SCORE_LABEL_FORMAT_STRING, self.score];*/
+    self.livesLabel.text = [NSString stringWithFormat:LIVES_LABEL_FORMAT_STRING, self.lives];
 }
 
 #pragma private methods
+
+- (void)didMoveToView:(SKView *)view {
+    
+    // Timer label
+    self.timerLabel = [[UILabel alloc]
+        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_X_POSITION_FACTOR,
+        self.frame.size.height * TIMER_LABEL_Y_POSITION_FACTOR,
+        self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR,
+        self.frame.size.height * TIMER_LABEL_HEIGHT_FACTOR)];
+    self.timerLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
+    [view addSubview:self.timerLabel];
+    
+    // Lives label
+    self.livesLabel = [[UILabel alloc]
+        initWithFrame:CGRectMake(self.frame.size.width * LIVES_LABEL_X_POSITION_FACTOR,
+        self.frame.size.height * LIVES_LABEL_Y_POSITION_FACTOR,
+        self.frame.size.width * LIVES_LABEL_WIDTH_FACTOR,
+        self.frame.size.height * LIVES_LABEL_HEIGHT_FACTOR)];
+    self.livesLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
+    [view addSubview:self.livesLabel];
+}
 
 - (void)createTurrets {
 
     self.turrets = [[NSMutableArray alloc] init];
 
     for (int i = 0; i < NUM_TURRETS; i++) {
+        
+        // Create, scale, and position turret
         SKSpriteNode *turret = [SKSpriteNode spriteNodeWithImageNamed:TURRET_IMAGE_NAME];
         turret.xScale = self.frame.size.width / turret.size.width / NUM_TURRETS;
         turret.yScale = self.frame.size.width / turret.size.height / NUM_TURRETS;
@@ -116,17 +157,28 @@ static const float ALPHA_BACKGROUND = 1.0;
                                   + turret.size.height / 2;
         turret.position = CGPointMake(turretXPosition, turretYPosition);
         
+        // Add turret
         [self.turrets addObject:turret];
         [self addChild:turret];
     }
 }
 
 - (void)createPID {
+    
+    // Create, scale, and position turret
     SKSpriteNode *pid = [SKSpriteNode spriteNodeWithImageNamed:PID_IMAGE_NAME];
     pid.xScale = PID_WIDTH_FACTOR * self.frame.size.width / pid.size.width;
     pid.yScale = PID_HEIGHT_FACTOR * self.frame.size.height / pid.size.height;
     pid.position = CGPointMake(self.frame.size.width/2, pid.size.height);
     
+    // Set up physics body of PID
+    pid.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pid.size];
+    pid.physicsBody.dynamic = YES;
+    pid.physicsBody.categoryBitMask = PID_CATEGORY;
+    pid.physicsBody.contactTestBitMask = GOOD_MONSTER_CATEGORY | BAD_MONSTER_CATEGORY;
+    pid.physicsBody.collisionBitMask = 0;
+    
+    // Add PID
     [self addChild:pid];
 }
 
@@ -151,7 +203,7 @@ static const float ALPHA_BACKGROUND = 1.0;
     
     // Determine speed of the monster
     int minDuration = 3.0;
-    int maxDuration = 5.0;
+    int maxDuration = 4.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -213,16 +265,11 @@ static const float ALPHA_BACKGROUND = 1.0;
     [bullet runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
 }
 
-- (void)bullet:(SKSpriteNode *)bullet didCollideWithMonster:(SKSpriteNode *)monster {
-    NSLog([NSString stringWithFormat:@"Hit. Lives left: %d", self.lives]);
-    [bullet removeFromParent];
-    [monster removeFromParent];
-}
-
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     
     SKPhysicsBody *firstBody, *secondBody;
     
+    // Make firstBody and secondBody be deterministic
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
         firstBody = contact.bodyA;
         secondBody = contact.bodyB;
@@ -232,17 +279,22 @@ static const float ALPHA_BACKGROUND = 1.0;
         secondBody = contact.bodyA;
     }
     
-    if ((firstBody.categoryBitMask & GOOD_MONSTER_CATEGORY) != 0 &&
-        (secondBody.categoryBitMask & BULLET_CATEGORY) != 0) {
-        self.lives--;
+    // Bullet-monster interaction
+    if ((secondBody.categoryBitMask & BULLET_CATEGORY) != 0) {
+        if ((firstBody.categoryBitMask & GOOD_MONSTER_CATEGORY) != 0)
+            self.lives--;
+        [firstBody.node removeFromParent];
+        [secondBody.node removeFromParent];
+    }
+    // PID-monster interaction
+    if ((secondBody.categoryBitMask & PID_CATEGORY) != 0) {
+        if ((firstBody.categoryBitMask & BAD_MONSTER_CATEGORY) != 0)
+            self.lives--;
+        [firstBody.node removeFromParent];
     }
     
-    [self bullet:(SKSpriteNode *)secondBody.node
-          didCollideWithMonster:(SKSpriteNode *)firstBody.node];
 }
 
-/* Initialize in-game variables
- */
 - (void)startGame {
     self.lives = 3;
     self.numMonsters = 0;
