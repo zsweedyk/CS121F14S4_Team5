@@ -163,9 +163,8 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 - (void)startMiniGame {
     NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToBounceAndSort",
         @"LevelToSpam", @"LevelToPIDdingMonsters", nil];
-    //int randomIndex = arc4random() % [allSeguesToMiniGames count];
-    //[self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
-    [self performSegueWithIdentifier:allSeguesToMiniGames[2] sender:self];
+    int randomIndex = arc4random() % [allSeguesToMiniGames count];
+    [self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

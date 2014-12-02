@@ -246,7 +246,7 @@ static const float ALPHA_BACKGROUND = 1.0;
     monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
     monster.physicsBody.dynamic = YES;
     // Placeholder logic for good or bad monster category
-    if ([monsterType isEqualToString:@"NESW"])
+    if ([self.scenario monsterIsOk:monsterType])
         monster.physicsBody.categoryBitMask = GOOD_MONSTER_CATEGORY;
     else
         monster.physicsBody.categoryBitMask = BAD_MONSTER_CATEGORY;
