@@ -54,8 +54,8 @@
     // Make a UIAlertview thing
     self.completedSuccessfully = success;
     [self.skView presentScene:nil];
-    NSString *correctTitle = @"You got at least 500 points! Good job.";
-    NSString *incorrectTitle = @"You lost. You didn't score 500 points.";
+    NSString *correctTitle = @"You got at least 5 points! Good job.";
+    NSString *incorrectTitle = @"You lost. You didn't score 5 points.";
     NSString *cancelButtonTitle = @"Okay";
     NSString *alertTitle;
     if (self.completedSuccessfully) {
