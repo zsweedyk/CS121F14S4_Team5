@@ -13,6 +13,7 @@
 NSString *UNLOCKED_LEVEL_KEY = @"levelUnlocked";
 NSInteger NUM_LEVEL_BUTTONS = 32; // the number of levels buttons to display
 NSInteger NUM_BUTTONS_PER_ROW = 4;
+CGFloat BUTTON_DISABLED_ALPHA = 0.5; // the alpha for buttons that are toggled off
 
 @interface PDLevelSelectionViewController ()
 
@@ -134,12 +135,24 @@ NSInteger NUM_BUTTONS_PER_ROW = 4;
 -(void)toggleMusicButtonPressed:(id)sender {
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [[PDAudioManager sharedInstance] toggleMusic];
+    
+    if (self.musicButton.alpha == 1.0) {
+        [self.musicButton setAlpha:BUTTON_DISABLED_ALPHA];
+    } else {
+        [self.musicButton setAlpha:1.0];
+    }
 }
 
 -(void)toggleSoundEffectsButtonPressed:(id)sender {
     [[PDAudioManager sharedInstance] toggleSoundEffects];
     // We play the sound after toggling to avoid playing when the user wants to disable sounds.
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
+    
+    if (self.soundEffectsButton.alpha == 1.0) {
+        [self.soundEffectsButton setAlpha:BUTTON_DISABLED_ALPHA];
+    } else {
+        [self.soundEffectsButton setAlpha:1.0];
+    }
 }
 
 #pragma mark - Navigation
