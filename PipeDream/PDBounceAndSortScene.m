@@ -18,6 +18,7 @@
 @property (nonatomic) CFTimeInterval gameStartTime;
 @property (nonatomic, strong) UILabel* timerLabel;
 @property (nonatomic, strong) UILabel* scoreLabel;
+@property (nonatomic) BOOL hasGameStarted;
 
 @end
 
@@ -113,6 +114,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 
 #pragma public methods
 
+- (void)startGame {
+    self.hasGameStarted = YES;
+}
+
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
@@ -120,7 +125,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         [self createBuckets];
         [self createBar];
         [self createEdges];
-        [self startGame];
+        [self initializeGame];
         self.physicsWorld.contactDelegate = self;
         self.physicsWorld.gravity = CGVectorMake(X_GRAVITY, Y_GRAVITY);
     }
@@ -221,6 +226,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
  */
 -(void)update:(CFTimeInterval)currentTime
 {
+    if (!self.hasGameStarted) {
+        return;
+    }
+    
     if (self.numBalls < MAX_NUM_BALLS && (currentTime - self.lastBallRelease) >= MIN_TIME_BETWEEN_BALL_RELEASES) {
         [self createBall];
         self.lastBallRelease = currentTime;
@@ -236,7 +245,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     }
     
     self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING,
-        (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime)) + 1];
+        (int) ceil(TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
     self.scoreLabel.text = [NSString stringWithFormat:SCORE_LABEL_FORMAT_STRING, self.score];
 }
 
@@ -398,7 +407,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Initializes in-game variables.
  */
-- (void)startGame
+- (void)initializeGame
 {
     self.score = 0;
     self.numBalls = 0;

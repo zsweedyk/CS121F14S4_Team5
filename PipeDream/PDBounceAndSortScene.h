@@ -12,4 +12,6 @@
 @interface PDBounceAndSortScene : SKScene<SKPhysicsContactDelegate>
 @property (nonatomic, weak) id<PDMiniGameSceneEndDelegate> endDelegate;
 
+- (void)startGame;
+
 @end
