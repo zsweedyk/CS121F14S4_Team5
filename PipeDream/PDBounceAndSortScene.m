@@ -33,10 +33,14 @@ static const int SUCCESSFUL_BUCKET_SCORE_INCREASE = 1;
 static const int UNSUCCESSFUL_BUCKET_SCORE_DECREASE = -2;
 
 // Sprite image names.
-static NSString* GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESW"};
-static const int NUM_GOOD_BALL_SPRITE_IMAGE_NAMES = 1;
-static NSString* BAD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESWi"};
-static const int NUM_BAD_BALL_SPRITE_IMAGE_NAMES = 1;
+static NSString* GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"bounceLock", @"bounceSSL",
+                                                   @"bounceFirewall", @"bounceClose",
+                                                   @"bounceHTTPS"};
+static const int NUM_GOOD_BALL_SPRITE_IMAGE_NAMES = 5;
+static NSString* BAD_BALL_SPRITE_IMAGE_NAMES[] = {@"bounceClickHere", @"bounceDownloadNow",
+                                                  @"bounceFreeSmileys", @"bounceWorm",
+                                                  @"bounceTrojan"};
+static const int NUM_BAD_BALL_SPRITE_IMAGE_NAMES = 5;
 static NSString* GOOD_BLOCK_SPRITE_IMAGE_NAME = @"goodBucket";
 static NSString* BAD_BLOCK_SPRITE_IMAGE_NAME = @"badBucket";
 static NSString* BAR_SPRITE_IMAGE_NAME = @"bar";
