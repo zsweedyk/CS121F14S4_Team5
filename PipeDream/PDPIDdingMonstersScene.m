@@ -178,7 +178,6 @@ static const float ALPHA_BACKGROUND = 1.0;
             break;
         }
     }
-    NSLog(@"%@", self.scenario.personalIdentifier);
 }
 
 - (void)createTurrets {
