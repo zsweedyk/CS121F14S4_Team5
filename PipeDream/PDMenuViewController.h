@@ -11,5 +11,6 @@
 @interface PDMenuViewController : UIViewController
 
 - (IBAction)levelSelectButtonPressed:(id)sender;
+- (IBAction)creditSelectButtonPressed:(id)sender;
 
 @end
