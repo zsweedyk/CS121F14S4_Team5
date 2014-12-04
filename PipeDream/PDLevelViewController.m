@@ -136,8 +136,6 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     [alertView show];
 }
 
-
-
 #pragma mark Private methods
 
 // startLevelNumber starts the level it is given.
