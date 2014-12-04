@@ -350,6 +350,23 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="3" height="3"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slG-XA-zjN">
+                            <rect key="frame" x="699" y="975" width="53" height="35"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
+                            <size key="titleShadowOffset" width="1" height="1"/>
+                            <state key="normal" title="SFX">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                            <action selector="toggleSoundEffectsButtonPressed:" destination="5Re-Io-Hdl" eventType="touchUpInside" id="G71-BC-YOu"/>
+                            </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuD-AM-rIJ">
+                            <rect key="frame" x="610" y="975" width="81" height="35"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
+                            <size key="titleShadowOffset" width="1" height="1"/>
+                            <state key="normal" title="Music">
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGa-4W-Xeg">
                                 <rect key="frame" x="16" y="954" width="111" height="50"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="22"/>
