@@ -50,6 +50,7 @@ static const uint32_t GOOD_BALL_CATEGORY  = 0x1 << 0;
 static const uint32_t BAD_BALL_CATEGORY = 0x1 << 1;
 static const uint32_t GOOD_BLOCK_CATEGORY = 0x1 << 2;
 static const uint32_t BAD_BLOCK_CATEGORY = 0x1 << 3;
+static const uint32_t BAR_CATEGORY = 0x1 << 4;
 
 // Slider parameters.
 static const int MIN_SLIDER_VALUE = 0;
@@ -195,6 +196,12 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         secondBody = contact.bodyA;
     }
     
+    if ((firstBody.categoryBitMask == GOOD_BALL_CATEGORY
+         || firstBody.categoryBitMask == BAD_BALL_CATEGORY)
+        && secondBody.categoryBitMask == BAR_CATEGORY) {
+        [[PDAudioManager sharedInstance] playBounce];
+    }
+    
     // Only handle collisions between a ball and a bucket.
     if ((firstBody.categoryBitMask == GOOD_BALL_CATEGORY ||
          firstBody.categoryBitMask == BAD_BALL_CATEGORY) &&
@@ -312,6 +319,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     bar.name = BAR_CATEGORY_NAME;
     bar.xScale = BAR_X_SCALE;
     bar.yScale = BAR_Y_SCALE;
+    bar.physicsBody.categoryBitMask = BAR_CATEGORY;
     [self addChild:bar];
 }
 
@@ -360,7 +368,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     physicsBody.friction = BALL_FRICTION;
     physicsBody.angularDamping = BALL_ANGULAR_DAMPING;
     physicsBody.linearDamping = BALL_LINEAR_DAMPING;
-    physicsBody.contactTestBitMask = GOOD_BLOCK_CATEGORY | BAD_BLOCK_CATEGORY;
+    physicsBody.contactTestBitMask = GOOD_BLOCK_CATEGORY | BAD_BLOCK_CATEGORY | BAR_CATEGORY
+        | BAD_BALL_CATEGORY | GOOD_BALL_CATEGORY;
     return physicsBody;
 }
 
