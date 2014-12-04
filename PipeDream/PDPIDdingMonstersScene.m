@@ -156,24 +156,28 @@ static const float ALPHA_BACKGROUND = 1.0;
 }
 
 - (void)chooseScenario {
-    NSMutableArray *scenarios = [[NSMutableArray alloc] init];
     
-    // Scenario: shoot the reds
-    NSString *redString = @"Shoot the reds";
-    NSArray *redMonsters = [NSArray arrayWithObjects: GREEN_MONSTER, nil];
-    PDPIDScenario *red = [[PDPIDScenario alloc] init];
-    [red initWithPID:redString andOkMonsters:redMonsters];
-    [scenarios addObject:red];
+    int numScenarios = 2;
+    int scenarioIndex = arc4random() % numScenarios;
     
-    // Scenario: shoot the greens
-    NSString *greenString = @"Shoot the greens";
-    NSArray *greenMonsters = [NSArray arrayWithObjects: RED_MONSTER, nil];
-    PDPIDScenario *green = [[PDPIDScenario alloc] init];
-    [green initWithPID:greenString andOkMonsters:greenMonsters];
-    [scenarios addObject:green];
-    
-    int scenarioIndex = arc4random() % [scenarios count];
-    self.scenario = [scenarios objectAtIndex:scenarioIndex];
+    switch (scenarioIndex) {
+        
+        case 1: { // Scenario: shoot the reds
+            NSString *redStr = @"Shoot the reds";
+            NSArray *redMonsters = [NSArray arrayWithObjects: GREEN_MONSTER, nil];
+            [self.scenario initWithPID:redStr andOkMonsters:redMonsters];
+            break;
+        }
+        case 2: { // Scenario: shoot the greens
+            NSString *greenStr = @"Shoot the greens";
+            NSArray *greenMonsters = [NSArray arrayWithObjects: RED_MONSTER, nil];
+            [self.scenario initWithPID:greenStr andOkMonsters:greenMonsters];
+            break;
+        }
+        default: {
+            break;
+        }
+    }
 }
 
 - (void)createTurrets {
