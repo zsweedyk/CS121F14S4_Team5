@@ -10,6 +10,9 @@
 
 @interface PDLevelSelectionViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIButton *musicButton;
+@property (nonatomic, weak) IBOutlet UIButton *soundEffectsButton;
+
 - (void)updateLevelSelectButtonsEnabled;
 + (void)unlockLevelNumber:(NSInteger)levelNumber;
 - (IBAction)levelButtonPressed:(id)sender;
