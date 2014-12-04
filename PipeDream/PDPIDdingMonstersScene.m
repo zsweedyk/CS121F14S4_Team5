@@ -122,7 +122,7 @@ static const float ALPHA_BACKGROUND = 1.0;
     
     // Update timer and lives labels
     self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING,
-                            (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
+                            (int) ceil(TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
     self.livesLabel.text = [NSString stringWithFormat:LIVES_LABEL_FORMAT_STRING, self.lives];
 }
 
