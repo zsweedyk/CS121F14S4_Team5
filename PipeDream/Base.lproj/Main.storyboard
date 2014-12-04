@@ -386,13 +386,13 @@
                                     <action selector="menuSelectButtonPressed:" destination="SA0-Il-dk1" eventType="touchUpInside" id="HSK-b3-3f6"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3j3-sG-Jm8">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3j3-sG-Jm8">
                                 <rect key="frame" x="79" y="187" width="634" height="770.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
-                                <mutableString key="text">Pipe Dream
+                                <string key="text">Pipe Dream
 Created by Jean Sung, Kathryn Aplin, Paula Yuan and Vincent Fiorentini 
 Made possible by NSF Grant # xxx
 
@@ -426,7 +426,7 @@ Source: https://www.freesound.org/people/blackstalian/sounds/140511/
 Licensed under: CC0 1.0
 
 Source: http://www.newgrounds.com/audio/listen/583897
-Licensed under: CC BY-NC-SA 3.0</mutableString>
+Licensed under: CC BY-NC-SA 3.0</string>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
