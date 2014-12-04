@@ -13,7 +13,7 @@
 @property (nonatomic) NSString *personalIdentifier;
 @property (nonatomic) NSArray *okMonsters;
 
-- (void)initWithPID:(NSString *)pid andOkMonsters:(NSArray *)monsters;
+- (id)initWithPID:(NSString *)pid andOkMonsters:(NSArray *)monsters;
 - (BOOL)monsterIsOk:(NSString *)monster;
 
 @end

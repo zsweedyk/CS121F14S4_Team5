@@ -10,9 +10,13 @@
 
 @implementation PDPIDScenario
 
-- (void)initWithPID:(NSString *)pid andOkMonsters:(NSArray *)monsters {
-    self.personalIdentifier = pid;
-    self.okMonsters = [NSArray arrayWithArray:monsters];
+- (id)initWithPID:(NSString *)pid andOkMonsters:(NSArray *)monsters {
+    self = [super init];
+    if (self) {
+        self.personalIdentifier = pid;
+        self.okMonsters = [NSArray arrayWithArray:monsters];
+    }
+    return self;
 }
 
 - (BOOL)monsterIsOk:(NSString *)monster {

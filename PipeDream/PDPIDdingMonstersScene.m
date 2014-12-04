@@ -162,22 +162,23 @@ static const float ALPHA_BACKGROUND = 1.0;
     
     switch (scenarioIndex) {
         
-        case 1: { // Scenario: shoot the reds
+        case 0: { // Scenario: shoot the reds
             NSString *redStr = @"Shoot the reds";
             NSArray *redMonsters = [NSArray arrayWithObjects: GREEN_MONSTER, nil];
-            [self.scenario initWithPID:redStr andOkMonsters:redMonsters];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:redStr andOkMonsters:redMonsters];
             break;
         }
-        case 2: { // Scenario: shoot the greens
+        case 1: { // Scenario: shoot the greens
             NSString *greenStr = @"Shoot the greens";
             NSArray *greenMonsters = [NSArray arrayWithObjects: RED_MONSTER, nil];
-            [self.scenario initWithPID:greenStr andOkMonsters:greenMonsters];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:greenStr andOkMonsters:greenMonsters];
             break;
         }
         default: {
             break;
         }
     }
+    NSLog(@"%@", self.scenario.personalIdentifier);
 }
 
 - (void)createTurrets {
