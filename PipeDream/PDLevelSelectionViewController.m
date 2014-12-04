@@ -65,6 +65,11 @@ NSInteger NUM_BUTTONS_PER_ROW = 4;
     [defaults synchronize];
 }
 
+// Back to Main Menu
+- (void)returnToMainMenuButtonPressed:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark Private methods
 
 /* Creates and stores levelSelectButtons

@@ -15,5 +15,6 @@
 - (IBAction)levelButtonPressed:(id)sender;
 - (IBAction)toggleMusicButtonPressed:(id)sender;
 - (IBAction)toggleSoundEffectsButtonPressed:(id)sender;
+- (IBAction)returnToMainMenuButtonPressed:(id)sender;
 
 @end

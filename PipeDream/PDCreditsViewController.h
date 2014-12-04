@@ -10,6 +10,5 @@
 
 @interface PDCreditsViewController : UIViewController
 
-- (IBAction)menuSelectButtonPressed:(id)sender;
-
+- (IBAction)returnToMenuButtonPressed:(id)sender;
 @end

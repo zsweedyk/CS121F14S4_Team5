@@ -25,9 +25,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)menuSelectButtonPressed:(id)sender {
-    [self performSegueWithIdentifier:@"CreditsToMenu" sender:self];
+- (void)returnToMenuButtonPressed:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 #pragma mark Private methods
 
