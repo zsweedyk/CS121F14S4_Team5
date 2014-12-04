@@ -22,14 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.presentingController = self.presentingViewController;
-    // Do any additional setup after loading the view.
     
-    // Configure the view.
-    // Should have skView at this point
-    self.skView.showsFPS = YES;
-    self.skView.showsNodeCount = YES;
-    /* Sprite Kit applies additional optimizations to improve rendering performance */
+    // Sprite Kit applies additional optimizations to improve rendering performance.
     self.skView.ignoresSiblingOrder = YES;
     
     // Create and configure the scene.
@@ -45,6 +39,11 @@
     [self dismissViewControllerWithSuccess:NO];
 }
 
+- (void)startGameButtonPressed {
+    self.instructionsView.hidden = YES;
+    [((PDBounceAndSortScene *)self.skView.scene) startGame];
+}
+
 - (void)startMiniGame {
     // Not used.
 }
@@ -54,8 +53,8 @@
     // Make a UIAlertview thing
     self.completedSuccessfully = success;
     [self.skView presentScene:nil];
-    NSString *correctTitle = @"You got at least 500 points! Good job.";
-    NSString *incorrectTitle = @"You lost. You didn't score 500 points.";
+    NSString *correctTitle = @"You win!";
+    NSString *incorrectTitle = @"Sorry, you didn't score enough points.";
     NSString *cancelButtonTitle = @"Okay";
     NSString *alertTitle;
     if (self.completedSuccessfully) {

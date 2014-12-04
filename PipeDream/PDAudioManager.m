@@ -18,6 +18,9 @@
 @property AVAudioPlayer *infectionSpreadPlayer;
 @property AVAudioPlayer *infectionClearedPlayer;
 @property AVAudioPlayer *levelCompletePlayer;
+@property AVAudioPlayer *bouncePlayer;
+@property AVAudioPlayer *sortCorrectPlayer;
+@property AVAudioPlayer *sortIncorrectPlayer;
 @property AVAudioPlayer *backgroundMusicPlayer;
 @property (nonatomic) BOOL soundEffectsEnabled;
 @end
@@ -91,6 +94,27 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     }
 }
 
+- (void)playBounce
+{
+    if (self.bouncePlayer && self.soundEffectsEnabled) {
+        [self.bouncePlayer play];
+    }
+}
+
+- (void)playSortCorrect
+{
+    if (self.sortCorrectPlayer && self.soundEffectsEnabled) {
+        [self.sortCorrectPlayer play];
+    }
+}
+
+- (void)playSortIncorrect
+{
+    if (self.sortIncorrectPlayer && self.soundEffectsEnabled) {
+        [self.sortIncorrectPlayer play];
+    }
+}
+
 - (void)startBackgroundMusic
 {
     if (self.backgroundMusicPlayer) {
@@ -117,6 +141,9 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
         [self initializeInfectionSpreadPlayer];
         [self initializeInfectionClearedPlayer];
         [self initializeLevelCompletePlayer];
+        [self initializeBouncePlayer];
+        [self initializeSortCorrectPlayer];
+        [self initializeSortIncorrectPlayer];
         [self initializeBackgroundMusicPlayer];
     }
     return self;
@@ -234,6 +261,54 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     NSError *error = nil;
     self.levelCompletePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.levelCompletePlayer.numberOfLoops = 0;
+}
+
+/*
+ * Audio source:
+ * http://www.freesound.org/people/andre.rocha.nascimento/sounds/51460/
+ * This audio is liscenced under (CC BY 3.0)
+ */
+- (void)initializeBouncePlayer
+{
+    NSString *fileName = @"51460__andre-rocha-nascimento__basket-ball-01-bounce";
+    NSString *fileExtension = @"wav";
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSError *error = nil;
+    self.bouncePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.bouncePlayer.numberOfLoops = 0;
+}
+
+/*
+ * Audio source:
+ * http://www.freesound.org/people/DrMinky/sounds/166184/
+ * This audio is liscenced under (CC BY 3.0)
+ */
+- (void)initializeSortCorrectPlayer
+{
+    NSString *fileName = @"166184__drminky__retro-coin-collect";
+    NSString *fileExtension = @"wav";
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSError *error = nil;
+    self.sortCorrectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.sortCorrectPlayer.numberOfLoops = 0;
+}
+
+/*
+ * Audio source:
+ * http://www.freesound.org/people/kantouth/sounds/106727/
+ * This audio is liscenced under (CC BY 3.0)
+ */
+- (void)initializeSortIncorrectPlayer
+{
+    NSString *fileName = @"106727__kantouth__cartoon-bing-low";
+    NSString *fileExtension = @"wav";
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSError *error = nil;
+    self.sortIncorrectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.sortIncorrectPlayer.numberOfLoops = 0;
 }
 
 /*

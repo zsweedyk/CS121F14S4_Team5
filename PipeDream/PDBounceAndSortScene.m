@@ -7,6 +7,7 @@
 //
 
 #import "PDBounceAndSortScene.h"
+#import "PDAudioManager.h"
 
 @interface PDBounceAndSortScene()
 
@@ -17,6 +18,7 @@
 @property (nonatomic) CFTimeInterval gameStartTime;
 @property (nonatomic, strong) UILabel* timerLabel;
 @property (nonatomic, strong) UILabel* scoreLabel;
+@property (nonatomic) BOOL hasGameStarted;
 
 @end
 
@@ -25,16 +27,20 @@
 // Game parameters.
 static const int MAX_NUM_BALLS = 3;
 static const CFTimeInterval MIN_TIME_BETWEEN_BALL_RELEASES = 2.0;
-static const CFTimeInterval TOTAL_GAME_LENGTH = 30;
-static const int MIN_SUCCESSFUL_SCORE = 500;
-static const int SUCCESSFUL_BUCKET_SCORE_INCREASE = 100;
-static const int UNSUCCESSFUL_BUCKET_SCORE_DECREASE = -50;
+static const CFTimeInterval TOTAL_GAME_LENGTH = 20;
+static const int MIN_SUCCESSFUL_SCORE = 5;
+static const int SUCCESSFUL_BUCKET_SCORE_INCREASE = 1;
+static const int UNSUCCESSFUL_BUCKET_SCORE_DECREASE = -2;
 
 // Sprite image names.
-static NSString* GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESW"};
-static const int NUM_GOOD_BALL_SPRITE_IMAGE_NAMES = 1;
-static NSString* BAD_BALL_SPRITE_IMAGE_NAMES[] = {@"NESWi"};
-static const int NUM_BAD_BALL_SPRITE_IMAGE_NAMES = 1;
+static NSString* GOOD_BALL_SPRITE_IMAGE_NAMES[] = {@"bounceLock", @"bounceSSL",
+                                                   @"bounceFirewall", @"bounceClose",
+                                                   @"bounceHTTPS"};
+static const int NUM_GOOD_BALL_SPRITE_IMAGE_NAMES = 5;
+static NSString* BAD_BALL_SPRITE_IMAGE_NAMES[] = {@"bounceClickHere", @"bounceDownloadNow",
+                                                  @"bounceFreeSmileys", @"bounceWorm",
+                                                  @"bounceTrojan"};
+static const int NUM_BAD_BALL_SPRITE_IMAGE_NAMES = 5;
 static NSString* GOOD_BLOCK_SPRITE_IMAGE_NAME = @"goodBucket";
 static NSString* BAD_BLOCK_SPRITE_IMAGE_NAME = @"badBucket";
 static NSString* BAR_SPRITE_IMAGE_NAME = @"bar";
@@ -44,6 +50,7 @@ static const uint32_t GOOD_BALL_CATEGORY  = 0x1 << 0;
 static const uint32_t BAD_BALL_CATEGORY = 0x1 << 1;
 static const uint32_t GOOD_BLOCK_CATEGORY = 0x1 << 2;
 static const uint32_t BAD_BLOCK_CATEGORY = 0x1 << 3;
+static const uint32_t BAR_CATEGORY = 0x1 << 4;
 
 // Slider parameters.
 static const int MIN_SLIDER_VALUE = 0;
@@ -53,11 +60,11 @@ static const int DEFAULT_SLIDER_VALUE = (MAX_SLIDER_VALUE - MIN_SLIDER_VALUE) / 
 // Physics parameters.
 static const float Y_GRAVITY = -5.0f;
 static const float X_GRAVITY = 0.0f;
-static const float BALL_RESTITUTION = 0.9f;
+static const float BALL_RESTITUTION = 0.7f;
 static const float BAR_RESTITUTION = 0.1f;
 static const float BLOCK_FRICTION = 0.0f;
 static const float BALL_FRICTION = 0.0f;
-static const float BAR_FRICTION = 0.4f;
+static const float BAR_FRICTION = 0.3f;
 static const float EDGE_FRICTION = 0.0f;
 static const float BALL_LINEAR_DAMPING = 0.5f;
 static const float BALL_ANGULAR_DAMPING = 0.0f;
@@ -65,42 +72,43 @@ static const float BALL_ANGULAR_DAMPING = 0.0f;
 // Layout parameters.
 // Bad bucket.
 static const float BAD_BUCKET_ROTATE = M_PI / 4.0;
-static const float BAD_BUCKET_X_SCALE = 0.75;
-static const float BAD_BUCKET_Y_SCALE = 0.75;
-static const float BAD_BUCKET_X_POSITION_FACTOR = 1.0 / 8.0;
+static const float BAD_BUCKET_X_SCALE = 0.65;
+static const float BAD_BUCKET_Y_SCALE = 0.65;
+static const float BAD_BUCKET_X_POSITION_FACTOR = 0;
 static const float BAD_BUCKET_Y_POSITION_FACTOR = 0;
 // Good bucket.
 static const float GOOD_BUCKET_ROTATE = -1.0 * M_PI / 4.0;
-static const float GOOD_BUCKET_X_SCALE = 0.75;
-static const float GOOD_BUCKET_Y_SCALE = 0.75;
-static const float GOOD_BUCKET_X_POSITION_FACTOR = - 1.0 / 8.0;
+static const float GOOD_BUCKET_X_SCALE = 0.65;
+static const float GOOD_BUCKET_Y_SCALE = 0.65;
+static const float GOOD_BUCKET_X_POSITION_FACTOR = 0;
 static const float GOOD_BUCKET_Y_POSITION_FACTOR = 0;
 // Bar.
-static const float BAR_X_SCALE = 0.8;
-static const float BAR_Y_SCLAE = 0.4;
+static const float BAR_X_SCALE = 0.6;
+static const float BAR_Y_SCALE = 0.3;
 static const float MAX_BAR_ROTATE = M_PI / 2.0;
 static const float BAR_Y_POSITION_FACTOR = 1.0 / 5.0;
 // Ball.
 static const float BALL_X_SCALE = 0.25;
 static const float BALL_Y_SCALE = 0.25;
 // Slider.
-static const float SLIDER_WIDTH_FACTOR = 0.5;
+static const float SLIDER_WIDTH_FACTOR = 0.4;
 static const float SLIDER_Y_POSITION_FACTOR = 0.85;
 static const float SLIDER_HEIGHT_FACTOR = 0.1;
 // General label.
 static NSString *LABEL_FONT_NAME = @"Heiti SC";
 static const int LABEL_FONT_SIZE = 40;
 // Score label.
-static const float SCORE_LABEL_Y_POSITION_FACTOR = 0.1;
+static const float SCORE_LABEL_X_POSITION_FACTOR = 0.55;
+static const float SCORE_LABEL_Y_POSITION_FACTOR = 0.05;
 static const float SCORE_LABEL_WIDTH_FACTOR = 0.5;
 static const float SCORE_LABEL_HEIGHT_FACTOR = 0.1;
-static NSString *SCORE_LABEL_FORMAT_STRING = @" Score: %d";
+static NSString *SCORE_LABEL_FORMAT_STRING = @"Score: %d";
 // Timer label.
-static const int TIMER_LABEL_X_POSITION = 0;
-static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.1;
+static const float TIMER_LABEL_X_POSITION_FACTOR = 0.1;
+static const float TIMER_LABEL_Y_POSITION_FACTOR = 0.05;
 static const float TIMER_LABEL_WIDTH_FACTOR = 0.5;
 static const float TIMER_LABEL_HEIGHT_FACTOR = 0.1;
-static NSString *TIMER_LABEL_FORMAT_STRING = @"     Time: %d";
+static NSString *TIMER_LABEL_FORMAT_STRING = @"Time: %d";
 // Background.
 static const float RED_BACKGROUND = 0.5;
 static const float GREEN_BACKGROUND = 0.5;
@@ -111,6 +119,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 
 #pragma public methods
 
+- (void)startGame {
+    self.hasGameStarted = YES;
+}
+
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
@@ -118,7 +130,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         [self createBuckets];
         [self createBar];
         [self createEdges];
-        [self startGame];
+        [self initializeGame];
         self.physicsWorld.contactDelegate = self;
         self.physicsWorld.gravity = CGVectorMake(X_GRAVITY, Y_GRAVITY);
     }
@@ -130,6 +142,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
  */
 - (void) didMoveToView:(SKView *)view
 {
+    UIColor *LABEL_COLOR = [UIColor whiteColor];
+    
     UISlider *slider = [[UISlider alloc] initWithFrame:
         CGRectMake(CGRectGetMidX(self.frame) - self.frame.size.width * SLIDER_WIDTH_FACTOR / 2,
         self.frame.size.height * SLIDER_Y_POSITION_FACTOR,
@@ -145,18 +159,21 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     [view addSubview:slider];
     
     self.timerLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(TIMER_LABEL_X_POSITION,
+        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_X_POSITION_FACTOR,
         self.frame.size.height * TIMER_LABEL_Y_POSITION_FACTOR,
         self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR,
         self.frame.size.height * TIMER_LABEL_HEIGHT_FACTOR)];
     self.timerLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
+    self.timerLabel.textColor = LABEL_COLOR;
     [view addSubview:self.timerLabel];
+    
     self.scoreLabel = [[UILabel alloc]
-        initWithFrame:CGRectMake(self.frame.size.width * TIMER_LABEL_WIDTH_FACTOR,
+        initWithFrame:CGRectMake(self.frame.size.width * SCORE_LABEL_X_POSITION_FACTOR,
         self.frame.size.height * SCORE_LABEL_Y_POSITION_FACTOR,
         self.frame.size.width * SCORE_LABEL_WIDTH_FACTOR,
         self.frame.size.height * SCORE_LABEL_HEIGHT_FACTOR)];
     self.scoreLabel.font = [UIFont fontWithName:LABEL_FONT_NAME size:LABEL_FONT_SIZE];
+    self.scoreLabel.textColor = LABEL_COLOR;
     [view addSubview:self.scoreLabel];
     
 }
@@ -179,6 +196,12 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
         secondBody = contact.bodyA;
     }
     
+    if ((firstBody.categoryBitMask == GOOD_BALL_CATEGORY
+         || firstBody.categoryBitMask == BAD_BALL_CATEGORY)
+        && secondBody.categoryBitMask == BAR_CATEGORY) {
+        [[PDAudioManager sharedInstance] playBounce];
+    }
+    
     // Only handle collisions between a ball and a bucket.
     if ((firstBody.categoryBitMask == GOOD_BALL_CATEGORY ||
          firstBody.categoryBitMask == BAD_BALL_CATEGORY) &&
@@ -197,8 +220,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
             }
             
             if (matchesBlock) {
+                [[PDAudioManager sharedInstance] playSortCorrect];
                 self.score += SUCCESSFUL_BUCKET_SCORE_INCREASE;
             } else {
+                [[PDAudioManager sharedInstance] playSortIncorrect];
                 self.score += UNSUCCESSFUL_BUCKET_SCORE_DECREASE;
             }
             
@@ -212,6 +237,10 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
  */
 -(void)update:(CFTimeInterval)currentTime
 {
+    if (!self.hasGameStarted) {
+        return;
+    }
+    
     if (self.numBalls < MAX_NUM_BALLS && (currentTime - self.lastBallRelease) >= MIN_TIME_BETWEEN_BALL_RELEASES) {
         [self createBall];
         self.lastBallRelease = currentTime;
@@ -227,7 +256,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     }
     
     self.timerLabel.text = [NSString stringWithFormat:TIMER_LABEL_FORMAT_STRING,
-        (int) (TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
+        (int) ceil(TOTAL_GAME_LENGTH - (currentTime - self.gameStartTime))];
     self.scoreLabel.text = [NSString stringWithFormat:SCORE_LABEL_FORMAT_STRING, self.score];
 }
 
@@ -289,7 +318,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     bar.physicsBody = [self createBarBody:bar.frame.size];
     bar.name = BAR_CATEGORY_NAME;
     bar.xScale = BAR_X_SCALE;
-    bar.yScale = BAR_Y_SCLAE;
+    bar.yScale = BAR_Y_SCALE;
+    bar.physicsBody.categoryBitMask = BAR_CATEGORY;
     [self addChild:bar];
 }
 
@@ -338,7 +368,8 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     physicsBody.friction = BALL_FRICTION;
     physicsBody.angularDamping = BALL_ANGULAR_DAMPING;
     physicsBody.linearDamping = BALL_LINEAR_DAMPING;
-    physicsBody.contactTestBitMask = GOOD_BLOCK_CATEGORY | BAD_BLOCK_CATEGORY;
+    physicsBody.contactTestBitMask = GOOD_BLOCK_CATEGORY | BAD_BLOCK_CATEGORY | BAR_CATEGORY
+        | BAD_BALL_CATEGORY | GOOD_BALL_CATEGORY;
     return physicsBody;
 }
 
@@ -389,7 +420,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Initializes in-game variables.
  */
-- (void)startGame
+- (void)initializeGame
 {
     self.score = 0;
     self.numBalls = 0;
