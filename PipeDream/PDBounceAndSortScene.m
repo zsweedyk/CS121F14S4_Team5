@@ -140,7 +140,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically while initializing the scene. Until this is called, no views exist.
  */
-- (void) didMoveToView:(SKView *)view
+- (void)didMoveToView:(SKView *)view
 {
     UIColor *LABEL_COLOR = [UIColor whiteColor];
     
@@ -235,7 +235,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically before each frame is rendered.
  */
--(void)update:(CFTimeInterval)currentTime
+- (void)update:(CFTimeInterval)currentTime
 {
     if (!self.hasGameStarted) {
         return;

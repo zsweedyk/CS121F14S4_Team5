@@ -1,18 +1,17 @@
 //
-//  PDBounceAndSortScene.h
+//  PDPIDdingMonstersScene.h
 //  PipeDream
 //
-//  Created by Kate Aplin on 11/16/14.
+//  Created by Paula Yuan on 11/30/14.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
 #import <SpriteKit/SpriteKit.h>
 #import "PDMiniGameSceneEndDelegate.h"
+#import <Foundation/Foundation.h>
 
-@interface PDBounceAndSortScene : SKScene<SKPhysicsContactDelegate>
+@interface PDPIDdingMonstersScene : SKScene<SKPhysicsContactDelegate>
 
 @property (nonatomic, weak) id<PDMiniGameSceneEndDelegate> endDelegate;
-
-- (void)startGame;
 
 @end
