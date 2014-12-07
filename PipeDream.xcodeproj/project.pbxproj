@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F13C6031A34D9830079D9D4 /* PDInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */; };
 		0FFF54131A2A5E0300CF337D /* PDCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */; };
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F13C6011A34D9830079D9D4 /* PDInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDInstructionsViewController.h; sourceTree = "<group>"; };
+		0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDInstructionsViewController.m; sourceTree = "<group>"; };
 		0FFF54111A2A5E0300CF337D /* PDCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCreditsViewController.h; sourceTree = "<group>"; };
 		0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCreditsViewController.m; sourceTree = "<group>"; };
 		2994C48F19F45C6F00A11183 /* PDQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDQueue.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				BFF943111A038271009FF758 /* PDMenuViewController.m */,
 				0FFF54111A2A5E0300CF337D /* PDCreditsViewController.h */,
 				0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */,
+				0F13C6011A34D9830079D9D4 /* PDInstructionsViewController.h */,
+				0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */,
 				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
 				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
 				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
@@ -389,6 +394,7 @@
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
 				BF62562119EC93F0008175CC /* main.m in Sources */,
 				AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */,
+				0F13C6031A34D9830079D9D4 /* PDInstructionsViewController.m in Sources */,
 				0FFF54131A2A5E0300CF337D /* PDCreditsViewController.m in Sources */,
 				BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */,
 				BF62564C19EC957F008175CC /* PDGridModel.m in Sources */,

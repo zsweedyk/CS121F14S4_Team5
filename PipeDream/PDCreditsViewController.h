@@ -10,5 +10,5 @@
 
 @interface PDCreditsViewController : UIViewController
 
-- (IBAction)returnToMenuButtonPressed:(id)sender;
+- (IBAction)creditsToMenuButonPressed:(id)sender;
 @end

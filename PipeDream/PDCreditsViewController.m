@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];}
 
-- (void)returnToMenuButtonPressed:(id)sender {
+- (void)creditsToMenuButonPressed:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -29,6 +29,10 @@
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
+- (IBAction)instructionsButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"MenuToInstructions" sender:self];
+}
+
 - (IBAction)creditSelectButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"MenuToCredits" sender:self];
 }
