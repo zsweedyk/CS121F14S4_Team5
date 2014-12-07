@@ -563,8 +563,15 @@ Licensed under: CC BY-NC-SA 3.0</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW6-ba-bhJ">
                                 <rect key="frame" x="96" y="201" width="576" height="645"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <mutableString key="text">How to play:
+The goal of each level is to connect the computer and the star by creating a path between the two with pipes. To do this, you must rotate the pipes. You can rotate the pipes by tapping on the pipe. Each tap will rotate the pipe 90 degrees clockwise. 
+
+Mystery pipes:
+Squares with a ? represent mystery pipes. You don't yet know what they are. Rotate pipes you can see and connect those to the computer to uncover these mystery pipes. 
+
+Infected Pipes:
+Red pipes are infected. Oh no! To clear the infection, tap the red pipe or connect a set of pipes already connected to the computer to activate a mini game. Once you finish the mini game, the infection will clear. </mutableString>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
