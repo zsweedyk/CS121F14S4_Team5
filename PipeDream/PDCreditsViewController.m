@@ -21,6 +21,7 @@
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];}
 
 - (void)creditsToMenuButonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PDAudioManager.h"
 
 @interface PDInstructionsViewController : UIViewController
 

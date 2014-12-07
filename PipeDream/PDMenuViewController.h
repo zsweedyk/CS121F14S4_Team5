@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
+#import "PDAudioManager.h"
+
 #import <UIKit/UIKit.h>
 
 @interface PDMenuViewController : UIViewController

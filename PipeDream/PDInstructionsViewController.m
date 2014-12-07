@@ -20,6 +20,7 @@
 }
 
 - (IBAction)instructionsToMenuButtonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 
 }
