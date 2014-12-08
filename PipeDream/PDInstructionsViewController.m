@@ -14,6 +14,8 @@
 
 @implementation PDInstructionsViewController
 
+#pragma mark Public methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
