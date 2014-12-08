@@ -144,6 +144,7 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
 
 // startLevelNumber starts the level it is given.
 - (void)startLevelNumber:(NSInteger)levelNumber {
+    self.hasCompletedLevel = NO;
     NSInteger zeroIndexedLevelNumber = levelNumber - 1;
     self.gridModel = [[PDGridModel alloc] initWithLevelNumber:zeroIndexedLevelNumber];
     [self setGridViewToMatchModel];
@@ -212,6 +213,9 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
 
 // presentAppropriateNarrative displays the narrative for this level if there is one
 - (void)presentAppropriateNarrative {
+    if (self.hasCompletedLevel) {
+        return;
+    }
     NSNumber *levelNumber = [NSNumber numberWithInteger:self.levelNumber];
     if ([[PDNarrativeViewController narrativeLevelNumbers] containsObject:levelNumber]) {
         [self performSegueWithIdentifier:LEVEL_TO_NARRATIVE_SEGUE sender:self];
