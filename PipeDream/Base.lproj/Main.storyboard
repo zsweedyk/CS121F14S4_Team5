@@ -374,8 +374,8 @@
                                 <rect key="frame" x="69" y="791" width="200" height="200"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRj-xb-g2X">
-                                <rect key="frame" x="148" y="386" width="472" height="120"/>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="50"/>
+                                <rect key="frame" x="195" y="408" width="379" height="96"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="40"/>
                                 <size key="titleShadowOffset" width="3" height="3"/>
                                 <state key="normal" title="Start Game" backgroundImage="pipeButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -391,21 +391,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="goal" translatesAutoresizingMaskIntoConstraints="NO" id="Av0-Z8-N2U">
                                 <rect key="frame" x="482" y="791" width="200" height="200"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXt-4N-IAj" userLabel="Instructions">
-                                <rect key="frame" x="148" y="521" width="472" height="120"/>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="50"/>
-                                <size key="titleShadowOffset" width="3" height="3"/>
-                                <state key="normal" title="Instructions" backgroundImage="pipeButton">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="instructionsButtonPressed:" destination="MAa-ly-FZL" eventType="touchUpInside" id="peI-ma-Pdq"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvH-9x-z74" userLabel="Credits">
-                                <rect key="frame" x="148" y="657" width="472" height="120"/>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="50"/>
+                                <rect key="frame" x="195" y="658" width="379" height="96"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="40"/>
                                 <size key="titleShadowOffset" width="3" height="3"/>
                                 <state key="normal" title="Credits" backgroundImage="pipeButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -414,6 +402,18 @@
                                 <connections>
                                     <action selector="creditSelectButtonPressed:" destination="MAa-ly-FZL" eventType="touchUpInside" id="mdJ-XW-qGh"/>
                                     <segue destination="Sdn-8o-BTq" kind="modal" identifier="MenuToInstructions" id="Ltx-di-hSx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXt-4N-IAj" userLabel="Instructions">
+                                <rect key="frame" x="195" y="533" width="379" height="96"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="40"/>
+                                <size key="titleShadowOffset" width="3" height="3"/>
+                                <state key="normal" title="Instructions" backgroundImage="pipeButton">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="instructionsButtonPressed:" destination="MAa-ly-FZL" eventType="touchUpInside" id="peI-ma-Pdq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -600,14 +600,14 @@ Licensed under: CC BY-NC-SA 3.0</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW6-ba-bhJ">
                                 <rect key="frame" x="96" y="201" width="576" height="645"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">How to play:
+                                <string key="text">How to play:
 The goal of each level is to connect the computer and the star by creating a path between the two with pipes. To do this, you must rotate the pipes. You can rotate the pipes by tapping on the pipe. Each tap will rotate the pipe 90 degrees clockwise. 
 
 Mystery pipes:
 Squares with a ? represent mystery pipes. You don't yet know what they are. Rotate pipes you can see and connect those to the computer to uncover these mystery pipes. 
 
 Infected Pipes:
-Red pipes are infected. Oh no! To clear the infection, tap the red pipe or connect a set of pipes already connected to the computer to activate a mini game. Once you finish the mini game, the infection will clear. </mutableString>
+Red pipes are infected. Oh no! To clear the infection, tap the red pipe or connect a set of pipes already connected to the computer to activate a mini game. Once you finish the mini game, the infection will clear. </string>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
