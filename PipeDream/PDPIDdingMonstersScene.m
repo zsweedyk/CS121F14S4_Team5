@@ -27,8 +27,8 @@
 @implementation PDPIDdingMonstersScene
 
 // Game parameters
-static const int MAX_NUM_MONSTERS = 4;
-static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 1.0;
+static const int MAX_NUM_MONSTERS = 3;
+static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 2.0;
 static const CFTimeInterval TOTAL_GAME_LENGTH = 20;
 
 // Sprite image names - most of these are to be changed
@@ -62,7 +62,7 @@ static const CGFloat TURRET_Y_POSITION_FACTOR = 0.1;
 // Bullets
 static const CGFloat BULLET_SIZE_FACTOR = 0.125;
 // Monsters
-static const CGFloat MONSTER_SIZE_FACTOR = 0.25;
+static const CGFloat MONSTER_SIZE_FACTOR = 0.3;
 // Personal identifier
 static const CGFloat PID_WIDTH_FACTOR = 0.9;
 static const CGFloat PID_HEIGHT_FACTOR = 0.1;
@@ -286,8 +286,8 @@ static const float ALPHA_BACKGROUND = 1.0;
     [self addChild:monster];
     
     // Determine speed of the monster
-    int minDuration = 4.0;
-    int maxDuration = 5.0;
+    int minDuration = 5.0;
+    int maxDuration = 6.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
