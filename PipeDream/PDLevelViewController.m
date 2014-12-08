@@ -233,6 +233,8 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
     }
     
     if ([segue.identifier isEqualToString:LEVEL_TO_COMPLETION_SEGUE]) {
+        [segue.destinationViewController setModalPresentationStyle:
+         UIModalPresentationOverCurrentContext];
         PDEndOfLevelViewController *endOfLevelViewController =
             (PDEndOfLevelViewController *) segue.destinationViewController;
         endOfLevelViewController.levelNumberCompleted = self.levelNumber;

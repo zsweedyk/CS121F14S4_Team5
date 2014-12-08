@@ -40,6 +40,14 @@
     [self.skView presentScene:scene];
 }
 
+
+- (void)startGameButtonPressed {
+    self.instructionsView.hidden = YES;
+    [((PDPIDdingMonstersScene *)self.skView.scene) startGame];
+}
+
+//
+
 -(void)cancelButtonPressed {
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self dismissViewControllerWithSuccess:NO];

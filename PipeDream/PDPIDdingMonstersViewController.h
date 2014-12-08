@@ -11,9 +11,13 @@
 
 @interface PDPIDdingMonstersViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIView *instructionsView;
 @property (nonatomic, retain) IBOutlet SKView *skView;
 
 - (IBAction)cancelButtonPressed;
+- (IBAction)startGameButtonPressed;
 - (void)startMiniGame;
+
+
 
 @end

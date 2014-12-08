@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PDAudioManager.h"
 
 @interface PDCreditsViewController : UIViewController
 
-- (IBAction)returnToMenuButtonPressed:(id)sender;
+- (IBAction)creditsToMenuButonPressed:(id)sender;
 @end
