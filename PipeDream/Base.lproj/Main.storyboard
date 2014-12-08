@@ -353,14 +353,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="winImage" translatesAutoresizingMaskIntoConstraints="NO" id="WMn-3r-2aq">
-                                        <rect key="frame" x="40" y="189" width="420" height="140"/>
+                                        <rect key="frame" x="40" y="180" width="420" height="140"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-er-dxc">
-                                        <rect key="frame" x="161" y="423" width="178" height="41"/>
-                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="33"/>
-                                        <state key="normal" title="Next Level">
-                                            <color key="titleColor" red="0.0016288081590000001" green="0.78752790179999999" blue="0.002527127785" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="110" y="350" width="290" height="86"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="34"/>
+                                        <size key="titleShadowOffset" width="1" height="1"/>
+                                        <state key="normal" title="Next Level" backgroundImage="pipeButton">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="nextLevelButtonPressed" destination="Fov-iH-Bxi" eventType="touchUpInside" id="Z0V-OS-dcV"/>
@@ -373,11 +374,12 @@
                                 <rect key="frame" x="84" y="212" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvJ-no-lfc">
-                                <rect key="frame" x="618" y="249" width="30" height="30"/>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="32"/>
-                                <state key="normal" title="x">
+                                <rect key="frame" x="620" y="256" width="18" height="27"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="X">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="cancelButtonPressed" destination="Fov-iH-Bxi" eventType="touchUpInside" id="qag-ph-2mA"/>
