@@ -97,9 +97,9 @@
     NSArray *allLines = [allGrids componentsSeparatedByString:@"\n"];
     
     // Check for valid levelNumber
-    if (!levelNumber) {
+    if (levelNumber < 0) {
         [[NSException exceptionWithName:@"InvalidLevelNumberException"
-                                 reason:@"Level Number is nil."
+                                 reason:@"Level Number is negative"
                                userInfo:nil] raise ];
     }
     
