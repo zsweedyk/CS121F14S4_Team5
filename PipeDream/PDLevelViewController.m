@@ -140,6 +140,17 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
     [alertView show];
 }
 
+// presentAppropriateNarrative displays the narrative for this level if there is one
+- (void)presentAppropriateNarrative {
+    if (self.hasCompletedLevel) {
+        return;
+    }
+    NSNumber *levelNumber = [NSNumber numberWithInteger:self.levelNumber];
+    if ([[PDNarrativeViewController narrativeLevelNumbers] containsObject:levelNumber]) {
+        [self performSegueWithIdentifier:LEVEL_TO_NARRATIVE_SEGUE sender:self];
+    }
+}
+
 #pragma mark Private methods
 
 // startLevelNumber starts the level it is given.
@@ -209,17 +220,6 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
     [[PDAudioManager sharedInstance] playLevelComplete];
     // Perform segue to level completion dialog
     [self performSegueWithIdentifier:LEVEL_TO_COMPLETION_SEGUE sender:self];
-}
-
-// presentAppropriateNarrative displays the narrative for this level if there is one
-- (void)presentAppropriateNarrative {
-    if (self.hasCompletedLevel) {
-        return;
-    }
-    NSNumber *levelNumber = [NSNumber numberWithInteger:self.levelNumber];
-    if ([[PDNarrativeViewController narrativeLevelNumbers] containsObject:levelNumber]) {
-        [self performSegueWithIdentifier:LEVEL_TO_NARRATIVE_SEGUE sender:self];
-    }
 }
 
 #pragma mark - Navigation
