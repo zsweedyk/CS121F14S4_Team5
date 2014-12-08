@@ -12,6 +12,4 @@
 @interface PDInstructionsViewController : UIViewController
 
 - (IBAction)instructionsToMenuButtonPressed:(id)sender;
-
-
 @end

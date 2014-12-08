@@ -37,7 +37,6 @@
 - (IBAction)creditSelectButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"MenuToCredits" sender:self];
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
-    
 }
 
 #pragma mark Private methods
