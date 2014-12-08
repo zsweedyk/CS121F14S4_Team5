@@ -327,7 +327,9 @@ static const float ALPHA_BACKGROUND = 1.0;
     // Set up initial location of bullet
     int turretTouchedIndex = location.x / (self.frame.size.width / NUM_TURRETS);
     SKSpriteNode *turretTouched = self.turrets[turretTouchedIndex];
-    bullet.position = turretTouched.position;
+    CGFloat bulletX = turretTouched.position.x;
+    CGFloat bulletY = turretTouched.position.y + ((SKSpriteNode *) self.turrets[0]).size.height / 2;
+    bullet.position = CGPointMake(bulletX, bulletY);
     
     // Bail out if you did not touch a turret
     if (location.y > turretTouched.position.y + turretTouched.size.height) return;
