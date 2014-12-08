@@ -29,6 +29,7 @@
 @implementation PDPIDdingMonstersScene
 
 // Game parameters
+static const int MAX_NUM_LIVES = 3;
 static const int MAX_NUM_MONSTERS = 3;
 static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 2.0;
 static const CFTimeInterval TOTAL_GAME_LENGTH = 20;
@@ -385,7 +386,7 @@ static const float ALPHA_BACKGROUND = 1.0;
 }
 
 - (void)startGame {
-    self.lives = 3;
+    self.lives = MAX_NUM_LIVES;
     self.numMonsters = 0;
     self.lastMonsterRelease = 0;
     self.hasGameStartBeenRecorded = NO;
