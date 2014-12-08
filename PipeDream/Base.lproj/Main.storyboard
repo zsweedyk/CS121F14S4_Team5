@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="MAa-ly-FZL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="MAa-ly-FZL">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Level View Controller-->
@@ -513,7 +513,6 @@
                                 </state>
                                 <connections>
                                     <action selector="creditSelectButtonPressed:" destination="MAa-ly-FZL" eventType="touchUpInside" id="mdJ-XW-qGh"/>
-                                    <segue destination="Sdn-8o-BTq" kind="modal" identifier="MenuToInstructions" id="Ltx-di-hSx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXt-4N-IAj" userLabel="Instructions">
@@ -534,6 +533,7 @@
                     <connections>
                         <segue destination="5Re-Io-Hdl" kind="modal" identifier="MenuToLevelSelect" id="CAx-Lq-q73"/>
                         <segue destination="SA0-Il-dk1" kind="modal" identifier="MenuToCredits" id="dgJ-tS-v1H"/>
+                        <segue destination="Sdn-8o-BTq" kind="modal" identifier="MenuToInstructions" id="RCK-77-0to"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugt-t3-VCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -633,50 +633,121 @@
                                     <action selector="creditsToMenuButonPressed:" destination="SA0-Il-dk1" eventType="touchUpInside" id="Gea-cO-HgD"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3j3-sG-Jm8">
-                                <rect key="frame" x="79" y="187" width="634" height="771"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
-                                </accessibility>
-                                <string key="text">Pipe Dream
-Created by Jean Sung, Kathryn Aplin, Paula Yuan and Vincent Fiorentini 
-Made possible by NSF Grant # xxx
-
-Art
-Pipe Theme drawn by Paula Yuan
-Beginning Comics drawn by Kathryn Aplin
-
-Background Music 
-Source: http://www.newgrounds.com/audio/listen/583897
-
-Sound Effects
-Source: https://www.freesound.org/people/annabloom/sounds/219068/
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzE-mC-q8t">
+                                <rect key="frame" x="151" y="217" width="466" height="712"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ziM-5Q-f4k">
+                                        <rect key="frame" x="14" y="19.5" width="437" height="643.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Pipe Dream">
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">Created by Jean Sung, Kathryn Aplin, Paula Yuan and Vincent Fiorentini 
+Made possible by NSF Grant # xxx</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Background Music">
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+IAo
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Source: http://www.newgrounds.com/audio/listen/583897">
+                                                <attributes>
+                                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Sound Effects">
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">Source: https://www.freesound.org/people/annabloom/sounds/219068/
 Licensed under: CC BY-NC 3.0
-
 Source: https://www.freesound.org/people/f4ngy/sounds/240777/
 Licensed under: CC BY 3.0
-
 Source: https://www.freesound.org/people/annabloom/sounds/219068/
 Licensed under: CC BY-NC 3.0
-
 Source: https://www.freesound.org/people/Splashdust/sounds/84322/
 Licensed under: CC0 1.0
-
 Source: https://www.freesound.org/people/qubodup/sounds/157609/
 Licensed under: CC0 1.0
-
 Source: https://www.freesound.org/people/SoundCollectah/sounds/157790/
 Licensed under: CC BY-NC 3.0
-
 Source: https://www.freesound.org/people/blackstalian/sounds/140511/
 Licensed under: CC0 1.0
-
 Source: http://www.newgrounds.com/audio/listen/583897
 Licensed under: CC BY-NC-SA 3.0</string>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                                <attributes>
+                                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="adN-wO-BD0">
+                                <rect key="frame" x="81" y="162" width="600" height="800"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -709,20 +780,118 @@ Licensed under: CC BY-NC-SA 3.0</string>
                                     <action selector="instructionsToMenuButtonPressed:" destination="Sdn-8o-BTq" eventType="touchUpInside" id="6vG-nb-VX1"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW6-ba-bhJ">
-                                <rect key="frame" x="96" y="201" width="576" height="645"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWL-mx-Yag">
+                                <rect key="frame" x="151" y="217" width="466" height="702"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW6-ba-bhJ">
+                                        <rect key="frame" x="15" y="33" width="436" height="637"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="How to play:">
+                                                <attributes>
+                                                    <font key="NSFont" size="30" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+IAo
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="24" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">The goal of each level is to connect the computer and the star by creating a path between the two with pipes. To do this, you must rotate the pipes. You can rotate the pipes by tapping on the pipe. Each tap will rotate the pipe 90 degrees clockwise. 
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="24" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Mystery pipes:">
+                                                <attributes>
+                                                    <font key="NSFont" size="30" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+IAo
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="24" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">Squares with a ? represent mystery pipes. You don't yet know what they are. Rotate pipes you can see and connect those to the computer to uncover these mystery pipes. 
+
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="Infected Pipes:">
+                                                <attributes>
+                                                    <font key="NSFont" size="30" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content" base64-UTF8="YES">
+IAoKA
+</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">Red pipes are infected. Oh no! To clear the infection, tap the red pipe or connect a set of pipes already connected to the computer to activate a mini game. Once you finish the mini game, the infection will clear. </string>
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="STHeitiSC-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">How to play:
-The goal of each level is to connect the computer and the star by creating a path between the two with pipes. To do this, you must rotate the pipes. You can rotate the pipes by tapping on the pipe. Each tap will rotate the pipe 90 degrees clockwise. 
-
-Mystery pipes:
-Squares with a ? represent mystery pipes. You don't yet know what they are. Rotate pipes you can see and connect those to the computer to uncover these mystery pipes. 
-
-Infected Pipes:
-Red pipes are infected. Oh no! To clear the infection, tap the red pipe or connect a set of pipes already connected to the computer to activate a mini game. Once you finish the mini game, the infection will clear. </string>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Enx-jI-Yx8">
+                                <rect key="frame" x="81" y="162" width="600" height="800"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
