@@ -21,6 +21,8 @@
 @property (nonatomic, strong) SKLabelNode* pidLabel;
 @property (nonatomic) NSMutableArray *turrets;
 @property (nonatomic) PDPIDScenario *scenario;
+@property (nonatomic) BOOL hasGameStarted;
+
 
 @end
 
@@ -100,7 +102,6 @@ static const float ALPHA_BACKGROUND = 1.0;
         [self createTurrets];
         [self createPID];
         [self createLabels];
-        [self startGame];
 
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
@@ -109,6 +110,10 @@ static const float ALPHA_BACKGROUND = 1.0;
 }
 
 - (void)update:(NSTimeInterval)currentTime {
+    
+    if (!self.hasGameStarted) {
+        return;
+    }
     
     // Release monsters
     if (self.numMonsters < MAX_NUM_MONSTERS && (currentTime - self.lastMonsterRelease) >=
@@ -384,6 +389,7 @@ static const float ALPHA_BACKGROUND = 1.0;
     self.numMonsters = 0;
     self.lastMonsterRelease = 0;
     self.hasGameStartBeenRecorded = NO;
+    self.hasGameStarted = YES;
 }
 
 - (void)endGame {

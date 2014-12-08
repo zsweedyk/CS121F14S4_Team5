@@ -216,6 +216,8 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
         [segue.destinationViewController startMiniGame];
     }
     if ([segue.identifier isEqualToString:LEVEL_TO_COMPLETION_SEGUE]) {
+        [segue.destinationViewController setModalPresentationStyle:
+         UIModalPresentationOverCurrentContext];
         PDEndOfLevelViewController *endOfLevelViewController =
             (PDEndOfLevelViewController *) segue.destinationViewController;
         endOfLevelViewController.levelNumberCompleted = self.levelNumber;
