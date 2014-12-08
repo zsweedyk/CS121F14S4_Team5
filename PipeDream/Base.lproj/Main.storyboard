@@ -216,7 +216,7 @@ your personal information. </string>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="startGameButtonPressed" destination="DPd-fR-7wj" eventType="touchUpInside" id="Tk1-PM-qX9"/>
+                                            <action selector="startGameButtonPressed" destination="e6W-0x-deu" eventType="touchUpInside" id="3e8-h6-2up"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Missing a monster: -1 life" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vX7-Ku-cb2">
@@ -232,6 +232,7 @@ your personal information. </string>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="instructionsView" destination="VWg-nc-JlM" id="QLW-vQ-kDK"/>
                         <outlet property="skView" destination="gPl-ef-yhl" id="LyX-9y-2xu"/>
                     </connections>
                 </viewController>
@@ -610,48 +611,6 @@ Licensed under: CC BY-NC-SA 3.0</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxt-30-UJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3579" y="1505"/>
-        </scene>
-        <!--Bounce And Sort View Controller-->
-        <scene sceneID="JUX-10-yuH">
-            <objects>
-                <viewController id="rGK-Vb-H62" customClass="PDBounceAndSortViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1Fv-C8-Ehx"/>
-                        <viewControllerLayoutGuide type="bottom" id="75L-1K-irj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dSr-hj-gtD">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7r-RE-AjP" customClass="SKView">
-                                <rect key="frame" x="126" y="157" width="516" height="712"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectFrame" translatesAutoresizingMaskIntoConstraints="NO" id="EY7-4G-Io0">
-                                <rect key="frame" x="84" y="112" width="600" height="800"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r41-JQ-O2s">
-                                <rect key="frame" x="620" y="154" width="18" height="27"/>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="X">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelButtonPressed" destination="rGK-Vb-H62" eventType="touchUpInside" id="dkQ-Ky-ExB"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="skView" destination="y7r-RE-AjP" id="pvn-5D-FxG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1IM-JU-8wq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-235" y="-372"/>
         </scene>
     </scenes>
     <resources>
