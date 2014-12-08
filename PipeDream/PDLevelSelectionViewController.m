@@ -68,6 +68,7 @@ CGFloat BUTTON_DISABLED_ALPHA = 0.5; // the alpha for buttons that are toggled o
 
 // Back to Main Menu
 - (void)returnToMainMenuButtonPressed:(id)sender {
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

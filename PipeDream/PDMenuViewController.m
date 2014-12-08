@@ -29,8 +29,14 @@
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
+- (IBAction)instructionsButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"MenuToInstructions" sender:self];
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
+}
+
 - (IBAction)creditSelectButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"MenuToCredits" sender:self];
+    [[PDAudioManager sharedInstance] playMenuButtonPressed];
 }
 
 #pragma mark Private methods

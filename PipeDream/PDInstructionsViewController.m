@@ -1,31 +1,27 @@
 //
-//  PDCreditsViewController.m
+//  PDInstructionsViewController.m
 //  PipeDream
 //
-//  Created by Jean Sung on 11/29/14.
+//  Created by Jean Sung on 12/7/14.
 //  Copyright (c) 2014 Flapjack Stack Hack. All rights reserved.
 //
 
-#import "PDCreditsViewController.h"
+#import "PDInstructionsViewController.h"
 
-@interface PDCreditsViewController ()
+@interface PDInstructionsViewController ()
 
 @end
 
-@implementation PDCreditsViewController
-
-#pragma mark Public methods
+@implementation PDInstructionsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
 }
 
-- (void)creditsToMenuButonPressed:(id)sender {
+- (IBAction)instructionsToMenuButtonPressed:(id)sender {
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
-
-#pragma mark Private methods
 
 @end
