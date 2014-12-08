@@ -29,19 +29,28 @@
 @implementation PDPIDdingMonstersScene
 
 // Game parameters
-static const int MAX_NUM_MONSTERS = 4;
-static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 1.0;
+static const int MAX_NUM_LIVES = 3;
+static const int MAX_NUM_MONSTERS = 3;
+static const CFTimeInterval MIN_TIME_BETWEEN_MONSTER_RELEASES = 2.0;
 static const CFTimeInterval TOTAL_GAME_LENGTH = 20;
 
 // Sprite image names - most of these are to be changed
 static NSString *TURRET_IMAGE_NAME = @"NxSx";
-static const int NUM_MONSTER_IMAGE_NAMES = 2;
-static NSString *BULLET_IMAGE_NAME = @"goal";
-static NSString *PID_IMAGE_NAME = @"levelButtonUnlocked";
+static const int NUM_MONSTER_IMAGE_NAMES = 7;
+static NSString *BULLET_IMAGE_NAME = @"laser";
+static NSString *PID_IMAGE_NAME = @"PIDblock";
 // Monsters
-static NSString *RED_MONSTER = @"NESWi";
-static NSString *GREEN_MONSTER = @"NESW";
-static NSString *MONSTER_IMAGE_NAMES[] = {@"NESW", @"NESWi"};
+static NSString *ONLINE_FRIEND_NAME = @"online_friend";
+static NSString *POP_UP_AD_NAME = @"pop_up_ad";
+static NSString *REAL_FRIEND_NAME = @"real_friend";
+static NSString *SOCIAL_MEDIA_NAME = @"social_media";
+static NSString *SPOUSE_NAME = @"spouse";
+static NSString *STRANGER_ONLINE_NAME = @"stranger_online";
+static NSString *TEACHER_NAME = @"teacher";
+static NSString *MONSTER_IMAGE_NAMES[] = {@"online_friend", @"pop_up_ad", @"real_friend",
+    @"social_media", @"spouse", @"stranger_online", @"teacher"};
+static NSString *MONSTER_LABEL_NAMES[] = {@"Online Friend", @"Pop Up Ad", @"Real Friend",
+    @"Social Media", @"Spouse", @"Stranger Online", @"Teacher"};
 
 // Collision categories
 static const uint32_t GOOD_MONSTER_CATEGORY = 0x1 << 0;
@@ -56,7 +65,7 @@ static const CGFloat TURRET_Y_POSITION_FACTOR = 0.1;
 // Bullets
 static const CGFloat BULLET_SIZE_FACTOR = 0.125;
 // Monsters
-static const CGFloat MONSTER_SIZE_FACTOR = 0.25;
+static const CGFloat MONSTER_SIZE_FACTOR = 0.3;
 // Personal identifier
 static const CGFloat PID_WIDTH_FACTOR = 0.9;
 static const CGFloat PID_HEIGHT_FACTOR = 0.1;
@@ -162,22 +171,59 @@ static const float ALPHA_BACKGROUND = 1.0;
 
 - (void)chooseScenario {
     
-    int numScenarios = 2;
+    int numScenarios = 8;
     int scenarioIndex = arc4random() % numScenarios;
     
     switch (scenarioIndex) {
         
-        case 0: { // Scenario: shoot the reds
-            NSString *redStr = @"Shoot the reds";
-            NSArray *redMonsters = [NSArray arrayWithObjects: GREEN_MONSTER, nil];
-            self.scenario = [[PDPIDScenario alloc] initWithPID:redStr andOkMonsters:redMonsters];
+        case 0: {
+            NSString *pwStr = @"Password";
+            NSArray *pwMonsters = [NSArray arrayWithObjects: nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:pwStr andOkMonsters:pwMonsters];
             break;
         }
-        case 1: { // Scenario: shoot the greens
-            NSString *greenStr = @"Shoot the greens";
-            NSArray *greenMonsters = [NSArray arrayWithObjects: RED_MONSTER, nil];
-            self.scenario = [[PDPIDScenario alloc] initWithPID:greenStr andOkMonsters:greenMonsters];
+        case 1: {
+            NSString *addrStr = @"Home Address";
+            NSArray *addrMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, TEACHER_NAME,
+                                     SPOUSE_NAME, nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:addrStr andOkMonsters:addrMonsters];
             break;
+        }
+        case 2: {
+            NSString *phoneStr = @"Phone Number";
+            NSArray *phoneMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, TEACHER_NAME,
+                                      SPOUSE_NAME, nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:phoneStr andOkMonsters:phoneMonsters];
+        }
+        case 3: {
+            NSString *emailStr = @"E-mail Address";
+            NSArray *emailMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
+                                      TEACHER_NAME, SPOUSE_NAME, SOCIAL_MEDIA_NAME, nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:emailStr andOkMonsters:emailMonsters];
+        }
+        case 4: {
+            NSString *bdayStr = @"Birthday";
+            NSArray *bdayMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
+                                     TEACHER_NAME, SPOUSE_NAME, SOCIAL_MEDIA_NAME, nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:bdayStr andOkMonsters:bdayMonsters];
+        }
+        case 5: {
+            NSString *pinStr = @"Bank PIN";
+            NSArray *pinMonsters = [NSArray arrayWithObjects: nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:pinStr andOkMonsters:pinMonsters];
+        }
+        case 6: {
+            NSString *nameStr = @"Real Name";
+            NSArray *nameMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
+                                     TEACHER_NAME, SPOUSE_NAME, SOCIAL_MEDIA_NAME, nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:nameStr andOkMonsters:nameMonsters];
+        }
+        case 7: {
+            NSString *nnameStr = @"Nickname";
+            NSArray *nnameMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
+                                      TEACHER_NAME, ONLINE_FRIEND_NAME, SPOUSE_NAME,
+                                      SOCIAL_MEDIA_NAME, nil];
+            self.scenario = [[PDPIDScenario alloc] initWithPID:nnameStr andOkMonsters:nnameMonsters];
         }
         default: {
             break;
@@ -246,8 +292,8 @@ static const float ALPHA_BACKGROUND = 1.0;
     [self addChild:monster];
     
     // Determine speed of the monster
-    int minDuration = 3.0;
-    int maxDuration = 4.0;
+    int minDuration = 5.0;
+    int maxDuration = 6.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -340,7 +386,7 @@ static const float ALPHA_BACKGROUND = 1.0;
 }
 
 - (void)startGame {
-    self.lives = 3;
+    self.lives = MAX_NUM_LIVES;
     self.numMonsters = 0;
     self.lastMonsterRelease = 0;
     self.hasGameStartBeenRecorded = NO;

@@ -45,8 +45,10 @@
     
     if (levelViewController.levelNumber < [PDGridGenerator numberOfLevels]) {
         [levelViewController startNextLevel];
-        // Dismiss level completion dialog
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        // Dismiss level completion dialog and show narrative if appropriate
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            [levelViewController presentAppropriateNarrative];
+        }];
     } else {
         
         NSString *cancelButtonTitle = @"Okay";
