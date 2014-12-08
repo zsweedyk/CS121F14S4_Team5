@@ -15,7 +15,20 @@
 /* Input: Level number
  * Output: An array of rows of CellModels corresponding to that level */
 + (NSMutableArray *)generateGridForLevelNumber:(NSInteger)levelNumber {
+    // Check for valid levelNumber
+    if (levelNumber < 0) {
+        [[NSException exceptionWithName:@"InvalidLevelNumberException"
+                                 reason:@"Level Number is negative."
+          userInfo:nil] raise ];
+    }
     NSString *readString = [PDGridGenerator readFromFile];
+    
+    // Check for valid readString
+    if (!readString) {
+        [[NSException exceptionWithName:@"InvalidReadStringException"
+                                 reason: @"Read String is nil." userInfo:nil] raise ];
+    }
+    
     NSString *line = [PDGridGenerator getLineFromString:readString forLevel:levelNumber];
     return [PDGridGenerator parseLine:line];
 }
@@ -23,13 +36,27 @@
 /* Input: Level string
  * Output: An array of rows of CellModels corresponding to that level */
 + (NSMutableArray *) generateGridFromString:(NSString *)string {
+    
+    // Check for valid Level String
+    if (!string) {
+        [[NSException exceptionWithName:@"InvalidLevelStringException"
+                                 reason: @"Input level string is nil." userInfo:nil] raise ];
+    }
     return [PDGridGenerator parseLine:string];
 }
 
 /* Output: The number of levels in the current grids file */
 + (NSInteger) numberOfLevels {
     NSString *readString = [PDGridGenerator readFromFile];
+    
+    // Check for valid readString
+    if (!readString) {
+        [[NSException exceptionWithName:@"InvalidReadStringException"
+                                 reason: @"Read String is nil." userInfo:nil] raise ];
+    }
+    
     NSArray *allLines = [readString componentsSeparatedByString:@"\n"];
+
     return [allLines count];
 }
 
@@ -39,15 +66,43 @@
 + (NSString *)readFromFile {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"grids" ofType:@"txt"];
     NSError *error;
+    
+    // Check for valid path
+    if (!path) {
+        [[NSException exceptionWithName:@"InvalidPathException"
+                                 reason: @"Path string is nil." userInfo:nil] raise ];
+    }
     NSString *readString = [[NSString alloc] initWithContentsOfFile:path
         encoding:NSUTF8StringEncoding error:&error];
+    
+    // Check for valid readString
+    if (!readString) {
+        [[NSException exceptionWithName:@"InvalidReadStringException"
+                                 reason: @"Read String is nil." userInfo:nil] raise ];
+    }
+    
     return readString;
 }
 
 /* Input: A string composed of multiple lines, level number
  * Output: A single line from the input */
 + (NSString *)getLineFromString:(NSString *)allGrids forLevel:(NSInteger)levelNumber {
+    // Check for valid allGrids
+    if (!allGrids) {
+        [[NSException exceptionWithName:@"InvalidAllGridsException"
+                                 reason:@"All Grids is nil."
+                               userInfo:nil] raise ];
+    }
+    
     NSArray *allLines = [allGrids componentsSeparatedByString:@"\n"];
+    
+    // Check for valid levelNumber
+    if (!levelNumber) {
+        [[NSException exceptionWithName:@"InvalidLevelNumberException"
+                                 reason:@"Level Number is nil."
+                               userInfo:nil] raise ];
+    }
+    
     return [allLines objectAtIndex:levelNumber];
 }
 
@@ -58,8 +113,23 @@
     // Define constant for start of pipe encodings in text file
     NSInteger PIPE_ENCODING_START = 7;
     
+    // Check for valid gridLine
+    if (!gridLine) {
+        [[NSException exceptionWithName:@"InvalidGridLineException"
+                                 reason:@"GridLine is nil."
+                               userInfo:nil] raise ];
+    }
+
+    
     // Turns the string into an array of strings
     NSArray *parsedLine = [gridLine componentsSeparatedByString:@" "];
+    
+    // Check for valid parsedLine
+    if (!parsedLine) {
+        [[NSException exceptionWithName:@"InvalidParsedLine"
+                                 reason:@"Parsed Line is nil."
+                               userInfo:nil] raise ];
+    }
     
     // Get the width and height of the grid
     NSInteger width = [[parsedLine objectAtIndex:0] integerValue];
