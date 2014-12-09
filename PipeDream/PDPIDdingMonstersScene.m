@@ -8,6 +8,7 @@
 
 #import "PDPIDdingMonstersScene.h"
 #import "PDPIDScenario.h"
+#import "PDAudioManager.h"
 
 @interface PDPIDdingMonstersScene()
 
@@ -356,6 +357,9 @@ static const float ALPHA_BACKGROUND = 1.0;
     SKAction *actionMove = [SKAction moveTo:destination duration:duration];
     SKAction *actionMoveDone = [SKAction removeFromParent];
     [bullet runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+    
+    // Play a sound
+    [[PDAudioManager sharedInstance] playLaserShoot];
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
@@ -374,15 +378,23 @@ static const float ALPHA_BACKGROUND = 1.0;
     
     // Bullet-monster interaction
     if ((secondBody.categoryBitMask & BULLET_CATEGORY) != 0) {
-        if ((firstBody.categoryBitMask & GOOD_MONSTER_CATEGORY) != 0)
+        if ((firstBody.categoryBitMask & GOOD_MONSTER_CATEGORY) != 0) {
             self.lives--;
+            [[PDAudioManager sharedInstance] playSortIncorrect];
+        } else {
+            [[PDAudioManager sharedInstance] playSortCorrect];
+        }
         [firstBody.node removeFromParent];
         [secondBody.node removeFromParent];
     }
     // PID-monster interaction
     if ((secondBody.categoryBitMask & PID_CATEGORY) != 0) {
-        if ((firstBody.categoryBitMask & BAD_MONSTER_CATEGORY) != 0)
+        if ((firstBody.categoryBitMask & BAD_MONSTER_CATEGORY) != 0) {
             self.lives--;
+            [[PDAudioManager sharedInstance] playSortIncorrect];
+        } else {
+            [[PDAudioManager sharedInstance] playSortCorrect];
+        }
         [firstBody.node removeFromParent];
     }
     

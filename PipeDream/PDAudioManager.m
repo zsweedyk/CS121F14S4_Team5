@@ -21,6 +21,7 @@
 @property AVAudioPlayer *bouncePlayer;
 @property AVAudioPlayer *sortCorrectPlayer;
 @property AVAudioPlayer *sortIncorrectPlayer;
+@property AVAudioPlayer *laserShootPlayer;
 @property AVAudioPlayer *backgroundMusicPlayer;
 @property (nonatomic) BOOL soundEffectsEnabled;
 @end
@@ -34,18 +35,16 @@ NSString* CELL_MADE_VISIBLE_SOUND = @"84322__splashdust__flipcard";
 NSString* INFECTION_SPREAD_SOUND = @"157609__qubodup__hollow-bang";
 NSString* INFECTION_CLEARED_SOUND = @"157790__soundcollectah__airpipe-swoosh-01-shortened";
 NSString* LEVEL_COMPLETE_SOUND = @"140511__blackstalian__click-sfx7";
+NSString* BOUNCE_SOUND = @"51460__andre-rocha-nascimento__basket-ball-01-bounce";
+NSString* SORT_CORRECT_SOUND = @"166184__drminky__retro-coin-collect";
+NSString* SORT_INCORRECT_SOUND = @"106727__kantouth__cartoon-bing-low";
+NSString* LASER_SHOOT_SOUND = @"146725__fins__laser";
 NSString* BACKGROUND_MUSIC = @"583897_JBroadway---Over-Th";
 NSString* WAV_EXTENSION = @"wav";
 NSString* MP3_EXTENSION = @"mp3";
 
-
 static PDAudioManager *sharedAudioManager = nil;
 static dispatch_once_t sharedAudioManagerDispatchToken;
-/*
- 
- Music (one looping song)
- http://www.newgrounds.com/audio/listen/583897
- */
 
 #pragma mark Public methods
 
@@ -128,6 +127,13 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
     }
 }
 
+- (void)playLaserShoot
+{
+    if (self.laserShootPlayer && self.soundEffectsEnabled) {
+        [self.laserShootPlayer play];
+    }
+}
+
 - (void)startBackgroundMusic
 {
     if (self.backgroundMusicPlayer) {
@@ -157,6 +163,7 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
         [self initializeBouncePlayer];
         [self initializeSortCorrectPlayer];
         [self initializeSortIncorrectPlayer];
+        [self initializeLaserShootPlayer];
         [self initializeBackgroundMusicPlayer];
     }
     return self;
@@ -325,7 +332,7 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeBouncePlayer
 {
-    NSString *fileName = @"51460__andre-rocha-nascimento__basket-ball-01-bounce";
+    NSString *fileName = BOUNCE_SOUND;
     NSString *fileExtension = @"wav";
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
@@ -341,7 +348,7 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeSortCorrectPlayer
 {
-    NSString *fileName = @"166184__drminky__retro-coin-collect";
+    NSString *fileName = SORT_CORRECT_SOUND;
     NSString *fileExtension = @"wav";
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
@@ -357,13 +364,29 @@ static dispatch_once_t sharedAudioManagerDispatchToken;
  */
 - (void)initializeSortIncorrectPlayer
 {
-    NSString *fileName = @"106727__kantouth__cartoon-bing-low";
+    NSString *fileName = SORT_INCORRECT_SOUND;
     NSString *fileExtension = @"wav";
     NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
     NSURL *url = [NSURL fileURLWithPath:path];
     NSError *error = nil;
     self.sortIncorrectPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     self.sortIncorrectPlayer.numberOfLoops = 0;
+}
+
+/*
+ * Audio source:
+ * http://www.freesound.org/people/fins/sounds/146725/
+ * This audio is liscenced under (CC0 1.0)
+ */
+- (void)initializeLaserShootPlayer
+{
+    NSString *fileName = LASER_SHOOT_SOUND;
+    NSString *fileExtension = @"wav";
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileExtension];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSError *error = nil;
+    self.laserShootPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.laserShootPlayer.numberOfLoops = 0;
 }
 
 /*
