@@ -21,5 +21,6 @@
 - (IBAction)returnToLevelSelectButtonPressed:(id)sender;
 - (IBAction)restartLevelButtonPressed:(id)sender;
 - (void)startNextLevel;
+- (void)presentAppropriateNarrative;
 
 @end

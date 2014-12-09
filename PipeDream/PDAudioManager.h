@@ -19,6 +19,10 @@
 - (void)playInfectionSpread;
 - (void)playInfectionCleared;
 - (void)playLevelComplete;
+- (void)playBounce;
+- (void)playSortCorrect;
+- (void)playSortIncorrect;
+- (void)playLaserShoot;
 - (void)startBackgroundMusic;
 
 - (void)toggleMusic;

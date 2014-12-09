@@ -29,6 +29,11 @@
  * Creates the array of cells corresponding to the level.
  */
 - (id)initWithLevelNumber:(NSInteger)number {
+    if (number < 0) {
+        [[NSException exceptionWithName:@"NegativeLevelNumberException"
+                                 reason:@"Level number is less than 0."
+                               userInfo:nil] raise ];
+    }
     NSMutableArray *generatedCells = [PDGridGenerator generateGridForLevelNumber:number];
     return [[PDGridModel alloc] initWithGrid:generatedCells];
 }
@@ -36,6 +41,11 @@
 - (id)initWithGrid:(NSMutableArray *)grid {
     self = [super init];
     if (self) {
+        if (!grid) {
+        [[NSException exceptionWithName:@"InvalidGridException"
+                                 reason:@"Grid is nil."
+                               userInfo:nil] raise ];
+        }
         [self setGrid:grid];
         [self spreadVisiblityFromStart];
         [self spreadInitialInfection];
@@ -44,16 +54,20 @@
 }
 
 - (NSInteger)numRows {
-    if (_cells == nil) {
-        return 0;
+    if (!_cells) {
+        [[NSException exceptionWithName:@"InvalidCellsException"
+                                 reason:@"Cells are nil."
+                               userInfo:nil] raise ];
     }
     
     return [_cells count];
 }
 
 - (NSInteger)numCols {
-    if (_cells == nil) {
-        return 0;
+    if (!_cells) {
+        [[NSException exceptionWithName:@"InvalidCellsException"
+                                 reason:@"Cells are nil."
+                               userInfo:nil] raise ];
     }
     
     if ([_cells count] == 0) {
@@ -64,10 +78,19 @@
 }
 
 - (void)rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
+    
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
-    if (cell == nil) {
-        return;
+    if (!cell) {
+        [[NSException exceptionWithName:@"InvalidCellException"
+                                 reason:@"This cell is nil."
+                               userInfo:nil] raise ];
     }
     
     [cell rotateClockwise];
@@ -81,15 +104,30 @@
 }
 
 - (void) clearInfectionFromRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
     [self setInfectedFromCellAtRow:row col:col infected:NO];
 }
 
 - (BOOL) isInfectedAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
     PDCellModel *cell = [self getCellAtRow:row col:col];
     return cell.isInfected;
 }
 
 - (BOOL) isVisibleAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
     PDCellModel *cell = [self getCellAtRow:row col:col];
     return cell.isVisible;
 }
@@ -100,6 +138,11 @@
  */
 - (BOOL)isConnectedFromRow:(NSInteger)rowFrom col:(NSInteger)colFrom
                       toRow:(NSInteger)rowTo col:(NSInteger)colTo {
+    if ((rowFrom < 0 || colFrom < 0) || (rowTo < 0 || colTo < 0)) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
     NSMutableArray *searched = [self getConnectedCellsFromCellAtRow:rowFrom col:colFrom];
     for (int i = 0; i < [searched count]; i++) {
         PDCellModel *cell = [searched objectAtIndex:i];
@@ -111,46 +154,76 @@
 }
 
 - (PDOpenings *)openingsAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
-    if (cell == nil) {
-        return nil;
+    if (!cell) {
+        [[NSException exceptionWithName:@"InvalidCellException"
+                                 reason:@"This cell is nil."
+                               userInfo:nil] raise ];
     }
     
     return [cell openings];
 }
 
 - (BOOL)isStartAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
-    if (cell == nil) {
-        return NO;
+    if (!cell) {
+        [[NSException exceptionWithName:@"InvalidCellException"
+                                 reason:@"This cell is nil."
+                               userInfo:nil] raise ];
     }
 
     return [cell isStart];
 }
 
 - (BOOL)isGoalAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     PDCellModel *cell = [self getCellAtRow:row col:col];
     
-    if (cell == nil) {
-        return NO;
+    if (!cell) {
+        [[NSException exceptionWithName:@"InvalidCellException"
+                                 reason:@"This cell is nil."
+                               userInfo:nil] raise ];
     }
     
     return [cell isGoal];
 }
 
 - (PDCellModel *)getCellAtRow:(NSInteger)row col:(NSInteger)col {
-    if (_cells == nil) {
-        return nil;
+    if (!_cells) {
+        [[NSException exceptionWithName:@"InvalidCellsException"
+                                 reason:@"Cells are nil."
+                               userInfo:nil] raise ];
     }
     
     if ([_cells count] <= row) {
-        return nil;
+        [[NSException exceptionWithName:@"InvalidRowException"
+                                 reason:@"Row is not in cells array."
+                               userInfo:nil] raise ];
     }
     
     if ([[_cells objectAtIndex:row] count] <= col) {
-        return nil;
+        [[NSException exceptionWithName:@"InvalidColException"
+                                 reason:@"Col is not in cells array."
+                               userInfo:nil] raise ];
     }
     
     PDCellModel *cell = [[_cells objectAtIndex:row] objectAtIndex:col];
@@ -162,6 +235,13 @@
  * it in the order visited.
  */
 - (NSMutableArray *)getConnectedCellsFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     // Create an array to track which cells have been searched.
     NSMutableArray *visited = [[NSMutableArray alloc] initWithCapacity:[self numRows]];
     for (int row = 0; row < [self numRows]; row++) {
@@ -208,6 +288,12 @@
 }
 
 - (NSMutableArray *)getConnectedNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     PDCellModel *cell = [self getCellAtRow:row col:col];
 
     // Nil marks the cell as unconnected.
@@ -283,6 +369,12 @@
  * cells connected to it.
  */
 - (void)spreadVisibilityFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     NSMutableArray *connectedCells = [self getConnectedCellsFromCellAtRow:row col:col];
     for (int i = 0; i < [connectedCells count]; i++) {
         PDCellModel *currentCell = [connectedCells objectAtIndex:i];
@@ -303,6 +395,12 @@
 /* Returns all neighbors of a cell regardless of connectivity, given coordinates of a cell.
  */
 - (NSMutableArray *)getNeighborsOfCellAtRow:(NSInteger)row col:(NSInteger)col {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     NSMutableArray *neighbors = [[NSMutableArray alloc] init];
     if (row > 0) {
         PDCellModel *northNeighbor = [self getCellAtRow:row - 1 col:col];
@@ -349,6 +447,12 @@
  * be not infected.
  */
 - (void)setInfectedFromCellAtRow:(NSInteger)row col:(NSInteger)col infected:(BOOL)isInfected {
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     NSMutableArray *cells = [self getConnectedCellsFromCellAtRow:row col:col];
     for (int i = 0; i < [cells count]; i++) {
         PDCellModel *cell = [cells objectAtIndex:i];
@@ -380,6 +484,13 @@
 /*
  */
 - (void)checkRotationInfectionSpreadFromCellAtRow:(NSInteger)row col:(NSInteger)col {
+    
+    if (row < 0 || col < 0) {
+        [[NSException exceptionWithName:@"NegativeCellLocation"
+                                 reason:@"Row or col less than 0."
+                               userInfo:nil] raise ];
+    }
+    
     NSMutableArray *connectedNeighbors = [self getConnectedNeighborsOfCellAtRow:row col:col];
     for (int i = 0; i < [connectedNeighbors count]; i++) {
         PDCellModel *cell = [connectedNeighbors objectAtIndex:i];

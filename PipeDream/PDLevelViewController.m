@@ -14,6 +14,7 @@
 #import "PDLevelSelectionViewController.h"
 #import "PDMiniGameProtocol.h"
 #import "PDEndOfLevelViewController.h"
+#import "PDNarrativeViewController.h"
 #import "PDAudioManager.h"
 
 @interface PDLevelViewController () <PDCellPressedDelegate>
@@ -22,6 +23,7 @@
 @property (nonatomic) NSInteger selectedInfectedRow;
 @property (nonatomic) NSInteger selectedInfectedCol;
 @property (nonatomic) BOOL hasCompletedLevel;
+@property (nonatomic) BOOL hasPresentedNarrative;
 
 @end
 
@@ -32,6 +34,7 @@ NSInteger RETURN_TO_SELECT_TAG = 0;
 NSInteger RESTART_LEVEL_TAG = 1;
 
 NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
+NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +50,8 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [self presentAppropriateNarrative];
     
     // This is in place so that at the end of the levels available, the game can go from the end-
     // of-game dialog to the level selection screen.
@@ -136,10 +141,24 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
     [alertView show];
 }
 
+// presentAppropriateNarrative displays the narrative for this level if there is one
+- (void)presentAppropriateNarrative {
+    if (self.hasCompletedLevel || self.hasPresentedNarrative) {
+        return;
+    }
+    NSNumber *levelNumber = [NSNumber numberWithInteger:self.levelNumber];
+    if ([[PDNarrativeViewController narrativeLevelNumbers] containsObject:levelNumber]) {
+        self.hasPresentedNarrative = YES;
+        [self performSegueWithIdentifier:LEVEL_TO_NARRATIVE_SEGUE sender:self];
+    }
+}
+
 #pragma mark Private methods
 
 // startLevelNumber starts the level it is given.
 - (void)startLevelNumber:(NSInteger)levelNumber {
+    self.hasCompletedLevel = NO;
+    self.hasPresentedNarrative = NO;
     NSInteger zeroIndexedLevelNumber = levelNumber - 1;
     self.gridModel = [[PDGridModel alloc] initWithLevelNumber:zeroIndexedLevelNumber];
     [self setGridViewToMatchModel];
@@ -162,7 +181,7 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
 // startMiniGame starts a randomly selected mini game.
 - (void)startMiniGame {
     NSArray *allSeguesToMiniGames = [NSArray arrayWithObjects:@"LevelToBounceAndSort",
-        @"LevelToSpam", nil];
+        @"LevelToSpam", @"LevelToPIDdingMonsters", nil];
     int randomIndex = arc4random() % [allSeguesToMiniGames count];
     [self performSegueWithIdentifier:allSeguesToMiniGames[randomIndex] sender:self];
 }
@@ -215,10 +234,22 @@ NSString *LEVEL_TO_COMPLETION_SEGUE = @"LevelToCompletion";
             UIModalPresentationOverCurrentContext];
         [segue.destinationViewController startMiniGame];
     }
+    
     if ([segue.identifier isEqualToString:LEVEL_TO_COMPLETION_SEGUE]) {
+        [segue.destinationViewController setModalPresentationStyle:
+         UIModalPresentationOverCurrentContext];
         PDEndOfLevelViewController *endOfLevelViewController =
             (PDEndOfLevelViewController *) segue.destinationViewController;
         endOfLevelViewController.levelNumberCompleted = self.levelNumber;
+        
+    } else if ([segue.identifier isEqualToString:LEVEL_TO_NARRATIVE_SEGUE]) {
+        
+        [segue.destinationViewController setModalPresentationStyle:
+            UIModalPresentationOverCurrentContext];
+        PDNarrativeViewController *narrativeViewController =
+            (PDNarrativeViewController *) segue.destinationViewController;
+        narrativeViewController.levelNumber = self.levelNumber;
+        
     }
 }
 

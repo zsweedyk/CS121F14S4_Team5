@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F13C6031A34D9830079D9D4 /* PDInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */; };
+		0FFF54131A2A5E0300CF337D /* PDCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */; };
 		2994C49119F45C6F00A11183 /* PDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2994C49019F45C6F00A11183 /* PDQueue.m */; };
+		9301F1D91A2D65FC00DF3E03 /* PDPIDScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 9301F1D81A2D65FC00DF3E03 /* PDPIDScenario.m */; };
+		93A0CA7C1A2C11A500577470 /* PDPIDdingMonstersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A0CA7B1A2C11A500577470 /* PDPIDdingMonstersViewController.m */; };
+		93A0CA7F1A2C11C600577470 /* PDPIDdingMonstersScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A0CA7E1A2C11C600577470 /* PDPIDdingMonstersScene.m */; };
 		93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3903E19F0DBB600D93EB1 /* PDOpenings.m */; };
 		93A3904119F0E44A00D93EB1 /* grids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93A3904019F0E44A00D93EB1 /* grids.txt */; };
 		93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */; };
@@ -35,7 +40,12 @@
 		BF62564F19EC9591008175CC /* PDCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62564E19EC9591008175CC /* PDCellModel.m */; };
 		BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62565119EC95A0008175CC /* PDGridGenerator.m */; };
 		BF6C66C31A08B821004C2D2E /* spams.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF6C66C11A08B821004C2D2E /* spams.txt */; };
+		BF80EB971A3545E700DDBA08 /* PDNarrativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF80EB961A3545E700DDBA08 /* PDNarrativeViewController.m */; };
+		BFA0C38D1A2DA9BA00652633 /* 51460__andre-rocha-nascimento__basket-ball-01-bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFA0C38A1A2DA9BA00652633 /* 51460__andre-rocha-nascimento__basket-ball-01-bounce.wav */; };
+		BFA0C38E1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFA0C38B1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav */; };
+		BFA0C38F1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFA0C38C1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav */; };
 		BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */; };
+		BFE35EC41A36A89100E98477 /* 146725__fins__laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFE35EC31A36A89100E98477 /* 146725__fins__laser.wav */; };
 		BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */; };
 		BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF943111A038271009FF758 /* PDMenuViewController.m */; };
 /* End PBXBuildFile section */
@@ -51,8 +61,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F13C6011A34D9830079D9D4 /* PDInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDInstructionsViewController.h; sourceTree = "<group>"; };
+		0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDInstructionsViewController.m; sourceTree = "<group>"; };
+		0FFF54111A2A5E0300CF337D /* PDCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCreditsViewController.h; sourceTree = "<group>"; };
+		0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCreditsViewController.m; sourceTree = "<group>"; };
 		2994C48F19F45C6F00A11183 /* PDQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDQueue.h; sourceTree = "<group>"; };
 		2994C49019F45C6F00A11183 /* PDQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDQueue.m; sourceTree = "<group>"; };
+		9301F1D71A2D65FC00DF3E03 /* PDPIDScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDPIDScenario.h; sourceTree = "<group>"; };
+		9301F1D81A2D65FC00DF3E03 /* PDPIDScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDPIDScenario.m; sourceTree = "<group>"; };
+		93A0CA7A1A2C11A500577470 /* PDPIDdingMonstersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDPIDdingMonstersViewController.h; sourceTree = "<group>"; };
+		93A0CA7B1A2C11A500577470 /* PDPIDdingMonstersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDPIDdingMonstersViewController.m; sourceTree = "<group>"; };
+		93A0CA7D1A2C11C600577470 /* PDPIDdingMonstersScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDPIDdingMonstersScene.h; sourceTree = "<group>"; };
+		93A0CA7E1A2C11C600577470 /* PDPIDdingMonstersScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDPIDdingMonstersScene.m; sourceTree = "<group>"; };
 		93A3903E19F0DBB600D93EB1 /* PDOpenings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDOpenings.m; sourceTree = "<group>"; };
 		93A3904019F0E44A00D93EB1 /* grids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grids.txt; sourceTree = "<group>"; };
 		93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDEndOfLevelViewController.h; sourceTree = "<group>"; };
@@ -98,8 +118,14 @@
 		BF62565019EC95A0008175CC /* PDGridGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDGridGenerator.h; sourceTree = "<group>"; };
 		BF62565119EC95A0008175CC /* PDGridGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDGridGenerator.m; sourceTree = "<group>"; };
 		BF6C66C11A08B821004C2D2E /* spams.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spams.txt; sourceTree = "<group>"; };
+		BF80EB951A3545E700DDBA08 /* PDNarrativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDNarrativeViewController.h; sourceTree = "<group>"; };
+		BF80EB961A3545E700DDBA08 /* PDNarrativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDNarrativeViewController.m; sourceTree = "<group>"; };
+		BFA0C38A1A2DA9BA00652633 /* 51460__andre-rocha-nascimento__basket-ball-01-bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "51460__andre-rocha-nascimento__basket-ball-01-bounce.wav"; sourceTree = "<group>"; };
+		BFA0C38B1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "106727__kantouth__cartoon-bing-low.wav"; sourceTree = "<group>"; };
+		BFA0C38C1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "166184__drminky__retro-coin-collect.wav"; sourceTree = "<group>"; };
 		BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLevelSelectionViewController.h; sourceTree = "<group>"; };
 		BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLevelSelectionViewController.m; sourceTree = "<group>"; };
+		BFE35EC31A36A89100E98477 /* 146725__fins__laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 146725__fins__laser.wav; sourceTree = "<group>"; };
 		BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameProtocol.h; sourceTree = "<group>"; };
 		BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSpamViewController.h; sourceTree = "<group>"; };
 		BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSpamViewController.m; sourceTree = "<group>"; };
@@ -138,6 +164,10 @@
 		AF1B3DCB1A19DE15002F62B6 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				BFE35EC31A36A89100E98477 /* 146725__fins__laser.wav */,
+				BFA0C38A1A2DA9BA00652633 /* 51460__andre-rocha-nascimento__basket-ball-01-bounce.wav */,
+				BFA0C38B1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav */,
+				BFA0C38C1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav */,
 				BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */,
 				BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */,
 				AF1B3DD11A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav */,
@@ -183,6 +213,10 @@
 				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
 				BFF943101A038271009FF758 /* PDMenuViewController.h */,
 				BFF943111A038271009FF758 /* PDMenuViewController.m */,
+				0FFF54111A2A5E0300CF337D /* PDCreditsViewController.h */,
+				0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */,
+				0F13C6011A34D9830079D9D4 /* PDInstructionsViewController.h */,
+				0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */,
 				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
 				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
 				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
@@ -195,6 +229,14 @@
 				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
 				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
 				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
+				93A0CA7A1A2C11A500577470 /* PDPIDdingMonstersViewController.h */,
+				93A0CA7B1A2C11A500577470 /* PDPIDdingMonstersViewController.m */,
+				93A0CA7D1A2C11C600577470 /* PDPIDdingMonstersScene.h */,
+				93A0CA7E1A2C11C600577470 /* PDPIDdingMonstersScene.m */,
+				9301F1D71A2D65FC00DF3E03 /* PDPIDScenario.h */,
+				9301F1D81A2D65FC00DF3E03 /* PDPIDScenario.m */,
+				BF80EB951A3545E700DDBA08 /* PDNarrativeViewController.h */,
+				BF80EB961A3545E700DDBA08 /* PDNarrativeViewController.m */,
 				BF62564419EC955B008175CC /* PDGridView.h */,
 				BF62564519EC955B008175CC /* PDGridView.m */,
 				BF62564719EC9571008175CC /* PDCellView.h */,
@@ -333,15 +375,19 @@
 				AF1B3DCE1A19DE30002F62B6 /* 219068__annabloom__click2.wav in Resources */,
 				93A3904119F0E44A00D93EB1 /* grids.txt in Resources */,
 				AF1B3DD21A1B0CBC002F62B6 /* 84322__splashdust__flipcard.wav in Resources */,
+				BFA0C38F1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav in Resources */,
 				BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */,
 				AF1B3DD41A1B0D46002F62B6 /* 157609__qubodup__hollow-bang.wav in Resources */,
 				BF6C66C31A08B821004C2D2E /* spams.txt in Resources */,
 				AF1B3DDA1A1B10A9002F62B6 /* 583897_JBroadway---Over-Th.mp3 in Resources */,
 				BF62562A19EC93F0008175CC /* Main.storyboard in Resources */,
 				AF1B3DD81A1B102C002F62B6 /* 140511__blackstalian__click-sfx7.wav in Resources */,
+				BFA0C38D1A2DA9BA00652633 /* 51460__andre-rocha-nascimento__basket-ball-01-bounce.wav in Resources */,
 				BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */,
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
 				BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */,
+				BFA0C38E1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav in Resources */,
+				BFE35EC41A36A89100E98477 /* 146725__fins__laser.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,9 +408,12 @@
 				93FCF92A1A194F98005CF687 /* PDEndOfLevelViewController.m in Sources */,
 				BF62564919EC9571008175CC /* PDCellView.m in Sources */,
 				2994C49119F45C6F00A11183 /* PDQueue.m in Sources */,
+				93A0CA7C1A2C11A500577470 /* PDPIDdingMonstersViewController.m in Sources */,
 				BF62564F19EC9591008175CC /* PDCellModel.m in Sources */,
+				BF80EB971A3545E700DDBA08 /* PDNarrativeViewController.m in Sources */,
 				BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */,
 				BF62564619EC955B008175CC /* PDGridView.m in Sources */,
+				9301F1D91A2D65FC00DF3E03 /* PDPIDScenario.m in Sources */,
 				93A3903F19F0DBB600D93EB1 /* PDOpenings.m in Sources */,
 				BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */,
 				BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */,
@@ -372,10 +421,13 @@
 				BF62565219EC95A0008175CC /* PDGridGenerator.m in Sources */,
 				BF62562119EC93F0008175CC /* main.m in Sources */,
 				AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */,
+				0F13C6031A34D9830079D9D4 /* PDInstructionsViewController.m in Sources */,
+				0FFF54131A2A5E0300CF337D /* PDCreditsViewController.m in Sources */,
 				BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */,
 				BF62564C19EC957F008175CC /* PDGridModel.m in Sources */,
 				AFB232611A196EAB00EEC23E /* PDBounceAndSortViewController.m in Sources */,
 				BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */,
+				93A0CA7F1A2C11C600577470 /* PDPIDdingMonstersScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
