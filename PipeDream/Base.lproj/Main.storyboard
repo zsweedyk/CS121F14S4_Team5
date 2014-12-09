@@ -672,7 +672,7 @@ Cg
                                             </fragment>
                                             <fragment>
                                                 <string key="content">Developed as part of CSCI 121: Software Development at Harvey Mudd College
-Made possible by The Games Network and  NSF Grant # 1042472</string>
+Made possible by The Games Network and NSF Grant # 1042472</string>
                                                 <attributes>
                                                     <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
