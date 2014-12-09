@@ -636,7 +636,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzE-mC-q8t">
                                 <rect key="frame" x="151" y="217" width="466" height="712"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ziM-5Q-f4k">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziM-5Q-f4k">
                                         <rect key="frame" x="14" y="19.5" width="437" height="643.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <attributedString key="attributedText">
@@ -702,7 +702,8 @@ IAo
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                 </attributes>
                                             </fragment>
-                                            <fragment content="Source: http://www.newgrounds.com/audio/listen/583897">
+                                            <fragment content="Source: http://www.newgrounds.com/audio/listen/583897
+                                                Licensed under: CC BY-NC-SA 3.0">
                                                 <attributes>
                                                     <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -737,8 +738,6 @@ Cg
 Licensed under: CC BY-NC 3.0
 Source: https://www.freesound.org/people/f4ngy/sounds/240777/
 Licensed under: CC BY 3.0
-Source: https://www.freesound.org/people/annabloom/sounds/219068/
-Licensed under: CC BY-NC 3.0
 Source: https://www.freesound.org/people/Splashdust/sounds/84322/
 Licensed under: CC0 1.0
 Source: https://www.freesound.org/people/qubodup/sounds/157609/
@@ -747,8 +746,14 @@ Source: https://www.freesound.org/people/SoundCollectah/sounds/157790/
 Licensed under: CC BY-NC 3.0
 Source: https://www.freesound.org/people/blackstalian/sounds/140511/
 Licensed under: CC0 1.0
-Source: http://www.newgrounds.com/audio/listen/583897
-Licensed under: CC BY-NC-SA 3.0</string>
+Source: http://www.freesound.org/people/andre.rocha.nascimento/sounds/51460/
+Licensed under: CC BY 3.0
+Source: http://www.freesound.org/people/DrMinky/sounds/166184/
+Licensed under: CC BY 3.0
+Source: http://www.freesound.org/people/kantouth/sounds/106727/
+Licensed under: CC BY 3.0
+Source: http://www.freesound.org/people/fins/sounds/146725/
+Licensed under: CC0 1.0</string>
                                                 <attributes>
                                                     <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>

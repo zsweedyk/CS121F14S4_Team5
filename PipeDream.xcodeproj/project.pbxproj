@@ -45,6 +45,7 @@
 		BFA0C38E1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFA0C38B1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav */; };
 		BFA0C38F1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFA0C38C1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav */; };
 		BFC5A14A19F8985E000F186D /* PDLevelSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */; };
+		BFE35EC41A36A89100E98477 /* 146725__fins__laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = BFE35EC31A36A89100E98477 /* 146725__fins__laser.wav */; };
 		BFF9430C1A0376BA009FF758 /* PDSpamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */; };
 		BFF943121A038271009FF758 /* PDMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF943111A038271009FF758 /* PDMenuViewController.m */; };
 /* End PBXBuildFile section */
@@ -124,6 +125,7 @@
 		BFA0C38C1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "166184__drminky__retro-coin-collect.wav"; sourceTree = "<group>"; };
 		BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLevelSelectionViewController.h; sourceTree = "<group>"; };
 		BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLevelSelectionViewController.m; sourceTree = "<group>"; };
+		BFE35EC31A36A89100E98477 /* 146725__fins__laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 146725__fins__laser.wav; sourceTree = "<group>"; };
 		BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDMiniGameProtocol.h; sourceTree = "<group>"; };
 		BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSpamViewController.h; sourceTree = "<group>"; };
 		BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSpamViewController.m; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		AF1B3DCB1A19DE15002F62B6 /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				BFE35EC31A36A89100E98477 /* 146725__fins__laser.wav */,
 				BFA0C38A1A2DA9BA00652633 /* 51460__andre-rocha-nascimento__basket-ball-01-bounce.wav */,
 				BFA0C38B1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav */,
 				BFA0C38C1A2DA9BA00652633 /* 166184__drminky__retro-coin-collect.wav */,
@@ -384,6 +387,7 @@
 				BF62562C19EC93F0008175CC /* Images.xcassets in Resources */,
 				BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */,
 				BFA0C38E1A2DA9BA00652633 /* 106727__kantouth__cartoon-bing-low.wav in Resources */,
+				BFE35EC41A36A89100E98477 /* 146725__fins__laser.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

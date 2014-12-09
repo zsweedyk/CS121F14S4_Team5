@@ -22,6 +22,7 @@
 - (void)playBounce;
 - (void)playSortCorrect;
 - (void)playSortIncorrect;
+- (void)playLaserShoot;
 - (void)startBackgroundMusic;
 
 - (void)toggleMusic;
