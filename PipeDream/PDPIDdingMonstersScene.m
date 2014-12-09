@@ -58,6 +58,7 @@ static const uint32_t GOOD_MONSTER_CATEGORY = 0x1 << 0;
 static const uint32_t BAD_MONSTER_CATEGORY = 0x1 << 1;
 static const uint32_t BULLET_CATEGORY = 0x1 << 2;
 static const uint32_t PID_CATEGORY = 0x1 << 3;
+static const uint32_t TURRET_CATEGORY = 0x1 << 4;
 
 // Layout parameters
 // Turrets
@@ -247,6 +248,11 @@ static const float ALPHA_BACKGROUND = 1.0;
         CGFloat turretYPosition = self.frame.size.height * TURRET_Y_POSITION_FACTOR
                                   + turret.size.height / 2;
         turret.position = CGPointMake(turretXPosition, turretYPosition);
+        
+        // Set up physics body of turret - only necessary to fix layer bug in iOS 7.1
+        turret.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:turret.size];
+        turret.physicsBody.dynamic = NO;
+        turret.physicsBody.categoryBitMask = TURRET_CATEGORY;
         
         // Add turret
         [self.turrets addObject:turret];
