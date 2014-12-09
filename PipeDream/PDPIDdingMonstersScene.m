@@ -196,29 +196,34 @@ static const float ALPHA_BACKGROUND = 1.0;
             NSArray *phoneMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, TEACHER_NAME,
                                       SPOUSE_NAME, nil];
             self.scenario = [[PDPIDScenario alloc] initWithPID:phoneStr andOkMonsters:phoneMonsters];
+            break;
         }
         case 3: {
             NSString *emailStr = @"E-mail Address";
             NSArray *emailMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
                                       TEACHER_NAME, SPOUSE_NAME, SOCIAL_MEDIA_NAME, nil];
             self.scenario = [[PDPIDScenario alloc] initWithPID:emailStr andOkMonsters:emailMonsters];
+            break;
         }
         case 4: {
             NSString *bdayStr = @"Birthday";
             NSArray *bdayMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
                                      TEACHER_NAME, SPOUSE_NAME, SOCIAL_MEDIA_NAME, nil];
             self.scenario = [[PDPIDScenario alloc] initWithPID:bdayStr andOkMonsters:bdayMonsters];
+            break;
         }
         case 5: {
             NSString *pinStr = @"Bank PIN";
             NSArray *pinMonsters = [NSArray arrayWithObjects: nil];
             self.scenario = [[PDPIDScenario alloc] initWithPID:pinStr andOkMonsters:pinMonsters];
+            break;
         }
         case 6: {
             NSString *nameStr = @"Real Name";
             NSArray *nameMonsters = [NSArray arrayWithObjects: REAL_FRIEND_NAME, ONLINE_FRIEND_NAME,
                                      TEACHER_NAME, SPOUSE_NAME, SOCIAL_MEDIA_NAME, nil];
             self.scenario = [[PDPIDScenario alloc] initWithPID:nameStr andOkMonsters:nameMonsters];
+            break;
         }
         case 7: {
             NSString *nnameStr = @"Nickname";
@@ -226,6 +231,7 @@ static const float ALPHA_BACKGROUND = 1.0;
                                       TEACHER_NAME, ONLINE_FRIEND_NAME, SPOUSE_NAME,
                                       SOCIAL_MEDIA_NAME, nil];
             self.scenario = [[PDPIDScenario alloc] initWithPID:nnameStr andOkMonsters:nnameMonsters];
+            break;
         }
         default: {
             break;
