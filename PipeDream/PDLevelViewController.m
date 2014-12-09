@@ -23,6 +23,7 @@
 @property (nonatomic) NSInteger selectedInfectedRow;
 @property (nonatomic) NSInteger selectedInfectedCol;
 @property (nonatomic) BOOL hasCompletedLevel;
+@property (nonatomic) BOOL hasPresentedNarrative;
 
 @end
 
@@ -142,11 +143,12 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
 
 // presentAppropriateNarrative displays the narrative for this level if there is one
 - (void)presentAppropriateNarrative {
-    if (self.hasCompletedLevel) {
+    if (self.hasCompletedLevel || self.hasPresentedNarrative) {
         return;
     }
     NSNumber *levelNumber = [NSNumber numberWithInteger:self.levelNumber];
     if ([[PDNarrativeViewController narrativeLevelNumbers] containsObject:levelNumber]) {
+        self.hasPresentedNarrative = YES;
         [self performSegueWithIdentifier:LEVEL_TO_NARRATIVE_SEGUE sender:self];
     }
 }
@@ -156,6 +158,7 @@ NSString *LEVEL_TO_NARRATIVE_SEGUE = @"LevelToNarrative";
 // startLevelNumber starts the level it is given.
 - (void)startLevelNumber:(NSInteger)levelNumber {
     self.hasCompletedLevel = NO;
+    self.hasPresentedNarrative = NO;
     NSInteger zeroIndexedLevelNumber = levelNumber - 1;
     self.gridModel = [[PDGridModel alloc] initWithLevelNumber:zeroIndexedLevelNumber];
     [self setGridViewToMatchModel];
