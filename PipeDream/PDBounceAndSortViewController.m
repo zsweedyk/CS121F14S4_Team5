@@ -45,11 +45,10 @@
 }
 
 - (void)startMiniGame {
-    // Not used.
+    // Method required by PDMiniGameProtocol but not used here.
 }
 
-- (void)miniGameEndWithSuccess:(BOOL)success
-{
+- (void)miniGameEndWithSuccess:(BOOL)success {
     // Make a UIAlertview thing
     self.completedSuccessfully = success;
     [self.skView presentScene:nil];

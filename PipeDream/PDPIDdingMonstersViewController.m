@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.presentingController = self.presentingViewController;
     // Do any additional setup after loading the view.
     
     // Configure the view.
@@ -40,13 +39,10 @@
     [self.skView presentScene:scene];
 }
 
-
 - (void)startGameButtonPressed {
     self.instructionsView.hidden = YES;
     [((PDPIDdingMonstersScene *)self.skView.scene) startGame];
 }
-
-//
 
 -(void)cancelButtonPressed {
     [[PDAudioManager sharedInstance] playMenuButtonPressed];
@@ -54,11 +50,10 @@
 }
 
 - (void)startMiniGame {
-    // Not used.
+    // Method required by PDMiniGameProtocol but not used here.
 }
 
-- (void)miniGameEndWithSuccess:(BOOL)success
-{
+- (void)miniGameEndWithSuccess:(BOOL)success {
     // Make a UIAlertview thing
     self.completedSuccessfully = success;
     [self.skView presentScene:nil];

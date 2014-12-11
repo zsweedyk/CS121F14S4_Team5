@@ -77,13 +77,6 @@ static float BORDER_RATIO = 0.03;
     
 }
 
-/*
- * Given the coordinates of a cell, rotates that cell.
- */
-- (void)rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col {
-    PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
-    [currentCell rotateClockwise];
-}
 
 - (void)setCellAtRow:(NSInteger)row col:(NSInteger)col cell:(PDCellModel *)model {
     PDCellView *currentCell = [[self.cellViews objectAtIndex:row] objectAtIndex:col];
