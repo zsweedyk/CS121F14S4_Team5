@@ -123,8 +123,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     self.hasGameStarted = YES;
 }
 
--(id)initWithSize:(CGSize)size
-{
+-(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor colorWithRed:RED_BACKGROUND green:GREEN_BACKGROUND blue:BLUE_BACKGROUND alpha:ALPHA_BACKGROUND];
         [self createBuckets];
@@ -140,8 +139,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically while initializing the scene. Until this is called, no views exist.
  */
-- (void)didMoveToView:(SKView *)view
-{
+- (void)didMoveToView:(SKView *)view {
     UIColor *LABEL_COLOR = [UIColor whiteColor];
     
     UISlider *slider = [[UISlider alloc] initWithFrame:
@@ -181,8 +179,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically when two physics bodies within the scene collide.
  */
--(void)didBeginContact:(SKPhysicsContact*)contact
-{
+-(void)didBeginContact:(SKPhysicsContact*)contact {
     // Create local variables for the two physics bodies in contact.
     SKPhysicsBody* firstBody;
     SKPhysicsBody* secondBody;
@@ -235,8 +232,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called automatically before each frame is rendered.
  */
-- (void)update:(CFTimeInterval)currentTime
-{
+- (void)update:(CFTimeInterval)currentTime {
     if (!self.hasGameStarted) {
         return;
     }
@@ -262,14 +258,12 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 
 #pragma private methods
 
-- (void)createBuckets
-{
+- (void)createBuckets {
     [self createGoodBucket];
     [self createBadBucket];
 }
 
-- (void)createGoodBucket
-{
+- (void)createGoodBucket {
     SKSpriteNode* gblock = [SKSpriteNode spriteNodeWithImageNamed:GOOD_BLOCK_SPRITE_IMAGE_NAME];
     gblock.position = CGPointMake(gblock.frame.size.width * GOOD_BUCKET_X_POSITION_FACTOR,
     self.frame.size.height * GOOD_BUCKET_Y_POSITION_FACTOR);
@@ -284,8 +278,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     [self addChild:gblock];
 }
 
-- (void)createBadBucket
-{
+- (void)createBadBucket {
     SKSpriteNode* bblock = [SKSpriteNode spriteNodeWithImageNamed:BAD_BLOCK_SPRITE_IMAGE_NAME];
     bblock.position = CGPointMake(self.frame.size.width +
         bblock.frame.size.width * BAD_BUCKET_X_POSITION_FACTOR,
@@ -301,8 +294,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     [self addChild:bblock];
 }
 
-- (SKPhysicsBody *)createBlockBody:(CGSize)size
-{
+- (SKPhysicsBody *)createBlockBody:(CGSize)size {
     SKPhysicsBody *body = [SKPhysicsBody bodyWithRectangleOfSize:size];
     body.allowsRotation = NO;
     body.friction = BLOCK_FRICTION;
@@ -310,8 +302,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     return body;
 }
 
-- (void)createBar
-{
+- (void)createBar {
     SKSpriteNode* bar = [[SKSpriteNode alloc] initWithImageNamed:BAR_SPRITE_IMAGE_NAME];
     bar.position = CGPointMake(CGRectGetMidX(self.frame),
         self.frame.size.height * BAR_Y_POSITION_FACTOR);
@@ -323,8 +314,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     [self addChild:bar];
 }
 
-- (SKPhysicsBody *)createBarBody:(CGSize)size
-{
+- (SKPhysicsBody *)createBarBody:(CGSize)size {
     SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
     physicsBody.restitution = BAR_RESTITUTION;
     physicsBody.friction = BAR_FRICTION;
@@ -332,8 +322,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     return physicsBody;
 }
 
-- (void)createBall
-{
+- (void)createBall {
     // Determine whether the ball is good or bad randomly.
     int goodOrBad = arc4random() % 2;
     SKNode *ball = [self createGoodBall];
@@ -359,8 +348,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
  * INPUT: The radius of a ball.
  * Creates a physics body for a ball, given a radius. Sets properties that are common to all balls.
  */
-- (SKPhysicsBody *)createBallBody:(CGFloat)radius
-{
+- (SKPhysicsBody *)createBallBody:(CGFloat)radius {
     SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:radius];
     physicsBody.dynamic = YES;
     physicsBody.allowsRotation = YES;
@@ -373,8 +361,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     return physicsBody;
 }
 
-- (SKNode *)createGoodBall
-{
+- (SKNode *)createGoodBall {
     // Choose a random good sprite.
     int index = arc4random() % NUM_GOOD_BALL_SPRITE_IMAGE_NAMES;
     NSString *spriteName = GOOD_BALL_SPRITE_IMAGE_NAMES[index];
@@ -383,8 +370,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
     return ball;
 }
 
-- (SKNode *)createBadBall
-{
+- (SKNode *)createBadBall {
     // Choose a random bad sprite.
     int index = arc4random() % NUM_BAD_BALL_SPRITE_IMAGE_NAMES;
     NSString *spriteName = BAD_BALL_SPRITE_IMAGE_NAMES[index];
@@ -396,8 +382,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Creates a physics body to border the scene, so that balls remain contained within the screen.
  */
-- (void)createEdges
-{
+- (void)createEdges {
     SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     self.physicsBody = borderBody;
     self.physicsBody.friction = EDGE_FRICTION;
@@ -406,8 +391,7 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Called whenever the slider has moved. Calculates the rotation of the bar.
  */
-- (void)sliderMoved:(id)sender
-{
+- (void)sliderMoved:(id)sender {
     UISlider *slider = (UISlider *)sender;
     float value = slider.value;
     
@@ -420,16 +404,14 @@ static NSString *BAR_CATEGORY_NAME = @"bar";
 /*
  * Initializes in-game variables.
  */
-- (void)initializeGame
-{
+- (void)initializeGame {
     self.score = 0;
     self.numBalls = 0;
     self.lastBallRelease = 0;
     self.hasGameStartBeenRecorded = NO;
 }
 
-- (void)endGame
-{
+- (void)endGame {
     BOOL isSuccess = NO;
     if (self.score >= MIN_SUCCESSFUL_SCORE) {
         isSuccess = YES;

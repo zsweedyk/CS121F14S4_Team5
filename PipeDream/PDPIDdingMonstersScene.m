@@ -382,8 +382,7 @@ static const float ALPHA_BACKGROUND = 1.0;
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
         firstBody = contact.bodyA;
         secondBody = contact.bodyB;
-    }
-    else {
+    } else {
         firstBody = contact.bodyB;
         secondBody = contact.bodyA;
     }
