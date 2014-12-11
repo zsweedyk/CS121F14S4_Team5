@@ -152,6 +152,123 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		930F53E01A391A1600D42B02 /* Mini Games */ = {
+			isa = PBXGroup;
+			children = (
+				AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */,
+				BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */,
+				930F53E31A391A6C00D42B02 /* Bounce and Sort */,
+				930F53E21A391A6000D42B02 /* Spam or Not Spam */,
+				930F53E11A391A4800D42B02 /* PIDding Monsters */,
+			);
+			name = "Mini Games";
+			sourceTree = "<group>";
+		};
+		930F53E11A391A4800D42B02 /* PIDding Monsters */ = {
+			isa = PBXGroup;
+			children = (
+				93A0CA7A1A2C11A500577470 /* PDPIDdingMonstersViewController.h */,
+				93A0CA7B1A2C11A500577470 /* PDPIDdingMonstersViewController.m */,
+				93A0CA7D1A2C11C600577470 /* PDPIDdingMonstersScene.h */,
+				93A0CA7E1A2C11C600577470 /* PDPIDdingMonstersScene.m */,
+				9301F1D71A2D65FC00DF3E03 /* PDPIDScenario.h */,
+				9301F1D81A2D65FC00DF3E03 /* PDPIDScenario.m */,
+			);
+			name = "PIDding Monsters";
+			sourceTree = "<group>";
+		};
+		930F53E21A391A6000D42B02 /* Spam or Not Spam */ = {
+			isa = PBXGroup;
+			children = (
+				BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */,
+				BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */,
+			);
+			name = "Spam or Not Spam";
+			sourceTree = "<group>";
+		};
+		930F53E31A391A6C00D42B02 /* Bounce and Sort */ = {
+			isa = PBXGroup;
+			children = (
+				AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */,
+				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
+				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
+				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
+			);
+			name = "Bounce and Sort";
+			sourceTree = "<group>";
+		};
+		930F53E41A391AE600D42B02 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				BFF943101A038271009FF758 /* PDMenuViewController.h */,
+				BFF943111A038271009FF758 /* PDMenuViewController.m */,
+				0FFF54111A2A5E0300CF337D /* PDCreditsViewController.h */,
+				0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */,
+				0F13C6011A34D9830079D9D4 /* PDInstructionsViewController.h */,
+				0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */,
+				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
+				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
+		930F53E51A391B1600D42B02 /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				930F53E01A391A1600D42B02 /* Mini Games */,
+				2994C48F19F45C6F00A11183 /* PDQueue.h */,
+				2994C49019F45C6F00A11183 /* PDQueue.m */,
+				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
+				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
+				93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */,
+				93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */,
+				BF80EB951A3545E700DDBA08 /* PDNarrativeViewController.h */,
+				BF80EB961A3545E700DDBA08 /* PDNarrativeViewController.m */,
+				BF62564419EC955B008175CC /* PDGridView.h */,
+				BF62564519EC955B008175CC /* PDGridView.m */,
+				BF62564719EC9571008175CC /* PDCellView.h */,
+				BF62564819EC9571008175CC /* PDCellView.m */,
+				BF62564A19EC957F008175CC /* PDGridModel.h */,
+				BF62564B19EC957F008175CC /* PDGridModel.m */,
+				BF62564D19EC9591008175CC /* PDCellModel.h */,
+				BF62564E19EC9591008175CC /* PDCellModel.m */,
+				BF62565019EC95A0008175CC /* PDGridGenerator.h */,
+				BF62565119EC95A0008175CC /* PDGridGenerator.m */,
+				BF53EF4019F0A63A004BA422 /* PDOpenings.h */,
+				93A3903E19F0DBB600D93EB1 /* PDOpenings.m */,
+				BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */,
+			);
+			name = Level;
+			sourceTree = "<group>";
+		};
+		930F53E61A391B6200D42B02 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B3DCA1A19DDFC002F62B6 /* Sounds */,
+				93A3904019F0E44A00D93EB1 /* grids.txt */,
+				BF6C66C11A08B821004C2D2E /* spams.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		930F53E71A391C7A00D42B02 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BF62562219EC93F0008175CC /* PDAppDelegate.h */,
+				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		930F53E81A391CA000D42B02 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AF412EED1A19CA6B00C34102 /* PDAudioManager.h */,
+				AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		AF1B3DCA1A19DDFC002F62B6 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,60 +325,14 @@
 		BF62561D19EC93F0008175CC /* PipeDream */ = {
 			isa = PBXGroup;
 			children = (
-				AF1B3DCA1A19DDFC002F62B6 /* Sounds */,
-				BF62562219EC93F0008175CC /* PDAppDelegate.h */,
-				BF62562319EC93F0008175CC /* PDAppDelegate.m */,
-				BFF943101A038271009FF758 /* PDMenuViewController.h */,
-				BFF943111A038271009FF758 /* PDMenuViewController.m */,
-				0FFF54111A2A5E0300CF337D /* PDCreditsViewController.h */,
-				0FFF54121A2A5E0300CF337D /* PDCreditsViewController.m */,
-				0F13C6011A34D9830079D9D4 /* PDInstructionsViewController.h */,
-				0F13C6021A34D9830079D9D4 /* PDInstructionsViewController.m */,
-				BFC5A14819F8985E000F186D /* PDLevelSelectionViewController.h */,
-				BFC5A14919F8985E000F186D /* PDLevelSelectionViewController.m */,
-				BF62562519EC93F0008175CC /* PDLevelViewController.h */,
-				BF62562619EC93F0008175CC /* PDLevelViewController.m */,
-				93FCF9281A194F98005CF687 /* PDEndOfLevelViewController.h */,
-				93FCF9291A194F98005CF687 /* PDEndOfLevelViewController.m */,
-				BFF9430A1A0376BA009FF758 /* PDSpamViewController.h */,
-				BFF9430B1A0376BA009FF758 /* PDSpamViewController.m */,
-				AFB2325F1A196EAB00EEC23E /* PDBounceAndSortViewController.h */,
-				AFB232601A196EAB00EEC23E /* PDBounceAndSortViewController.m */,
-				AFB232641A1976BA00EEC23E /* PDBounceAndSortScene.h */,
-				AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */,
-				93A0CA7A1A2C11A500577470 /* PDPIDdingMonstersViewController.h */,
-				93A0CA7B1A2C11A500577470 /* PDPIDdingMonstersViewController.m */,
-				93A0CA7D1A2C11C600577470 /* PDPIDdingMonstersScene.h */,
-				93A0CA7E1A2C11C600577470 /* PDPIDdingMonstersScene.m */,
-				9301F1D71A2D65FC00DF3E03 /* PDPIDScenario.h */,
-				9301F1D81A2D65FC00DF3E03 /* PDPIDScenario.m */,
-				BF80EB951A3545E700DDBA08 /* PDNarrativeViewController.h */,
-				BF80EB961A3545E700DDBA08 /* PDNarrativeViewController.m */,
-				BF62564419EC955B008175CC /* PDGridView.h */,
-				BF62564519EC955B008175CC /* PDGridView.m */,
-				BF62564719EC9571008175CC /* PDCellView.h */,
-				BF62564819EC9571008175CC /* PDCellView.m */,
-				BF62564A19EC957F008175CC /* PDGridModel.h */,
-				BF62564B19EC957F008175CC /* PDGridModel.m */,
-				BF62564D19EC9591008175CC /* PDCellModel.h */,
-				BF62564E19EC9591008175CC /* PDCellModel.m */,
-				BF62565019EC95A0008175CC /* PDGridGenerator.h */,
-				BF62565119EC95A0008175CC /* PDGridGenerator.m */,
-				BF53EF4019F0A63A004BA422 /* PDOpenings.h */,
-				93A3903E19F0DBB600D93EB1 /* PDOpenings.m */,
-				93A3904019F0E44A00D93EB1 /* grids.txt */,
-				BF6C66C11A08B821004C2D2E /* spams.txt */,
-				BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */,
-				AFB232671A199BC900EEC23E /* PDMiniGameSceneEndDelegate.h */,
-				BFF943091A0374C2009FF758 /* PDMiniGameProtocol.h */,
+				930F53E71A391C7A00D42B02 /* Application */,
+				930F53E51A391B1600D42B02 /* Level */,
+				930F53E41A391AE600D42B02 /* Menus */,
+				BF62561E19EC93F0008175CC /* Supporting Files */,
+				930F53E81A391CA000D42B02 /* Utilities */,
 				BF62562819EC93F0008175CC /* Main.storyboard */,
 				BF62562B19EC93F0008175CC /* Images.xcassets */,
 				BF62562D19EC93F0008175CC /* LaunchScreen.xib */,
-				BF62561E19EC93F0008175CC /* Supporting Files */,
-				2994C48F19F45C6F00A11183 /* PDQueue.h */,
-				2994C49019F45C6F00A11183 /* PDQueue.m */,
-				AF412EED1A19CA6B00C34102 /* PDAudioManager.h */,
-				AF412EEE1A19CA6B00C34102 /* PDAudioManager.m */,
 			);
 			path = PipeDream;
 			sourceTree = "<group>";
@@ -269,6 +340,7 @@
 		BF62561E19EC93F0008175CC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				930F53E61A391B6200D42B02 /* Resources */,
 				BF62561F19EC93F0008175CC /* Info.plist */,
 				BF62562019EC93F0008175CC /* main.m */,
 			);
