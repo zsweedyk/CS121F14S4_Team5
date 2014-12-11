@@ -16,7 +16,6 @@
 @property (nonatomic) int row;
 @property (nonatomic) int col;
 
-- (void)rotateClockwise;
 - (void)setCell:(PDCellModel *)model;
 
 @end

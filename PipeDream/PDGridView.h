@@ -15,7 +15,6 @@
 
 @property (nonatomic, weak) id<PDCellPressedDelegate> delegate;
 - (void)drawGridFromDimension:(NSInteger)gridDimension;
-- (void)rotateClockwiseCellAtRow:(NSInteger)row col:(NSInteger)col;
 - (void)setCellAtRow:(NSInteger)row col:(NSInteger)col cell:(PDCellModel *)model;
 
 @end
