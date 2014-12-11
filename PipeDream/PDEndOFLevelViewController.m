@@ -17,15 +17,13 @@
 
 @implementation PDEndOfLevelViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self.levelCompletedLabel setText:[NSString stringWithFormat:@"You completed level %ld!",
                                        (long)self.levelNumberCompleted]];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

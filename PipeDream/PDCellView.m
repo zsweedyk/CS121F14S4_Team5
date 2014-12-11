@@ -33,16 +33,10 @@ NSString* NOT_VISIBLE_IMAGE_NAME = @"fog";
     CGFloat backgroundOpacity = 1;
     self.backgroundColor = [UIColor colorWithRed:backgroundDarkness green:backgroundDarkness
                                             blue:backgroundDarkness alpha:backgroundOpacity];
-    
-    
+
     return self;
 }
 
-- (void)rotateClockwise {
-    // Currently does not have any additional implementation.
-    // setCellIsOpenNorth:south:east:west is called immediately after this, thus pulling a new image
-    // instead of changing existing image.
-}
 
 // Note: Start (computer) and End (star) images are disabled for user interaction with every
 // update 

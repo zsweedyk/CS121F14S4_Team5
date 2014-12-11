@@ -12,28 +12,23 @@
 
 @implementation PDQueue
 
--(id)init
-{
+-(id)init {
     if ( (self = [super init]) ) {
         array = [[NSMutableArray alloc] init];
     }
-    
     return self;
 }
 
--(id)dequeue
-{
+-(id)dequeue {
     if ([array count] > 0) {
         id object = [self peek];
         [array removeObjectAtIndex:0];
         return object;
     }
-    
     return nil;
 }
 
--(void)enqueue:(id)element
-{
+-(void)enqueue:(id)element {
     [array addObject:element];
 }
 
@@ -42,33 +37,28 @@
     [array addObjectsFromArray:arr];
 }
 
--(void)enqueueElementsFromQueue:(PDQueue*)queue
-{
+-(void)enqueueElementsFromQueue:(PDQueue*)queue {
     while (![queue isEmpty]) {
         [self enqueue:[queue dequeue]];
     }
 }
 
--(id)peek
-{
+-(id)peek {
     if ([array count] > 0)
         return [array objectAtIndex:0];
     
     return nil;
 }
 
--(NSInteger)size
-{
+-(NSInteger)size {
     return [array count];
 }
 
--(BOOL)isEmpty
-{
+-(BOOL)isEmpty {
     return [array count] == 0;
 }
 
--(void)clear
-{
+-(void)clear {
     [array removeAllObjects];
 }
 
