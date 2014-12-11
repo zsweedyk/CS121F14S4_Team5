@@ -27,13 +27,16 @@
 		AFB232661A1976BA00EEC23E /* PDBounceAndSortScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB232651A1976BA00EEC23E /* PDBounceAndSortScene.m */; };
 		BF1BB4CC1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */; };
 		BF1BB4CE1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */; };
+		BF38D4FC1A391F2E003B0253 /* PDCellModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF38D4FB1A391F2E003B0253 /* PDCellModelTests.m */; };
+		BF38D4FE1A39206C003B0253 /* PDGridGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF38D4FD1A39206C003B0253 /* PDGridGeneratorTests.m */; };
+		BF38D5001A392127003B0253 /* PDGridModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF38D4FF1A392127003B0253 /* PDGridModelTests.m */; };
+		BF38D5021A392315003B0253 /* PDSpamViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF38D5011A392315003B0253 /* PDSpamViewControllerTests.m */; };
 		BF62562119EC93F0008175CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562019EC93F0008175CC /* main.m */; };
 		BF62562419EC93F0008175CC /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562319EC93F0008175CC /* PDAppDelegate.m */; };
 		BF62562719EC93F0008175CC /* PDLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62562619EC93F0008175CC /* PDLevelViewController.m */; };
 		BF62562A19EC93F0008175CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF62562819EC93F0008175CC /* Main.storyboard */; };
 		BF62562C19EC93F0008175CC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF62562B19EC93F0008175CC /* Images.xcassets */; };
 		BF62562F19EC93F0008175CC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF62562D19EC93F0008175CC /* LaunchScreen.xib */; };
-		BF62563B19EC93F0008175CC /* PipeDreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62563A19EC93F0008175CC /* PipeDreamTests.m */; };
 		BF62564619EC955B008175CC /* PDGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62564519EC955B008175CC /* PDGridView.m */; };
 		BF62564919EC9571008175CC /* PDCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62564819EC9571008175CC /* PDCellView.m */; };
 		BF62564C19EC957F008175CC /* PDGridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62564B19EC957F008175CC /* PDGridModel.m */; };
@@ -93,6 +96,10 @@
 		BF00D25019F1DC2100DF2233 /* PDCellPressedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDCellPressedDelegate.h; sourceTree = "<group>"; };
 		BF1BB4CB1A1B301E007B17A1 /* 240777__f4ngy__dealing-card-shortened.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "240777__f4ngy__dealing-card-shortened.wav"; sourceTree = "<group>"; };
 		BF1BB4CD1A1B30D0007B17A1 /* 157790__soundcollectah__airpipe-swoosh-01-shortened.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "157790__soundcollectah__airpipe-swoosh-01-shortened.wav"; sourceTree = "<group>"; };
+		BF38D4FB1A391F2E003B0253 /* PDCellModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCellModelTests.m; sourceTree = "<group>"; };
+		BF38D4FD1A39206C003B0253 /* PDGridGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDGridGeneratorTests.m; sourceTree = "<group>"; };
+		BF38D4FF1A392127003B0253 /* PDGridModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDGridModelTests.m; sourceTree = "<group>"; };
+		BF38D5011A392315003B0253 /* PDSpamViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSpamViewControllerTests.m; sourceTree = "<group>"; };
 		BF53EF4019F0A63A004BA422 /* PDOpenings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDOpenings.h; sourceTree = "<group>"; };
 		BF62561B19EC93F0008175CC /* PipeDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF62561F19EC93F0008175CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,7 +113,6 @@
 		BF62562E19EC93F0008175CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BF62563419EC93F0008175CC /* PipeDreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipeDreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF62563919EC93F0008175CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF62563A19EC93F0008175CC /* PipeDreamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PipeDreamTests.m; sourceTree = "<group>"; };
 		BF62564419EC955B008175CC /* PDGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDGridView.h; sourceTree = "<group>"; };
 		BF62564519EC955B008175CC /* PDGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDGridView.m; sourceTree = "<group>"; };
 		BF62564719EC9571008175CC /* PDCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCellView.h; sourceTree = "<group>"; };
@@ -350,7 +356,10 @@
 		BF62563719EC93F0008175CC /* PipeDreamTests */ = {
 			isa = PBXGroup;
 			children = (
-				BF62563A19EC93F0008175CC /* PipeDreamTests.m */,
+				BF38D4FB1A391F2E003B0253 /* PDCellModelTests.m */,
+				BF38D4FD1A39206C003B0253 /* PDGridGeneratorTests.m */,
+				BF38D4FF1A392127003B0253 /* PDGridModelTests.m */,
+				BF38D5011A392315003B0253 /* PDSpamViewControllerTests.m */,
 				BF62563819EC93F0008175CC /* Supporting Files */,
 			);
 			path = PipeDreamTests;
@@ -507,7 +516,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF62563B19EC93F0008175CC /* PipeDreamTests.m in Sources */,
+				BF38D5021A392315003B0253 /* PDSpamViewControllerTests.m in Sources */,
+				BF38D4FE1A39206C003B0253 /* PDGridGeneratorTests.m in Sources */,
+				BF38D4FC1A391F2E003B0253 /* PDCellModelTests.m in Sources */,
+				BF38D5001A392127003B0253 /* PDGridModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
